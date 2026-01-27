@@ -3,6 +3,8 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 CONFIG_DIR="$HOME/.config"
+TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
+TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 LINK_ONLY=false
 
 if [ "${1:-}" = "--link-only" ]; then
@@ -42,5 +44,25 @@ link tmux
 link ghostty
 link hammerspoon
 link starship.toml
+
+# 4) Install tmux plugins (TPM)
+if command -v git >/dev/null 2>&1; then
+  mkdir -p "$TMUX_PLUGIN_DIR"
+  if [ ! -d "$TPM_DIR" ]; then
+    echo "Installing TPM..."
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+  fi
+
+  if [ ! -e "$HOME/.tmux.conf" ]; then
+    cat > "$HOME/.tmux.conf" <<'EOF'
+source-file ~/.config/tmux/tmux.conf
+EOF
+    echo "Created ~/.tmux.conf -> ~/.config/tmux/tmux.conf"
+  fi
+
+  if [ -x "$TPM_DIR/bin/install_plugins" ]; then
+    TMUX_PLUGIN_MANAGER_PATH="$TMUX_PLUGIN_DIR" "$TPM_DIR/bin/install_plugins"
+  fi
+fi
 
 echo "Done."

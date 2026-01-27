@@ -30,6 +30,13 @@ git clone git@github.com:nchandar/dotfiles.git ~/dotfiles
 bash ~/dotfiles/bootstrap.sh
 ```
 
+## New machine checklist (quick)
+```sh
+git clone git@github.com:nchandar/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make bootstrap
+```
+
 ## Setup on a new Mac (manual)
 1) Install Homebrew (if needed)
 ```sh
@@ -51,20 +58,27 @@ ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 ```
 
-4) Update Ghostty XDG_CONFIG_HOME (required per machine)
+4) Install tmux plugins (TPM)
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
+```
+
+5) Update Ghostty XDG_CONFIG_HOME (required per machine)
 Ghostty does not expand `$HOME` in `env = ...`, so set an absolute path.
 Edit `config/ghostty/config` and update the line:
 `env = XDG_CONFIG_HOME=/Users/<your-username>/.config`
 
 ## Make targets
-- `make bootstrap` run full bootstrap (brew + links)
+- `make bootstrap` run full bootstrap (brew + links + tmux plugins)
 - `make brew` run only Homebrew bundle
 - `make link` create symlinks only
 - `make status` show current symlinks
+- `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
 
 ## Options and settings
 - **Symlinks vs copy**: This setup uses symlinks so the repo is the single source of truth. If you prefer copies, do so manually but keep them in sync.
-- **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run.
+- **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).
