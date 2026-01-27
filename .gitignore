@@ -1,0 +1,16 @@
+# Machine-specific or local overrides
+local/
+
+# OS/editor noise
+.DS_Store
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+
+# App/runtime state (keep out of repo)
+config/**/cache/
+config/**/sessions/
+config/**/logs/
+config/tmux/plugins/

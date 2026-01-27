@@ -1,0 +1,16 @@
+env = XDG_CONFIG_HOME=/Users/niranjan/.config
+
+# Set font and colors
+theme = "Catppuccin Mocha"
+font-family = "JetBrains Mono"
+font-size = 16
+mouse-hide-while-typing = true
+window-decoration = true
+macos-option-as-alt = true
+#background-opacity = 0.9
+background-blur-radius = 20
+
+command = /opt/homebrew/bin/nu
+
+# Enable keybinds
+keybind = ctrl+shift+t=new_split:up
