@@ -1,20 +1,57 @@
 add_newline = false
-# A minimal left prompt
-format = """$directory$character"""
 palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
-right_format = """$all"""
 command_timeout = 1000
+
+# Left prompt: path + git + prompt char
+format = """$directory$git_branch$git_status$character"""
+
+# Right prompt: exit code + jobs + duration + time + battery
+right_format = """$status$jobs$cmd_duration$time$battery"""
 
 [character]
 vicmd_symbol = "[N] >>>"
 success_symbol = '[➜](bold green)'
+error_symbol = '[✗](bold red)'
 
 [directory.substitutions]
 '~/tests/starship-custom' = 'project'
 
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+style = 'bold yellow'
+
+[status]
+disabled = false
+format = '[$symbol$status]($style) '
+symbol = '✗ '
+success_symbol = ''
+style = 'bold red'
+
+[jobs]
+symbol = '✦ '
+format = '[$symbol$number]($style) '
+style = 'bold cyan'
+
+[cmd_duration]
+min_time = 500
+format = '[⏱ $duration]($style) '
+style = 'bold blue'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+format = '[󰥔 $time]($style) '
+style = 'bold mauve'
+
+[battery]
+format = '[ $percentage]($style) '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂂 '
+full_symbol = '󰁹 '
+style = 'bold green'
 
 [golang]
 format = '[ ](bold cyan)'
