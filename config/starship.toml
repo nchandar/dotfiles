@@ -51,6 +51,9 @@ format = '[ $percentage]($style) '
 charging_symbol = '󰂄 '
 discharging_symbol = '󰂂 '
 full_symbol = '󰁹 '
+
+[[battery.display]]
+threshold = 100
 style = 'bold green'
 
 [golang]
