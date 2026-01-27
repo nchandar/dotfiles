@@ -27,8 +27,9 @@ format = '[  $branch]($style) '
 style = 'fg=base bg=sky'
 
 [git_status]
-format = '[ $all_status$ahead_behind]($style) '
+format = '[ $all_status$ahead_behind$up_to_date]($style) '
 style = 'fg=base bg=sky'
+up_to_date = '✓'
 
 [status]
 disabled = false
