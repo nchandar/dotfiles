@@ -2,10 +2,10 @@ add_newline = false
 palette = "catppuccin_mocha"
 command_timeout = 1000
 
-# Left prompt: path + git + prompt char
+# Left prompt: path + git + prompt char (pill-style)
 format = """$directory$git_branch$git_status$character"""
 
-# Right prompt: exit code + jobs + duration + time + battery
+# Right prompt: exit code + jobs + duration + time + battery (pill-style)
 right_format = """$status$jobs$cmd_duration$time$battery"""
 
 [character]
@@ -13,48 +13,55 @@ vicmd_symbol = "[N] >>>"
 success_symbol = '[➜](bold green)'
 error_symbol = '[✗](bold red)'
 
+[directory]
+format = '[$path]($style) '
+style = 'fg=base bg=lavender'
+truncation_length = 3
+truncate_to_repo = true
+
 [directory.substitutions]
 '~/tests/starship-custom' = 'project'
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+format = '[  $branch]($style) '
+style = 'fg=base bg=sky'
 
 [git_status]
-format = '([$all_status$ahead_behind]($style))'
-style = 'bold yellow'
+format = '[ $all_status$ahead_behind]($style) '
+style = 'fg=base bg=sky'
 
 [status]
 disabled = false
-format = '[$symbol$status]($style) '
+format = '[ $symbol$status]($style) '
 symbol = '✗ '
 success_symbol = ''
-style = 'bold red'
+style = 'fg=base bg=red'
 
 [jobs]
 symbol = '✦ '
-format = '[$symbol$number]($style) '
-style = 'bold cyan'
+format = '[ $symbol$number]($style) '
+style = 'fg=base bg=teal'
 
 [cmd_duration]
 min_time = 500
-format = '[⏱ $duration]($style) '
-style = 'bold blue'
+format = '[ ⏱ $duration]($style) '
+style = 'fg=base bg=blue'
 
 [time]
 disabled = false
 time_format = '%H:%M'
-format = '[󰥔 $time]($style) '
-style = 'bold mauve'
+format = '[ 󰥔 $time]($style) '
+style = 'fg=base bg=mauve'
 
 [battery]
-format = '[ $percentage]($style) '
+format = '[  $percentage]($style) '
 charging_symbol = '󰂄 '
 discharging_symbol = '󰂂 '
 full_symbol = '󰁹 '
 
 [[battery.display]]
 threshold = 100
-style = 'bold green'
+style = 'fg=base bg=green'
 
 [golang]
 format = '[ ](bold cyan)'
