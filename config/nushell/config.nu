@@ -21,7 +21,6 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 # --- Carapace external completions ---
-source $"($nu.cache-dir)/carapace.nu"
 
 let carapace_completer = {|spans|
   if ($spans | is-empty) { return null }
@@ -38,9 +37,3 @@ $env.config = (
 )
 
 # --- Starship prompt ---
-# --- Starship prompt (Nushell) ---
-if (which starship | is-not-empty) {
-  mkdir $nu.cache-dir | ignore
-  starship init nu | save --force $"($nu.cache-dir)/starship.nu"
-  source $"($nu.cache-dir)/starship.nu"
-}

@@ -1,4 +1,4 @@
-env = XDG_CONFIG_HOME=/Users/niranjan/.config
+env = XDG_CONFIG_HOME=/Users/niranjanchandarraj/.config
 
 # Set font and colors
 theme = "Catppuccin Mocha"

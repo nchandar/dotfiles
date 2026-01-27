@@ -1,4 +1,6 @@
-$env.PATH = ($env.PATH | split row (char esep) | where { $in != "/Users/niranjan/.config/carapace/bin" } | prepend "/Users/niranjan/.config/carapace/bin")
+let config_home = ($env | get -i XDG_CONFIG_HOME | default ($env.HOME | path join ".config"))
+let carapace_bin = ($config_home | path join "carapace" "bin")
+$env.PATH = ($env.PATH | split row (char esep) | where { $in != $carapace_bin } | prepend $carapace_bin)
 
 def --env get-env [name] { $env | get $name }
 def --env set-env [name, value] { load-env { $name: $value } }

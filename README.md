@@ -51,6 +51,11 @@ ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 ```
 
+4) Update Ghostty XDG_CONFIG_HOME (required per machine)
+Ghostty does not expand `$HOME` in `env = ...`, so set an absolute path.
+Edit `config/ghostty/config` and update the line:
+`env = XDG_CONFIG_HOME=/Users/<your-username>/.config`
+
 ## Make targets
 - `make bootstrap` run full bootstrap (brew + links)
 - `make brew` run only Homebrew bundle
@@ -61,6 +66,7 @@ ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 - **Symlinks vs copy**: This setup uses symlinks so the repo is the single source of truth. If you prefer copies, do so manually but keep them in sync.
 - **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run.
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
+- **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).
 
 ## Git ignored items
