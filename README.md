@@ -60,8 +60,8 @@ ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 
 4) Install tmux plugins (TPM)
 ```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins ~/.tmux/plugins/tpm/bin/install_plugins
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins
 ```
 
 5) Update Ghostty XDG_CONFIG_HOME (required per machine)

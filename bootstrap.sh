@@ -3,7 +3,7 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 CONFIG_DIR="$HOME/.config"
-TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
+TMUX_PLUGIN_DIR="$HOME/.config/tmux/plugins"
 TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 LINK_ONLY=false
 
@@ -59,8 +59,15 @@ source-file ~/.config/tmux/tmux.conf
 EOF
     echo "Created ~/.tmux.conf -> ~/.config/tmux/tmux.conf"
   fi
+  if [ -f "$CONFIG_DIR/tmux/tmux.conf" ] && \
+     grep -q "run '~/.tmux/plugins/tpm/tpm'" "$CONFIG_DIR/tmux/tmux.conf"; then
+    echo "Warning: tmux.conf still points TPM at ~/.tmux/plugins; update to ~/.config/tmux/plugins."
+  fi
 
   if [ -x "$TPM_DIR/bin/install_plugins" ]; then
+    if command -v tmux >/dev/null 2>&1; then
+      tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$TMUX_PLUGIN_DIR" >/dev/null 2>&1 || true
+    fi
     TMUX_PLUGIN_MANAGER_PATH="$TMUX_PLUGIN_DIR" "$TPM_DIR/bin/install_plugins"
   fi
 fi
