@@ -13,6 +13,11 @@
 # See https://www.nushell.sh/book/configuration.html
 #
 # Also see `help config env` for more options.
+
+# Editor configuration
+$env.EDITOR = "nvim"
+$env.VISUAL = "nvim"
+$env.config.buffer_editor = "nvim"
 #
 # You can remove these comments if you want or leave
 # them for future reference.
