@@ -3,17 +3,24 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 CONFIG_DIR="$HOME/.config"
+LINK_ONLY=false
 
-# 1) Install Homebrew if missing
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ "${1:-}" = "--link-only" ]; then
+  LINK_ONLY=true
 fi
 
-# 2) Install packages
-if [ -f "$DOTFILES_DIR/Brewfile" ]; then
-  echo "Installing Brewfile..."
-  brew bundle --file="$DOTFILES_DIR/Brewfile"
+if [ "$LINK_ONLY" = false ]; then
+  # 1) Install Homebrew if missing
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  # 2) Install packages
+  if [ -f "$DOTFILES_DIR/Brewfile" ]; then
+    echo "Installing Brewfile..."
+    brew bundle --file="$DOTFILES_DIR/Brewfile"
+  fi
 fi
 
 # 3) Symlink configs

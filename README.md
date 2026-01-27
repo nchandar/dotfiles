@@ -18,6 +18,11 @@ Portable macOS terminal + desktop setup.
 ```sh
 bash ~/dotfiles/bootstrap.sh
 ```
+Or with Make:
+```sh
+cd ~/dotfiles
+make bootstrap
+```
 
 ## Setup on a new Mac (recommended)
 ```sh
@@ -45,6 +50,12 @@ ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 ```
+
+## Make targets
+- `make bootstrap` run full bootstrap (brew + links)
+- `make brew` run only Homebrew bundle
+- `make link` create symlinks only
+- `make status` show current symlinks
 
 ## Options and settings
 - **Symlinks vs copy**: This setup uses symlinks so the repo is the single source of truth. If you prefer copies, do so manually but keep them in sync.
