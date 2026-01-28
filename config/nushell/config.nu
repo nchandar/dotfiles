@@ -37,6 +37,3 @@ $env.config = (
       completer: $carapace_completer
     }
 )
-
-
-# --- Starship prompt ---

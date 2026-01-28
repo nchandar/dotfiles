@@ -2,11 +2,11 @@ add_newline = false
 palette = "catppuccin_mocha"
 command_timeout = 1000
 
-# Left prompt: path + git + prompt char (pill-style)
-format = """$directory$git_branch$git_status$character"""
+# Left prompt: prompt char only
+format = """$character"""
 
-# Right prompt: exit code + jobs + duration + time + battery (pill-style)
-right_format = """$status$jobs$cmd_duration$time$battery"""
+# Right prompt: all modules (including git) live here
+right_format = """$directory$git_branch$git_status$status$jobs$cmd_duration$time$battery"""
 
 [character]
 vicmd_symbol = "[N] >>>"
@@ -14,7 +14,7 @@ success_symbol = '[➜](bold green)'
 error_symbol = '[✗](bold red)'
 
 [directory]
-format = '[$path]($style) '
+format = '[󰉋 $path]($style) '
 style = 'fg=base bg=lavender'
 truncation_length = 3
 truncate_to_repo = true
@@ -24,12 +24,22 @@ truncate_to_repo = true
 
 [git_branch]
 format = '[  $branch]($style) '
-style = 'fg=base bg=sky'
+style = 'fg=base bg=peach'
 
 [git_status]
-format = '[ $all_status$ahead_behind$up_to_date]($style) '
-style = 'fg=base bg=sky'
-up_to_date = '✓'
+format = '[ $all_status$ahead_behind$up_to_date ]($style) '
+style = 'fg=text bg=surface1'
+conflicted = '[=](bold red)'
+ahead = '[⇡${count}](bold sky)'
+behind = '[⇣${count}](bold sky)'
+diverged = '[⇕⇡${ahead_count}⇣${behind_count}](bold sky)'
+up_to_date = '[✓](bold green)'
+untracked = '[?](bold red)'
+stashed = '[$](bold yellow)'
+modified = '[!](bold red)'
+staged = '[+](bold yellow)'
+renamed = '[»](bold yellow)'
+deleted = '[✘](bold red)'
 
 [status]
 disabled = false

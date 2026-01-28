@@ -2,7 +2,7 @@
 
 # Set font and colors
 theme = "Catppuccin Mocha"
-font-family = "JetBrains Mono"
+font-family = "JetBrainsMono Nerd Font"
 font-size = 16
 mouse-hide-while-typing = true
 window-decoration = true
