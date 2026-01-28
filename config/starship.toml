@@ -23,11 +23,11 @@ truncate_to_repo = true
 '~/tests/starship-custom' = 'project'
 
 [git_branch]
-format = '[  $branch]($style) '
+format = '[$branch]($style)'
 style = 'fg=base bg=peach'
 
 [git_status]
-format = '[ $all_status$ahead_behind$up_to_date ]($style) '
+format = '[$all_status$ahead_behind$up_to_date]($style) '
 style = 'fg=text bg=surface1'
 conflicted = '[=](bold red)'
 ahead = '[⇡${count}](bold sky)'
@@ -43,29 +43,29 @@ deleted = '[✘](bold red)'
 
 [status]
 disabled = false
-format = '[ $symbol$status]($style) '
-symbol = '✗ '
+format = '[$symbol$status]($style)'
+symbol = '✗'
 success_symbol = ''
 style = 'fg=base bg=red'
 
 [jobs]
-symbol = '✦ '
-format = '[ $symbol$number]($style) '
+symbol = '✦'
+format = '[$symbol$number]($style)'
 style = 'fg=base bg=teal'
 
 [cmd_duration]
 min_time = 500
-format = '[ ⏱ $duration]($style) '
+format = '[⏱ $duration]($style)'
 style = 'fg=base bg=blue'
 
 [time]
 disabled = false
 time_format = '%H:%M'
-format = '[ 󰥔 $time]($style) '
+format = '[󰥔 $time]($style) '
 style = 'fg=base bg=mauve'
 
 [battery]
-format = '[  $percentage]($style) '
+format = '[ $percentage]($style) '
 charging_symbol = '󰂄 '
 discharging_symbol = '󰂂 '
 full_symbol = '󰁹 '
