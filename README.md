@@ -4,11 +4,12 @@ Portable macOS terminal + desktop setup.
 
 ## What's in here
 - `config/nushell/` Nushell config (`config.nu`, `env.nu`, `carapace.nu`)
-- `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`)
+- `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/starship.toml` Starship prompt config
 - `Brewfile` Homebrew packages used for this setup
+- `TMUX.md` tmux features + key mappings
 
 ## Layout
 - `config/` versioned configs that are symlinked into `~/.config`
