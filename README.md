@@ -9,7 +9,7 @@ Portable macOS terminal + desktop setup.
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/starship.toml` Starship prompt config
 - `Brewfile` Homebrew packages used for this setup
-- `TMUX.md` tmux features + key mappings
+- `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
 ## Layout
 - `config/` versioned configs that are symlinked into `~/.config`

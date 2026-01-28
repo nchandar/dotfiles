@@ -16,11 +16,10 @@ This doc covers the tmux features and key mappings used in this dotfiles repo.
 - `C-b` is unbound
 - `C-a` sends prefix
 
-## Key mappings (table)
+## Key mappings (daily)
 | Area | Key | Action |
 | --- | --- | --- |
 | Prefix | `C-a` | Prefix key |
-| Prefix | `C-a` | Send prefix (for nested tmux) |
 | Splits | `|` | Split horizontally |
 | Splits | `-` | Split vertically |
 | Panes | `h` | Resize pane left by 5 |
@@ -29,9 +28,14 @@ This doc covers the tmux features and key mappings used in this dotfiles repo.
 | Panes | `l` | Resize pane right by 5 |
 | Panes | `m` | Toggle zoom for current pane |
 | Session | `r` | Reload config |
-| Session | `M-c` | Attach session in current pane path |
 | Copy (vi) | `v` | Begin selection |
 | Copy (vi) | `y` | Copy selection |
+
+## Key mappings (advanced)
+| Area | Key | Action |
+| --- | --- | --- |
+| Prefix | `C-a` | Send prefix (for nested tmux) |
+| Session | `M-c` | Attach session in current pane path |
 | Mouse | drag | Mouse drag does not exit copy mode |
 
 ## Cheatsheet (quick)
