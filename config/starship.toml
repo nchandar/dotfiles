@@ -50,12 +50,12 @@ style = 'fg=base bg=red'
 
 [jobs]
 symbol = '✦'
-format = '[$symbol$number]($style)'
+format = '[$symbol$number]($style) '
 style = 'fg=base bg=teal'
 
 [cmd_duration]
 min_time = 500
-format = '[⏱ $duration]($style)'
+format = '[⏱ $duration]($style) '
 style = 'fg=base bg=blue'
 
 [time]
