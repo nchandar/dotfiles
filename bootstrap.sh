@@ -45,6 +45,15 @@ link ghostty
 link hammerspoon
 link starship.toml
 
+# 3b) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
+if [ -f "$DOTFILES_DIR/config/ghostty/config" ]; then
+  ghostty_xdg="$(sed -nE 's/^env = XDG_CONFIG_HOME=(.*)$/\1/p' "$DOTFILES_DIR/config/ghostty/config" | head -n1)"
+  if [ -n "$ghostty_xdg" ] && [ "$ghostty_xdg" != "$HOME/.config" ]; then
+    echo "Warning: Ghostty XDG_CONFIG_HOME is '$ghostty_xdg' but should be '$HOME/.config'."
+    echo "Update $DOTFILES_DIR/config/ghostty/config for this machine."
+  fi
+fi
+
 # 4) Install tmux plugins (TPM)
 if command -v git >/dev/null 2>&1; then
   mkdir -p "$TMUX_PLUGIN_DIR"

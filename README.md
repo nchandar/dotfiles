@@ -64,10 +64,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins
 ```
 
-5) Update Ghostty XDG_CONFIG_HOME (required per machine)
-Ghostty does not expand `$HOME` in `env = ...`, so set an absolute path.
-Edit `config/ghostty/config` and update the line:
-`env = XDG_CONFIG_HOME=/Users/<your-username>/.config`
+5) Ghostty XDG_CONFIG_HOME (portable)
+Ghostty does not expand `$HOME` in `env = ...`, so we set it in a wrapper script.
+Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 
 ## Make targets
 - `make bootstrap` run full bootstrap (brew + links + tmux plugins)

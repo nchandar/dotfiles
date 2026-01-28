@@ -1,4 +1,4 @@
-env = XDG_CONFIG_HOME=/Users/niranjanchandarraj/.config
+# XDG_CONFIG_HOME is set in nu.sh to keep this file portable.
 
 # Set font and colors
 theme = "Catppuccin Mocha"
@@ -10,7 +10,7 @@ macos-option-as-alt = true
 #background-opacity = 0.9
 background-blur-radius = 20
 
-command = /opt/homebrew/bin/nu
+command = /bin/bash -lc "exec \"$HOME/.config/ghostty/nu.sh\""
 
 # Enable keybinds
 keybind = ctrl+shift+t=new_split:up
