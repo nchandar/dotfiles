@@ -10,7 +10,7 @@ macos-option-as-alt = true
 #background-opacity = 0.9
 background-blur-radius = 20
 
-command = /bin/bash -lc "exec \"$HOME/.config/ghostty/tmux.sh\""
+command = /bin/bash -lc "exec \"$HOME/.config/ghostty/nu.sh\""
 
 # Enable keybinds
 keybind = ctrl+shift+t=new_split:up
