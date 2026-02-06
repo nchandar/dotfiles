@@ -23,13 +23,13 @@ local function button(sc, txt, keybind)
 end
 
 dashboard.section.buttons.val = {
-  button("f", "Find file", ":Telescope find_files<CR>"),
-  button("g", "Live grep", ":Telescope live_grep<CR>"),
-  button("r", "Recent files", ":Telescope oldfiles<CR>"),
-  button("n", "New file", ":enew<CR>"),
-  button("c", "Config", ":edit ~/.config/nvim/init.lua<CR>"),
-  button("l", "Lazy", ":Lazy<CR>"),
-  button("q", "Quit", ":qa<CR>"),
+  button("f", "  Find File", ":Telescope find_files<CR>"),
+  button("n", "  New File", ":ene | startinsert<CR>"),
+  button("g", "  Find Text", ":Telescope live_grep<CR>"),
+  button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
+  button("c", "  Config", ":Telescope find_files cwd=~/.config/nvim<CR>"),
+  button("l", "󰒲  Lazy", ":Lazy<CR>"),
+  button("q", "  Quit", ":qa<CR>"),
 }
 
 -- Footer
