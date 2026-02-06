@@ -7,15 +7,24 @@ local dashboard = require("alpha.themes.dashboard")
 
 -- Header
 local logo = {
-  [[      _   __            _           ]],
-  [[     / | / /___ _   __ (_)___  ____ ]],
-  [[    /  |/ / __ \ | / // / __ \/ __ \]],
-  [[   / /|  / /_/ / |/ // / / / / /_/ /]],
-  [[  /_/ |_/\____/|___//_/_/ /_/ .___/ ]],
-  [[                           /_/       ]],
+  [[██████   █████ ██████████    ███████    █████   █████ █████ ██████   ██████]],
+  [[░░██████ ░░███ ░░███░░░░░█  ███░░░░░███ ░░███   ░░███ ░░███ ░░██████ ██████ ]],
+  [[ ░███░███ ░███  ░███  █ ░  ███     ░░███ ░███    ░███  ░███  ░███░█████░███ ]],
+  [[ ░███░░███░███  ░██████   ░███      ░███ ░███    ░███  ░███  ░███░░███ ░███ ]],
+  [[ ░███ ░░██████  ░███░░█   ░███      ░███ ░░███   ███   ░███  ░███ ░░░  ░███ ]],
+  [[ ░███  ░░█████  ░███ ░   █░░███     ███   ░░░█████░    ░███  ░███      ░███ ]],
+  [[ █████  ░░█████ ██████████ ░░░███████░      ░░███      █████ █████     █████]],
+  [[░░░░░    ░░░░░ ░░░░░░░░░░    ░░░░░░░         ░░░      ░░░░░ ░░░░░     ░░░░░ ]],
 }
 
+vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#89b4fa", bold = true })
+
 dashboard.section.header.val = logo
+dashboard.section.header.opts = vim.tbl_extend(
+  "force",
+  dashboard.section.header.opts or {},
+  { hl = "AlphaHeader", position = "center" }
+)
 
 -- Buttons
 local function button(sc, txt, keybind)
@@ -31,6 +40,11 @@ dashboard.section.buttons.val = {
   button("l", "󰒲  Lazy", ":Lazy<CR>"),
   button("q", "  Quit", ":qa<CR>"),
 }
+dashboard.section.buttons.opts = vim.tbl_extend(
+  "force",
+  dashboard.section.buttons.opts or {},
+  { position = "center" }
+)
 
 -- Footer
 local function footer()
@@ -39,6 +53,25 @@ local function footer()
 end
 
 dashboard.section.footer.val = footer()
+dashboard.section.footer.opts = vim.tbl_extend(
+  "force",
+  dashboard.section.footer.opts or {},
+  { position = "center" }
+)
+
+local function top_padding()
+  local h = vim.fn.winheight(0)
+  return math.max(1, math.floor(h * 0.12))
+end
+
+dashboard.config.layout = {
+  { type = "padding", val = top_padding },
+  dashboard.section.header,
+  { type = "padding", val = 1 },
+  dashboard.section.buttons,
+  { type = "padding", val = 1 },
+  dashboard.section.footer,
+}
 
 alpha.setup(dashboard.config)
 
