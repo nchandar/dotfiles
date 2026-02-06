@@ -7,6 +7,7 @@ Portable macOS terminal + desktop setup.
 - `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
+- `config/nvim/` Neovim config (Lua modules, plugins, LSP, diagnostics)
 - `config/starship.toml` Starship prompt config
 - `Brewfile` Homebrew packages used for this setup
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
@@ -56,6 +57,7 @@ ln -s ~/dotfiles/config/nushell ~/.config/nushell
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
+ln -s ~/dotfiles/config/nvim ~/.config/nvim
 ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 ```
 
@@ -81,6 +83,7 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 - **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
+- **Neovim**: See `config/nvim/README.md` for plugins, LSP, diagnostics, and setup details.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).
 
 ## Git ignored items

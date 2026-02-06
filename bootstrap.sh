@@ -43,6 +43,7 @@ link nushell
 link tmux
 link ghostty
 link hammerspoon
+link nvim
 link starship.toml
 
 # 3b) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
