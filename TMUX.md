@@ -12,16 +12,19 @@ This doc covers the tmux features and key mappings used in this dotfiles repo.
 - `terminal-overrides`: `*:Tc` and `xterm-256color:RGB`
 
 ## Prefix
-- Prefix is `C-a`
+- Prefix is `C-g`
+- Alternate prefix is `C-]` (use if `C-g` is intercepted by the terminal)
 - `C-b` is unbound
-- `C-a` sends prefix
+- `C-g` sends prefix
+- `C-]` sends prefix
 
 ## Key mappings (daily)
 | Area | Key | Action |
 | --- | --- | --- |
-| Prefix | `C-a` | Prefix key |
-| Splits | `|` | Split horizontally |
-| Splits | `-` | Split vertically |
+| Prefix | `C-g` | Prefix key |
+| Prefix | `C-]` | Alternate prefix |
+| Splits | `=` or `]` | Split horizontally |
+| Splits | `-` or `\` | Split vertically |
 | Panes | `h` | Resize pane left by 5 |
 | Panes | `j` | Resize pane down by 5 |
 | Panes | `k` | Resize pane up by 5 |
@@ -34,14 +37,15 @@ This doc covers the tmux features and key mappings used in this dotfiles repo.
 ## Key mappings (advanced)
 | Area | Key | Action |
 | --- | --- | --- |
-| Prefix | `C-a` | Send prefix (for nested tmux) |
+| Prefix | `C-g` | Send prefix (for nested tmux) |
+| Prefix | `C-]` | Send prefix (for nested tmux) |
 | Session | `M-c` | Attach session in current pane path |
 | Mouse | drag | Mouse drag does not exit copy mode |
 
 ## Cheatsheet (quick)
 ```
-Prefix: C-a
-Split:  | (horiz)  - (vert)
+Prefix: C-g (alt: C-])
+Split:  = or ] (horiz)  - or \ (vert)
 Resize: h/j/k/l (5 cells)
 Zoom:   m
 Reload: r
