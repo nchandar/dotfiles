@@ -46,6 +46,14 @@ link hammerspoon
 link nvim
 link starship.toml
 
+# gitmux config (expects ~/.gitmux.conf)
+if [ -e "$HOME/.gitmux.conf" ] || [ -L "$HOME/.gitmux.conf" ]; then
+  echo "Skipping existing $HOME/.gitmux.conf"
+else
+  ln -s "$DOTFILES_DIR/config/gitmux.conf" "$HOME/.gitmux.conf"
+  echo "Linked $HOME/.gitmux.conf -> $DOTFILES_DIR/config/gitmux.conf"
+fi
+
 # 3b) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
 if [ -f "$DOTFILES_DIR/config/ghostty/config" ]; then
   ghostty_xdg="$(sed -nE 's/^env = XDG_CONFIG_HOME=(.*)$/\1/p' "$DOTFILES_DIR/config/ghostty/config" | head -n1)"

@@ -28,4 +28,5 @@ require("lazy").setup({
   require("plugins.which-key"),
   require("plugins.catppuccin"),
   require("plugins.alpha"),
+  require("plugins.tmux-navigator"),
 })
