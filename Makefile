@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap brew link status tmux
+.PHONY: bootstrap brew link status tmux update
 
 bootstrap: tmux
 	./bootstrap.sh
@@ -30,4 +30,25 @@ tmux:
 	fi
 	@if [ -x ~/.config/tmux/plugins/tpm/bin/install_plugins ]; then \
 		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins; \
+	fi
+
+update:
+	@if command -v brew >/dev/null 2>&1; then \
+		brew update; \
+		brew upgrade; \
+		brew bundle --file ./Brewfile; \
+	else \
+		echo "brew not found; skipping Homebrew updates"; \
+	fi
+	@if [ -x ~/.config/tmux/plugins/tpm/bin/update_plugins ]; then \
+		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/update_plugins all; \
+	else \
+		echo "TPM not found; run 'make tmux' first"; \
+	fi
+	@if command -v nvim >/dev/null 2>&1; then \
+		nvim --headless "+Lazy sync" +qa; \
+		nvim --headless "+MasonUpdate" +qa; \
+		nvim --headless "+TSUpdate" +qa; \
+	else \
+		echo "nvim not found; skipping Neovim updates"; \
 	fi

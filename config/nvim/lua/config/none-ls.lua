@@ -3,28 +3,45 @@ if not ok then
   return
 end
 
+local sources = {}
+local function add(source)
+  if source then
+    table.insert(sources, source)
+  end
+end
+
+local b = null_ls.builtins
+
+local function from_extras(path)
+  local ok_extras, extras = pcall(require, path)
+  if ok_extras then
+    return extras
+  end
+  return nil
+end
+
+-- Lua
+add(b.formatting.stylua)
+
+-- JS/TS/JSON/Markdown/YAML
+add(b.formatting.prettier)
+add(from_extras("none-ls.diagnostics.eslint_d"))
+
+-- Shell
+add(b.formatting.shfmt)
+add(from_extras("none-ls.diagnostics.shellcheck"))
+
+-- Python
+add(b.formatting.black)
+add(from_extras("none-ls.diagnostics.ruff"))
+
+-- Go
+add(b.formatting.gofmt)
+add(b.formatting.goimports)
+
+-- Rust
+add(from_extras("none-ls.formatting.rustfmt"))
+
 null_ls.setup({
-  sources = {
-    -- Lua
-    null_ls.builtins.formatting.stylua,
-
-    -- JS/TS/JSON/Markdown/YAML
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.diagnostics.eslint_d,
-
-    -- Shell
-    null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.diagnostics.shellcheck,
-
-    -- Python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.diagnostics.ruff,
-
-    -- Go
-    null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.goimports,
-
-    -- Rust
-    null_ls.builtins.formatting.rustfmt,
-  },
+  sources = sources,
 })

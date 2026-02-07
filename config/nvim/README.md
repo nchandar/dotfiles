@@ -19,6 +19,15 @@ Portable Neovim setup for this dotfiles repo. Config lives in `config/nvim/` and
 3. Open Neovim to let `lazy.nvim` install plugins.
 4. Run `:Lazy sync` if needed.
 
+## Update (headless)
+You can update plugins and tooling without opening a UI:
+```sh
+nvim --headless "+Lazy sync" +qa
+nvim --headless "+MasonUpdate" +qa
+nvim --headless "+TSUpdate" +qa
+```
+These are also run by `make update` from the repo root.
+
 ## Files
 - `config/nvim/init.lua`
 - `config/nvim/CHEATSHEET.md`

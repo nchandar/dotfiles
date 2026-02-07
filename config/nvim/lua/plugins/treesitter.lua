@@ -7,10 +7,12 @@ return {
     shim.ensure_ft_to_lang()
     local ok, configs = pcall(require, "nvim-treesitter.configs")
     if not ok then
-      vim.notify(
-        "nvim-treesitter not available. Run :Lazy sync to install.",
-        vim.log.levels.WARN
-      )
+      if #vim.api.nvim_list_uis() > 0 then
+        vim.notify(
+          "nvim-treesitter not available. Run :Lazy sync to install.",
+          vim.log.levels.WARN
+        )
+      end
       return
     end
     configs.setup({
