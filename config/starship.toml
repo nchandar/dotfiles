@@ -9,7 +9,7 @@ format = """$character"""
 right_format = """$directory$git_branch$git_status$status$jobs$cmd_duration$time$battery"""
 
 [character]
-vicmd_symbol = "[N] >>>"
+vicmd_symbol = '\[N\] >>>'
 success_symbol = '[➜](bold green)'
 error_symbol = '[✗](bold red)'
 
