@@ -51,6 +51,7 @@ nav:
   - Home: index.md
   - Keyboard Shortcuts: keyboard-shortcuts.md
   - Setup:
+    - Overview: setup/index.md
     - Bootstrap: setup/bootstrap.md
     - Symlinks: setup/symlinks.md
   - Keybindings:
@@ -59,6 +60,7 @@ nav:
     - Hammerspoon: keybindings/hammerspoon.md
     - tmux: keybindings/tmux.md
   - Tools:
+    - Overview: tools/index.md
     - Neovim: tools/nvim.md
     - Nushell: tools/nushell.md
     - Ghostty: tools/ghostty.md
