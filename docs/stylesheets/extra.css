@@ -92,3 +92,70 @@
   font-size: 1.05rem;
   font-weight: 700;
 }
+
+.custom-header-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+  margin-right: 0.65rem;
+}
+
+.custom-header-btn {
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.76rem;
+  border-radius: 999px;
+  padding: 0.28rem 0.62rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.custom-header-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.custom-breadcrumbs {
+  margin: 0.05rem 0 0.95rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 108, 207, 0.22);
+  background: rgba(15, 108, 207, 0.08);
+}
+
+.custom-breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  gap: 0.36rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.custom-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  font-size: 0.76rem;
+}
+
+.custom-breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: rgba(67, 96, 122, 0.75);
+}
+
+.custom-breadcrumbs a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.custom-breadcrumbs span {
+  font-weight: 700;
+}
+
+[data-md-color-scheme="slate"] .custom-breadcrumbs {
+  border-color: rgba(62, 182, 204, 0.28);
+  background: rgba(62, 182, 204, 0.12);
+}
