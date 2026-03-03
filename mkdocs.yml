@@ -1,0 +1,53 @@
+site_name: nchandar dotfiles
+site_description: Dotfiles docs, setup guides, and keyboard shortcuts
+site_url: https://nchandar.github.io/dotfiles/
+repo_url: https://github.com/nchandar/dotfiles
+repo_name: nchandar/dotfiles
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Keyboard Shortcuts: keyboard-shortcuts.md
+  - Setup:
+    - Bootstrap: setup/bootstrap.md
+    - Symlinks: setup/symlinks.md
+  - Keybindings:
+    - Overview: keybindings/index.md
+    - AeroSpace: keybindings/aerospace.md
+    - Hammerspoon: keybindings/hammerspoon.md
+    - tmux: keybindings/tmux.md
+  - Tools:
+    - Neovim: tools/nvim.md
+    - Nushell: tools/nushell.md
+    - Ghostty: tools/ghostty.md
+    - Starship: tools/starship.md
+  - Troubleshooting: troubleshooting.md

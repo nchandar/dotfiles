@@ -43,6 +43,7 @@ link nushell
 link tmux
 link ghostty
 link hammerspoon
+link aerospace
 link nvim
 link starship.toml
 

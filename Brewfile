@@ -1,3 +1,5 @@
+tap "nikitabobko/tap"
+
 brew "nushell"
 brew "neovim"
 brew "lua-language-server"
@@ -22,6 +24,7 @@ brew "starship"
 brew "carapace"
 cask "ghostty"
 cask "hammerspoon"
+cask "nikitabobko/tap/aerospace"
 brew "git"
 
 # Optional: tmux plugin manager (TPM)
