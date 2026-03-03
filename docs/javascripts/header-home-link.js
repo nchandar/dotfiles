@@ -158,6 +158,9 @@
 
     var homeUrl = new URL(logo.getAttribute("href") || ".", window.location.href);
     var rootPath = normalizePath(homeUrl.pathname);
+    var isHome = isHomePath(window.location.pathname, rootPath);
+
+    document.body.classList.toggle("home-page", isHome);
 
     renderHeaderTitle(homeUrl, rootPath);
     insertBreadcrumbs(homeUrl, rootPath);

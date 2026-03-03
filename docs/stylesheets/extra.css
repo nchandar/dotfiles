@@ -123,6 +123,16 @@ label[for="__drawer"] {
   display: none !important;
 }
 
+/* Home page only: hide right TOC sidebar and center content pane. */
+body.home-page .md-sidebar--secondary {
+  display: none;
+}
+
+body.home-page .md-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .md-sidebar__scrollwrap,
 .md-content__inner {
   background: linear-gradient(180deg, var(--pf-paper), var(--pf-paper-2));
