@@ -3,31 +3,63 @@
   <p>Fast lookup for setup steps, shortcuts, and tool-specific behavior across this repo.</p>
 </div>
 
-<div class="section-title">Popular Pages</div>
+<div class="section-title">All Tools + Keybindings</div>
 <div class="link-grid">
   <a class="link-card" href="keyboard-shortcuts/">
     <strong>Keyboard Shortcuts</strong>
-    <span>Single-page quick reference across AeroSpace, Hammerspoon, and tmux.</span>
-  </a>
-  <a class="link-card" href="setup/bootstrap/">
-    <strong>Bootstrap</strong>
-    <span>Fresh machine setup and update flow.</span>
-  </a>
-  <a class="link-card" href="setup/symlinks/">
-    <strong>Symlinks</strong>
-    <span>How repo configs map into <code>~/.config</code>.</span>
+    <span>Single-page quick reference across all configured tools.</span>
   </a>
   <a class="link-card" href="keybindings/aerospace/">
     <strong>AeroSpace</strong>
-    <span>Tiling behavior, service mode, and workspace controls.</span>
+    <span>Tiling and workspace keybindings.</span>
+  </a>
+  <a class="link-card" href="keybindings/hammerspoon/">
+    <strong>Hammerspoon</strong>
+    <span>Window layout and automation hotkeys.</span>
   </a>
   <a class="link-card" href="keybindings/tmux/">
     <strong>tmux</strong>
-    <span>Prefix, split, resize, and pane workflow keys.</span>
+    <span>Prefix, splits, resize, and pane workflow keys.</span>
+  </a>
+  <a class="link-card" href="tools/nvim/">
+    <strong>Neovim</strong>
+    <span>Editor setup and keybinding references.</span>
+  </a>
+  <a class="link-card" href="tools/nushell/">
+    <strong>Nushell</strong>
+    <span>Shell config location and behavior notes.</span>
+  </a>
+  <a class="link-card" href="tools/ghostty/">
+    <strong>Ghostty</strong>
+    <span>Terminal configuration and portability notes.</span>
+  </a>
+  <a class="link-card" href="tools/starship/">
+    <strong>Starship</strong>
+    <span>Prompt configuration path and usage.</span>
   </a>
   <a class="link-card" href="troubleshooting/">
     <strong>Troubleshooting</strong>
     <span>Common recovery steps for setup and runtime issues.</span>
+  </a>
+</div>
+
+<div class="section-title">Where To Start</div>
+<div class="link-grid">
+  <a class="link-card" href="setup/bootstrap/">
+    <strong>1) Start Here: Bootstrap</strong>
+    <span>Run the full setup on a new machine.</span>
+  </a>
+  <a class="link-card" href="setup/symlinks/">
+    <strong>2) Verify Symlinks</strong>
+    <span>Confirm configs are linked into <code>~/.config</code>.</span>
+  </a>
+  <a class="link-card" href="keyboard-shortcuts/">
+    <strong>3) Learn Daily Shortcuts</strong>
+    <span>Quick keyboard workflow across tmux, nvim, and AeroSpace.</span>
+  </a>
+  <a class="link-card" href="setup/bootstrap/">
+    <strong>4) Update Existing Machine</strong>
+    <span>Use <code>make update</code> to refresh packages and plugins.</span>
   </a>
 </div>
 
