@@ -1,4 +1,5 @@
 (function () {
+  var SITE_TITLE = "Niranjan's Dotfiles";
   var LABELS = {
     "keyboard-shortcuts": "Keyboard Shortcuts",
     "keybindings": "Keybindings",
@@ -35,52 +36,56 @@
     return normalizePath(current) === normalizePath(rootPath);
   }
 
-  function wireHeaderTitleToHome(homeHref) {
-    var title = document.querySelector(".md-header__title");
-    if (!title) return;
-    title.style.cursor = "pointer";
-    title.setAttribute("role", "link");
-    title.setAttribute("aria-label", "Go to homepage");
-    title.onclick = function () { window.location.href = homeHref; };
+  function currentPageLabel(rootPath) {
+    var h1 = document.querySelector("article h1");
+    if (h1 && h1.textContent.trim()) return h1.textContent.trim();
+
+    var path = window.location.pathname;
+    var relative = path.startsWith(rootPath) ? path.slice(rootPath.length) : path.replace(/^\/+/, "");
+    relative = relative.replace(/index\.html$/, "").replace(/\/$/, "");
+    var parts = relative.split("/").filter(Boolean);
+    return parts.length ? prettify(parts[parts.length - 1]) : "Home";
   }
 
-  function insertHeaderButtons(homeUrl) {
-    var inner = document.querySelector(".md-header__inner");
-    if (!inner) return;
-    var title = inner.querySelector(".md-header__title");
+  function renderHeaderTitle(homeUrl, rootPath) {
+    var title = document.querySelector(".md-header__title");
     if (!title) return;
 
-    var existing = inner.querySelector(".custom-header-actions");
-    if (existing) existing.remove();
+    var isHome = isHomePath(window.location.pathname, rootPath);
+    var currentLabel = currentPageLabel(rootPath);
 
-    var wrapper = document.createElement("div");
-    wrapper.className = "custom-header-actions";
-    var isHome = isHomePath(window.location.pathname, normalizePath(homeUrl.pathname));
+    title.innerHTML = "";
 
-    var backBtn = document.createElement("button");
-    backBtn.className = "custom-header-btn";
-    backBtn.type = "button";
-    backBtn.textContent = "←";
-    backBtn.setAttribute("aria-label", "Go back");
-    backBtn.title = "Back";
-    backBtn.onclick = function () {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = homeUrl.href;
-      }
-    };
+    var wrap = document.createElement("span");
+    wrap.className = "custom-title-wrap";
 
     var homeLink = document.createElement("a");
-    homeLink.className = "custom-header-btn";
+    homeLink.className = "custom-site-title";
     homeLink.href = homeUrl.href;
-    homeLink.textContent = "⌂";
+    homeLink.textContent = SITE_TITLE;
     homeLink.setAttribute("aria-label", "Go to homepage");
-    homeLink.title = "Home";
 
-    if (!isHome) wrapper.appendChild(backBtn);
-    wrapper.appendChild(homeLink);
-    inner.insertBefore(wrapper, title);
+    wrap.appendChild(homeLink);
+
+    if (!isHome && currentLabel !== "Home") {
+      var sep = document.createElement("span");
+      sep.className = "custom-title-sep";
+      sep.textContent = " / ";
+
+      var page = document.createElement("span");
+      page.className = "custom-current-page";
+      page.textContent = currentLabel;
+
+      wrap.appendChild(sep);
+      wrap.appendChild(page);
+    }
+
+    title.appendChild(wrap);
+    title.style.cursor = "pointer";
+    title.onclick = function (event) {
+      if (event.target && event.target.tagName && event.target.tagName.toLowerCase() === "a") return;
+      window.location.href = homeUrl.href;
+    };
   }
 
   function insertBreadcrumbs(homeUrl, rootPath) {
@@ -154,8 +159,7 @@
     var homeUrl = new URL(logo.getAttribute("href") || ".", window.location.href);
     var rootPath = normalizePath(homeUrl.pathname);
 
-    wireHeaderTitleToHome(homeUrl.href);
-    insertHeaderButtons(homeUrl);
+    renderHeaderTitle(homeUrl, rootPath);
     insertBreadcrumbs(homeUrl, rootPath);
   }
 
