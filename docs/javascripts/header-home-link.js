@@ -47,19 +47,20 @@
   function insertHeaderButtons(homeUrl) {
     var inner = document.querySelector(".md-header__inner");
     if (!inner) return;
+    var title = inner.querySelector(".md-header__title");
+    if (!title) return;
 
     var existing = inner.querySelector(".custom-header-actions");
     if (existing) existing.remove();
 
-    var source = inner.querySelector(".md-header__source");
-
     var wrapper = document.createElement("div");
     wrapper.className = "custom-header-actions";
+    var isHome = isHomePath(window.location.pathname, normalizePath(homeUrl.pathname));
 
     var backBtn = document.createElement("button");
     backBtn.className = "custom-header-btn";
     backBtn.type = "button";
-    backBtn.textContent = "Back";
+    backBtn.textContent = "← Back";
     backBtn.setAttribute("aria-label", "Go back");
     backBtn.onclick = function () {
       if (window.history.length > 1) {
@@ -72,17 +73,12 @@
     var homeLink = document.createElement("a");
     homeLink.className = "custom-header-btn";
     homeLink.href = homeUrl.href;
-    homeLink.textContent = "Home";
+    homeLink.textContent = "⌂ Home";
     homeLink.setAttribute("aria-label", "Go to homepage");
 
-    wrapper.appendChild(backBtn);
+    if (!isHome) wrapper.appendChild(backBtn);
     wrapper.appendChild(homeLink);
-
-    if (source) {
-      inner.insertBefore(wrapper, source);
-    } else {
-      inner.appendChild(wrapper);
-    }
+    inner.insertBefore(wrapper, title);
   }
 
   function insertBreadcrumbs(homeUrl, rootPath) {

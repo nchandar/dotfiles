@@ -96,8 +96,8 @@
 .custom-header-actions {
   display: flex;
   gap: 0.4rem;
-  margin-left: auto;
-  margin-right: 0.65rem;
+  margin-right: 0.55rem;
+  align-items: center;
 }
 
 .custom-header-btn {
@@ -110,6 +110,7 @@
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .custom-header-btn:hover {
