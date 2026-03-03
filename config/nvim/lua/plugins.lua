@@ -25,6 +25,7 @@ require("lazy").setup({
   require("plugins.devicons"),
   require("plugins.neo-tree"),
   require("plugins.gitsigns"),
+  require("plugins.diffview"),
   require("plugins.which-key"),
   require("plugins.catppuccin"),
   require("plugins.alpha"),
