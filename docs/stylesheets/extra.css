@@ -192,27 +192,27 @@ body::before {
 }
 
 .custom-header-btn {
-  border: 1px solid var(--pf-line);
-  background: var(--pf-brand-bg);
-  color: var(--pf-text);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 999px;
-  width: 1.75rem;
-  height: 1.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--md-primary-bg-color);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 1.4rem;
+  height: 1.4rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  line-height: 1.2;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
+  opacity: 0.86;
 }
 
 .custom-header-btn:hover {
-  background: var(--pf-surface-hover);
+  opacity: 1;
 }
 
 .custom-breadcrumbs {
@@ -260,8 +260,8 @@ body::before {
   }
 
   .custom-header-btn {
-    width: 1.65rem;
-    height: 1.65rem;
-    font-size: 0.82rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: 0.94rem;
   }
 }
