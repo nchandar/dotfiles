@@ -113,6 +113,16 @@ body::before {
   margin-top: 1rem;
 }
 
+/* Global layout choice: hide primary (left) navigation, keep right TOC. */
+.md-sidebar--primary {
+  display: none;
+}
+
+/* Hide drawer button since primary navigation is removed. */
+label[for="__drawer"] {
+  display: none !important;
+}
+
 .md-sidebar__scrollwrap,
 .md-content__inner {
   background: linear-gradient(180deg, var(--pf-paper), var(--pf-paper-2));
