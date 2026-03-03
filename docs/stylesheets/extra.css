@@ -196,9 +196,15 @@ body::before {
   background: var(--pf-brand-bg);
   color: var(--pf-text);
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.74rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   border-radius: 999px;
-  padding: 0.28rem 0.62rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
@@ -254,7 +260,8 @@ body::before {
   }
 
   .custom-header-btn {
-    font-size: 0.7rem;
-    padding: 0.24rem 0.52rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 0.82rem;
   }
 }

@@ -60,8 +60,9 @@
     var backBtn = document.createElement("button");
     backBtn.className = "custom-header-btn";
     backBtn.type = "button";
-    backBtn.textContent = "← Back";
+    backBtn.textContent = "←";
     backBtn.setAttribute("aria-label", "Go back");
+    backBtn.title = "Back";
     backBtn.onclick = function () {
       if (window.history.length > 1) {
         window.history.back();
@@ -73,8 +74,9 @@
     var homeLink = document.createElement("a");
     homeLink.className = "custom-header-btn";
     homeLink.href = homeUrl.href;
-    homeLink.textContent = "⌂ Home";
+    homeLink.textContent = "⌂";
     homeLink.setAttribute("aria-label", "Go to homepage");
+    homeLink.title = "Home";
 
     if (!isHome) wrapper.appendChild(backBtn);
     wrapper.appendChild(homeLink);
