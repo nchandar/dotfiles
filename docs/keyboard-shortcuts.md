@@ -1,35 +1,92 @@
-# Keyboard Shortcuts
+# Keyboard Shortcuts ⌨️
 
-This is the fastest shortcut lookup page.
+This is the single quick-reference page across all tools in this dotfiles repo.
 
-macOS key names:
-- `alt` = `Option (⌥)`
-- `cmd` = `Command (⌘)`
-- `ctrl` = `Control (^)`
-- `shift` = `Shift (⇧)`
+## <u>Key names</u> 🧭
+| Name in docs | macOS key |
+| --- | --- |
+| `alt` | `Option (⌥)` |
+| `cmd` | `Command (⌘)` |
+| `ctrl` | `Control (^)` |
+| `shift` | `Shift (⇧)` |
+| `leader` (Neovim) | `Space` |
 
-## AeroSpace
-- `alt-h/j/k/l`: focus direction
-- `alt-shift-h/j/k/l`: move window direction
-- `alt-1..9`: switch workspace
-- `alt-shift-1..9`: move window to workspace
-- `alt-tab`: previous workspace
-- `alt-shift-tab`: move workspace to next monitor
-- `alt-shift-;`: service mode
+## <u>AeroSpace</u> 🪟
+| Shortcut | Action |
+| --- | --- |
+| `alt-h/j/k/l` | Focus window left/down/up/right |
+| `alt-shift-h/j/k/l` | Move focused window left/down/up/right |
+| `alt-/` | Cycle tiles layout orientation |
+| `alt-,` | Cycle accordion layout orientation |
+| `alt--` / `alt-=` | Resize smaller/larger |
+| `alt-b` | Balance sizes of windows |
+| `alt-1..9` | Switch workspace |
+| `alt-shift-1..9` | Move focused window to workspace |
+| `alt-tab` | Previous workspace |
+| `alt-shift-tab` | Move workspace to next monitor |
+| `alt-shift-;` | Enter service mode |
+| `service: esc` | Reload config and return to main mode |
+| `service: r` | Flatten workspace tree |
+| `service: f` | Toggle floating/tiling |
+| `service: backspace` | Close all windows except focused |
 
-## Hammerspoon
-- `ctrl+option+cmd + Left/Right/Up/Down`: halves
-- `ctrl+option+cmd + m`: maximize
-- `cmd+option + Left/Down/Right`: thirds (wide screen)
+## <u>Hammerspoon</u> 🔨
+| Shortcut | Action |
+| --- | --- |
+| `ctrl+option+cmd+Left` | Left half |
+| `ctrl+option+cmd+Right` | Right half |
+| `ctrl+option+cmd+Up` | Top half |
+| `ctrl+option+cmd+Down` | Bottom half |
+| `ctrl+option+cmd+m` | Maximize window |
+| `cmd+option+Left` | Left third (wide screen layout) |
+| `cmd+option+Down` | Middle third (wide screen layout) |
+| `cmd+option+Right` | Right third (wide screen layout) |
+| `ctrl+option+cmd+l` | Start screensaver |
+| `ctrl+option+cmd+z` | Open webview demo |
+| `ctrl+option+cmd+c` | Toggle AutoClick |
 
-## tmux (after prefix `Ctrl-g`)
-- `=` or `]`: horizontal split
-- `-` or `\`: vertical split
-- `h/j/k/l`: resize
-- `m`: zoom pane
-- `r`: reload config
+## <u>tmux</u> 🧱
+| Shortcut | Action |
+| --- | --- |
+| `Ctrl-g` | Prefix key |
+| `Ctrl-]` | Alternate prefix |
+| `prefix` + `=` or `]` | Horizontal split |
+| `prefix` + `-` or `\` | Vertical split |
+| `prefix` + `h/j/k/l` | Resize pane |
+| `prefix` + `m` | Toggle zoom |
+| `prefix` + `r` | Reload config |
+| `prefix` + `v` then `y` | Copy mode select and yank |
 
-## Full docs
-- [AeroSpace details](keybindings/aerospace.md)
-- [Hammerspoon details](keybindings/hammerspoon.md)
-- [tmux details](keybindings/tmux.md)
+## <u>Neovim (custom repo mappings)</u> ✍️
+| Shortcut | Action |
+| --- | --- |
+| `<leader>w` or `Ctrl-s` | Save |
+| `<leader>q` or `Ctrl-q` | Quit |
+| `<leader>ff` or `Ctrl-p` | Find files |
+| `<leader>fg` or `Ctrl-Shift-f` | Live grep in project |
+| `<leader>fb` or `Ctrl-b` | Buffers list |
+| `<leader>fh` | Help tags |
+| `<leader>e` or `Ctrl-e` | File explorer |
+| `[d` / `]d` | Prev/next diagnostic |
+| `<leader>dd` | Diagnostic float |
+| `gd` | Go to definition |
+| `gr` | References |
+| `K` | Hover docs |
+| `<leader>rn` | Rename symbol |
+| `<leader>ca` | Code action |
+
+## <u>Other tools in this repo</u> 🧰
+| Tool | Shortcut status |
+| --- | --- |
+| Ghostty | No custom keyboard shortcuts defined in `config/ghostty/config` |
+| Nushell | No custom keyboard shortcuts defined in `config/nushell/` |
+| Starship | Prompt config only, no keyboard shortcuts |
+| gitmux | tmux status integration, no standalone keyboard shortcuts |
+
+## <u>Full detail pages</u> 📚
+| Page | Link |
+| --- | --- |
+| AeroSpace details | [AeroSpace details](keybindings/aerospace.md) |
+| Hammerspoon details | [Hammerspoon details](keybindings/hammerspoon.md) |
+| tmux details | [tmux details](keybindings/tmux.md) |
+| Keybindings overview | [Overview](keybindings/index.md) |
