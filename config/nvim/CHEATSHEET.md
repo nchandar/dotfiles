@@ -93,7 +93,6 @@ Most common actions, default Vim keys, plus this config’s leader bindings.
 - Save: `Ctrl-s`
 - Quit: `Ctrl-q`
 - Find in file: `Ctrl-f`
-- Replace in file: `Ctrl-r`
 - Find in project: `Ctrl-Shift-f`
 - Find files: `Ctrl-p`
 - Buffers: `Ctrl-b`
@@ -113,8 +112,15 @@ Most common actions, default Vim keys, plus this config’s leader bindings.
 - Rename: `<leader>rn`
 - Code action: `<leader>ca`
 
+## Diffview (this config)
+- Open diff view: `:DiffviewOpen`
+- Open commit diff: `:DiffviewOpen HEAD~1`
+- Current file history: `:DiffviewFileHistory %`
+- Close diff view: `:DiffviewClose`
+
 ## Misc
 - File explorer: `<leader>e`
+- Replace in file: `<leader>r`
 - Toggle search highlight: `:set hlsearch!`
 
 ## Leader key

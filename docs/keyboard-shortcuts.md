@@ -67,6 +67,7 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `<leader>fb` or `Ctrl-b` | Buffers list |
 | `<leader>fh` | Help tags |
 | `<leader>e` or `Ctrl-e` | File explorer |
+| `<leader>r` | Replace in current file (`:%s//g`) |
 | `[d` / `]d` | Prev/next diagnostic |
 | `<leader>dd` | Diagnostic float |
 | `gd` | Go to definition |
@@ -74,6 +75,14 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `K` | Hover docs |
 | `<leader>rn` | Rename symbol |
 | `<leader>ca` | Code action |
+
+## <u>Diffview (Neovim Git commands)</u> 🔍
+| Command | Action |
+| --- | --- |
+| `:DiffviewOpen` | Open Git diff view for staged/unstaged changes |
+| `:DiffviewOpen HEAD~1` | Open diff for a commit/ref |
+| `:DiffviewFileHistory %` | Show history for current file |
+| `:DiffviewClose` | Close Diffview tab |
 
 ## <u>Other tools in this repo</u> 🧰
 | Tool | Shortcut status |
@@ -89,4 +98,5 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | AeroSpace details | [AeroSpace details](keybindings/aerospace.md) |
 | Hammerspoon details | [Hammerspoon details](keybindings/hammerspoon.md) |
 | tmux details | [tmux details](keybindings/tmux.md) |
+| Neovim details | [Neovim details](tools/nvim.md) |
 | Keybindings overview | [Overview](keybindings/index.md) |

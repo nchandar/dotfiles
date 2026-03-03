@@ -10,6 +10,8 @@ macOS key names used in docs:
 - [AeroSpace](aerospace.md)
 - [Hammerspoon](hammerspoon.md)
 - [tmux](tmux.md)
+- [Neovim + Diffview quick reference](../keyboard-shortcuts.md#neovim-custom-repo-mappings)
+- [Diffview commands](../keyboard-shortcuts.md#diffview-neovim-git-commands)
 
 ## Note on overlap
 Hammerspoon and AeroSpace are both enabled. If a shortcut overlaps, the app that captures it first will execute it.
