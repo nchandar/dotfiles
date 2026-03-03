@@ -6,10 +6,15 @@ repo_name: nchandar/dotfiles
 
 theme:
   name: material
+  font:
+    text: IBM Plex Sans
+    code: JetBrains Mono
   features:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tabs
+    - navigation.instant
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -27,12 +32,17 @@ theme:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - tables
   - toc:
       permalink: true
 
 plugins:
   - search
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md

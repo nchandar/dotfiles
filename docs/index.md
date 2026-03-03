@@ -1,16 +1,37 @@
-# Dotfiles Docs
+<div class="hero">
+  <h1>Dotfiles Control Center</h1>
+  <p>Fast lookup for setup steps, shortcuts, and tool-specific behavior across this repo.</p>
+</div>
 
-This site is the lookup hub for setup, symlinks, tools, and keyboard shortcuts in this repo.
-
-## Quick links
-- [Bootstrap](setup/bootstrap.md)
-- [Symlinks](setup/symlinks.md)
-- [Keybindings overview](keybindings/index.md)
-- [AeroSpace keys](keybindings/aerospace.md)
-- [tmux keys](keybindings/tmux.md)
-- [Troubleshooting](troubleshooting.md)
+<div class="section-title">Popular Pages</div>
+<div class="link-grid">
+  <a class="link-card" href="keyboard-shortcuts/">
+    <strong>Keyboard Shortcuts</strong>
+    <span>Single-page quick reference across AeroSpace, Hammerspoon, and tmux.</span>
+  </a>
+  <a class="link-card" href="setup/bootstrap/">
+    <strong>Bootstrap</strong>
+    <span>Fresh machine setup and update flow.</span>
+  </a>
+  <a class="link-card" href="setup/symlinks/">
+    <strong>Symlinks</strong>
+    <span>How repo configs map into <code>~/.config</code>.</span>
+  </a>
+  <a class="link-card" href="keybindings/aerospace/">
+    <strong>AeroSpace</strong>
+    <span>Tiling behavior, service mode, and workspace controls.</span>
+  </a>
+  <a class="link-card" href="keybindings/tmux/">
+    <strong>tmux</strong>
+    <span>Prefix, split, resize, and pane workflow keys.</span>
+  </a>
+  <a class="link-card" href="troubleshooting/">
+    <strong>Troubleshooting</strong>
+    <span>Common recovery steps for setup and runtime issues.</span>
+  </a>
+</div>
 
 ## Source of truth
 - Repo: `~/dotfiles`
 - Configs: `~/dotfiles/config/*`
-- Active files: symlinked into `~/.config/*`
+- Active paths: symlinked into `~/.config/*`
