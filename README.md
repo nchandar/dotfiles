@@ -8,7 +8,7 @@ Portable macOS terminal + desktop setup.
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
-- `config/nvim/` Neovim config (Lua modules, plugins, LSP, diagnostics)
+- `config/nvim/` Neovim config (LazyVim base + local overrides)
 - `config/starship.toml` Starship prompt config
 - `Brewfile` Homebrew packages used for this setup
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
@@ -99,7 +99,7 @@ python3 -m mkdocs serve
 - **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
-- **Neovim**: See `config/nvim/README.md` for plugins, LSP, diagnostics, and setup details.
+- **Neovim**: See `config/nvim/README.md` for LazyVim setup, plugins, keymaps, and tooling details.
 - **AeroSpace + Hammerspoon**: Both are enabled. If shortcuts overlap, whichever app captures the shortcut first will act.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).
 

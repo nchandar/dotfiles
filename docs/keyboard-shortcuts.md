@@ -57,23 +57,20 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `prefix` + `r` | Reload config |
 | `prefix` + `v` then `y` | Copy mode select and yank |
 
-## <u>Neovim (custom repo mappings)</u> ✍️
+## <u>Neovim (LazyVim defaults)</u> ✍️
 | Shortcut | Action |
 | --- | --- |
-| `<leader>w` or `Ctrl-s` | Save |
-| `<leader>q` or `Ctrl-q` | Quit |
-| `<leader>ff` or `Ctrl-p` | Find files |
-| `<leader>fg` or `Ctrl-Shift-f` | Live grep in project |
-| `<leader>fb` or `Ctrl-b` | Buffers list |
-| `<leader>fh` | Help tags |
-| `<leader>e` or `Ctrl-e` | File explorer |
-| `<leader>r` | Replace in current file (`:%s//g`) |
+| `:w` | Save |
+| `<leader><space>` | Find files (root) |
+| `<leader>/` | Live grep in project (root) |
+| `<leader>,` | Buffers list |
+| `<leader>e` | File explorer |
+| `<leader>qq` | Quit all |
 | `[d` / `]d` | Prev/next diagnostic |
-| `<leader>dd` | Diagnostic float |
 | `gd` | Go to definition |
 | `gr` | References |
 | `K` | Hover docs |
-| `<leader>rn` | Rename symbol |
+| `<leader>cr` | Rename symbol |
 | `<leader>ca` | Code action |
 
 ## <u>Diffview (Neovim Git commands)</u> 🔍

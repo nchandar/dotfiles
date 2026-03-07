@@ -47,7 +47,6 @@ update:
 	fi
 	@if command -v nvim >/dev/null 2>&1; then \
 		nvim --headless "+Lazy sync" +qa; \
-		nvim --headless "+MasonUpdate" +qa; \
 		nvim --headless "+TSUpdate" +qa; \
 	else \
 		echo "nvim not found; skipping Neovim updates"; \
