@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap brew link status tmux update
+.PHONY: bootstrap brew link status tmux upgrade update
 
 bootstrap: tmux
 	./bootstrap.sh
@@ -32,14 +32,16 @@ tmux:
 		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins; \
 	fi
 
-update:
+upgrade:
 	@if command -v brew >/dev/null 2>&1; then \
 		brew update; \
-		brew upgrade; \
+		brew upgrade --greedy-auto-updates; \
 		brew bundle --file ./Brewfile; \
 	else \
 		echo "brew not found; skipping Homebrew updates"; \
 	fi
+
+update: upgrade
 	@if [ -x ~/.config/tmux/plugins/tpm/bin/update_plugins ]; then \
 		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/update_plugins all; \
 	else \

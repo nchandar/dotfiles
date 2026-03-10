@@ -14,5 +14,11 @@ make bootstrap
 ## Update existing machine
 ```sh
 cd ~/dotfiles
+make upgrade
+```
+
+For a full refresh including tmux and Neovim plugins:
+```sh
+cd ~/dotfiles
 make update
 ```

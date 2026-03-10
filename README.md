@@ -83,7 +83,8 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 - `make link` create symlinks only
 - `make status` show current symlinks
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
-- `make update` update Homebrew packages/casks, tmux plugins, and Neovim plugins/tooling
+- `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty
+- `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
 
 ## Docs site
 - Source lives in `docs/` with config in `mkdocs.yml`.

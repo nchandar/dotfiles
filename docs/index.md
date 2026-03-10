@@ -59,7 +59,7 @@
   </a>
   <a class="link-card" href="setup/bootstrap/">
     <strong>4) Update Existing Machine</strong>
-    <span>Use <code>make update</code> to refresh packages and plugins.</span>
+    <span>Use <code>make upgrade</code> for Homebrew apps like Ghostty, or <code>make update</code> for the full refresh.</span>
   </a>
 </div>
 

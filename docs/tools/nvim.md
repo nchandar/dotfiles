@@ -11,7 +11,7 @@
 - Snacks picker input uses a local `fixbuf = false` stability override (Neovim `0.11.x`)
 
 ## Update tooling
-`make update` runs:
+`make update` runs `make upgrade`, then:
 - `Lazy sync`
 - `TSUpdate`
 
