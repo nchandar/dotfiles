@@ -14,11 +14,11 @@ Most-used actions for this repo’s LazyVim setup.
 - Save and quit: `:wq`
 - Force quit: `:q!`
 
-## Finder / navigation (LazyVim defaults)
-- Find files (root): `<leader><space>`
-- Live grep (root): `<leader>/`
+## Finder / navigation (LazyVim defaults, Telescope-backed)
+- Find files (root): `<leader><space>` or `:Telescope find_files`
+- Live grep (root): `<leader>/` or `:Telescope live_grep`
 - Explorer: `<leader>e`
-- Buffer switcher: `<leader>,`
+- Buffer switcher: `<leader>,` or `:Telescope buffers`
 
 ## Diagnostics and LSP (LazyVim defaults)
 - Prev/next diagnostic: `[d` / `]d`
@@ -28,7 +28,13 @@ Most-used actions for this repo’s LazyVim setup.
 - References: `gr`
 - Hover docs: `K`
 
-## Diffview (kept)
+## Git
+- Open LazyGit: `<leader>gg` or `:LazyGit`
+- Open LazyGit for current file: `:LazyGitCurrentFile`
+- Open LazyGit with repo filter: `:LazyGitFilter`
+- Open LazyGit filtered to current file: `:LazyGitFilterCurrentFile`
+
+## Diffview
 - Open diff: `:DiffviewOpen`
 - Open commit diff: `:DiffviewOpen HEAD~1`
 - Current file history: `:DiffviewFileHistory %`
@@ -39,9 +45,6 @@ Most-used actions for this repo’s LazyVim setup.
 - Open Mason UI: `:Mason`
 - Check health: `:checkhealth`
 - Inspect active mappings: `:Telescope keymaps`
-
-## Notes
-- Snacks picker runs with a local input-window stability override (`fixbuf = false`) for Neovim `0.11.x`.
 
 ## Leader key
 - Leader is `Space`.

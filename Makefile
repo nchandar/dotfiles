@@ -1,9 +1,10 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap brew link status tmux upgrade update
+.PHONY: bootstrap brew link status tmux nvim upgrade update
 
 bootstrap: tmux
 	./bootstrap.sh
+	$(MAKE) nvim
 
 brew:
 	brew bundle --file ./Brewfile
@@ -32,6 +33,22 @@ tmux:
 		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins; \
 	fi
 
+nvim:
+	@NVIM_BIN=""; \
+	if command -v nvim >/dev/null 2>&1; then \
+		NVIM_BIN="$$(command -v nvim)"; \
+	elif [ -x /opt/homebrew/bin/nvim ]; then \
+		NVIM_BIN="/opt/homebrew/bin/nvim"; \
+	elif [ -x /usr/local/bin/nvim ]; then \
+		NVIM_BIN="/usr/local/bin/nvim"; \
+	fi; \
+	if [ -z "$$NVIM_BIN" ]; then \
+		echo "nvim not found; skipping Neovim plugin sync"; \
+		exit 0; \
+	fi; \
+	"$$NVIM_BIN" --headless "+Lazy sync" +qa; \
+	"$$NVIM_BIN" --headless "+TSUpdate" +qa
+
 upgrade:
 	@if command -v brew >/dev/null 2>&1; then \
 		brew update; \
@@ -47,9 +64,4 @@ update: upgrade
 	else \
 		echo "TPM not found; run 'make tmux' first"; \
 	fi
-	@if command -v nvim >/dev/null 2>&1; then \
-		nvim --headless "+Lazy sync" +qa; \
-		nvim --headless "+TSUpdate" +qa; \
-	else \
-		echo "nvim not found; skipping Neovim updates"; \
-	fi
+	$(MAKE) nvim

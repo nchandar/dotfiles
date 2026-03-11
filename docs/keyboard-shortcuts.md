@@ -57,14 +57,15 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `prefix` + `r` | Reload config |
 | `prefix` + `v` then `y` | Copy mode select and yank |
 
-## <u>Neovim (LazyVim defaults)</u> ✍️
+## <u>Neovim (LazyVim + local Git shortcut)</u> ✍️
 | Shortcut | Action |
 | --- | --- |
 | `:w` | Save |
-| `<leader><space>` | Find files (root) |
-| `<leader>/` | Live grep in project (root) |
-| `<leader>,` | Buffers list |
+| `<leader><space>` | Telescope find files (root) |
+| `<leader>/` | Telescope live grep (root) |
+| `<leader>,` | Telescope buffers list |
 | `<leader>e` | File explorer |
+| `<leader>gg` | Open LazyGit |
 | `<leader>qq` | Quit all |
 | `[d` / `]d` | Prev/next diagnostic |
 | `gd` | Go to definition |
@@ -80,6 +81,14 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `:DiffviewOpen HEAD~1` | Open diff for a commit/ref |
 | `:DiffviewFileHistory %` | Show history for current file |
 | `:DiffviewClose` | Close Diffview tab |
+
+## <u>LazyGit (Neovim Git UI)</u> 🌿
+| Shortcut / Command | Action |
+| --- | --- |
+| `<leader>gg` or `:LazyGit` | Open LazyGit for the current repo |
+| `:LazyGitCurrentFile` | Open LazyGit focused on the current file |
+| `:LazyGitFilter` | Open LazyGit with a repository filter |
+| `:LazyGitFilterCurrentFile` | Open LazyGit filtered to the current file |
 
 ## <u>Other tools in this repo</u> 🧰
 | Tool | Shortcut status |

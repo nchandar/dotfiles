@@ -10,6 +10,7 @@ make bootstrap
 1. Installs Homebrew packages from `Brewfile`
 2. Creates symlinks from `config/` into `~/.config`
 3. Installs tmux TPM/plugins
+4. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
 
 ## Update existing machine
 ```sh
