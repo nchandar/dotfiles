@@ -45,6 +45,7 @@ link ghostty
 link hammerspoon
 link aerospace
 link nvim
+link yazi
 link starship.toml
 
 # gitmux config (expects ~/.gitmux.conf)

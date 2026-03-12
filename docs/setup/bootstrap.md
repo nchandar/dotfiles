@@ -8,7 +8,7 @@ make bootstrap
 
 ## What this does
 1. Installs Homebrew packages from `Brewfile`
-2. Creates symlinks from `config/` into `~/.config`
+2. Creates symlinks from `config/` into `~/.config` (including `~/.config/yazi`)
 3. Installs tmux TPM/plugins
 4. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
 

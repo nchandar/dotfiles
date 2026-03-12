@@ -9,6 +9,7 @@ Portable macOS terminal + desktop setup.
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
 - `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows)
+- `config/yazi/` Yazi config (`yazi.toml`)
 - `config/starship.toml` Starship prompt config
 - `Brewfile` Homebrew packages used for this setup
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
@@ -60,6 +61,7 @@ ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/aerospace ~/.config/aerospace
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
+ln -s ~/dotfiles/config/yazi ~/.config/yazi
 ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
 ```
 
@@ -101,6 +103,7 @@ python3 -m mkdocs serve
 - **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
+- **Yazi**: Installed via Brewfile. Use `y` from Nushell so exiting Yazi can update the current shell directory.
 - **Neovim**: See `config/nvim/README.md` for LazyVim setup, plugins, keymaps, Git workflows, and tooling details.
 - **AeroSpace + Hammerspoon**: Both are enabled. If shortcuts overlap, whichever app captures the shortcut first will act.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).

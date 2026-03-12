@@ -95,6 +95,7 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | --- | --- |
 | Ghostty | No custom keyboard shortcuts defined in `config/ghostty/config` |
 | Nushell | No custom keyboard shortcuts defined in `config/nushell/` |
+| Yazi | Start with `y` from Nushell to preserve the shell's current directory; no key overrides from defaults |
 | Starship | Prompt config only, no keyboard shortcuts |
 | gitmux | tmux status integration, no standalone keyboard shortcuts |
 

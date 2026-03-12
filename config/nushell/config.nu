@@ -20,6 +20,19 @@
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
+# Launch Yazi and adopt its last working directory on exit.
+def --env y [...args] {
+  let tmp = (mktemp -t "yazi-cwd.XXXXXX" | str trim)
+  ^yazi ...$args --cwd-file $tmp
+
+  let cwd = (open --raw $tmp | str trim)
+  if $cwd != "" and $cwd != $env.PWD and ($cwd | path exists) {
+    cd $cwd
+  }
+
+  rm -f $tmp
+}
+
 # --- Carapace external completions ---
 
 let carapace_completer = {|spans|

@@ -29,6 +29,10 @@
     <strong>Nushell</strong>
     <span>Shell config location and behavior notes.</span>
   </a>
+  <a class="link-card" href="tools/yazi/">
+    <strong>Yazi</strong>
+    <span>Terminal file manager install path, config location, and launch workflow.</span>
+  </a>
   <a class="link-card" href="tools/ghostty/">
     <strong>Ghostty</strong>
     <span>Terminal configuration and portability notes.</span>
