@@ -21,4 +21,4 @@ make status
 - `~/.config/hammerspoon`
 - `~/.config/aerospace`
 - `~/.config/nvim`
-- `~/.config/starship.toml`
+- `~/.config/oh-my-posh.omp.toml`

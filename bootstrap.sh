@@ -46,7 +46,7 @@ link hammerspoon
 link aerospace
 link nvim
 link yazi
-link starship.toml
+link oh-my-posh.omp.toml
 
 # gitmux config (expects ~/.gitmux.conf)
 if [ -e "$HOME/.gitmux.conf" ] || [ -L "$HOME/.gitmux.conf" ]; then

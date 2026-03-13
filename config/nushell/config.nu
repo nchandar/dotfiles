@@ -17,8 +17,10 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
-mkdir ($nu.data-dir | path join "vendor/autoload")
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+let omp_config = ($nu.home-dir | path join ".config" "oh-my-posh.omp.toml")
+if (which oh-my-posh | is-not-empty) {
+  oh-my-posh init nu --config $omp_config
+}
 
 # Launch Yazi and adopt its last working directory on exit.
 def --env y [...args] {

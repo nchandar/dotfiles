@@ -65,5 +65,5 @@ nav:
     - Nushell: tools/nushell.md
     - Yazi: tools/yazi.md
     - Ghostty: tools/ghostty.md
-    - Starship: tools/starship.md
+    - Oh My Posh: tools/oh-my-posh.md
   - Troubleshooting: troubleshooting.md

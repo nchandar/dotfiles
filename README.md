@@ -10,7 +10,7 @@ Portable macOS terminal + desktop setup.
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
 - `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows)
 - `config/yazi/` Yazi config (`yazi.toml`)
-- `config/starship.toml` Starship prompt config
+- `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
@@ -62,7 +62,7 @@ ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/aerospace ~/.config/aerospace
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
 ln -s ~/dotfiles/config/yazi ~/.config/yazi
-ln -s ~/dotfiles/config/starship.toml ~/.config/starship.toml
+ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 ```
 
 4) Install tmux plugins (TPM)

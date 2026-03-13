@@ -10,7 +10,7 @@
     "nvim": "Neovim",
     "nushell": "Nushell",
     "ghostty": "Ghostty",
-    "starship": "Starship",
+    "oh-my-posh": "Oh My Posh",
     "aerospace": "AeroSpace",
     "hammerspoon": "Hammerspoon",
     "tmux": "tmux",

@@ -37,9 +37,9 @@
     <strong>Ghostty</strong>
     <span>Terminal configuration and portability notes.</span>
   </a>
-  <a class="link-card" href="tools/starship/">
-    <strong>Starship</strong>
-    <span>Prompt configuration path and usage.</span>
+  <a class="link-card" href="tools/oh-my-posh/">
+    <strong>Oh My Posh</strong>
+    <span>Prompt configuration path, theme, and Nushell usage.</span>
   </a>
   <a class="link-card" href="troubleshooting/">
     <strong>Troubleshooting</strong>

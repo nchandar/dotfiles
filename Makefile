@@ -14,7 +14,7 @@ link:
 
 status:
 	@echo "Symlinks in ~/.config:";
-	@ls -la ~/.config | egrep "(nushell|tmux|ghostty|hammerspoon|aerospace|nvim|starship\.toml)" || true
+	@ls -la ~/.config | egrep "(nushell|tmux|ghostty|hammerspoon|aerospace|nvim|oh-my-posh\.omp\.toml)" || true
 
 tmux:
 	@mkdir -p ~/.config/tmux/plugins
