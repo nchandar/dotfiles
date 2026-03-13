@@ -18,7 +18,13 @@
 #     config nu --doc | nu-highlight | less -R
 
 let omp_config = ($nu.home-dir | path join ".config" "oh-my-posh.omp.toml")
-if (which oh-my-posh | is-not-empty) {
+let legacy_starship_autoload = ($nu.data-dir | path join "vendor" "autoload" "starship.nu")
+
+if ($legacy_starship_autoload | path exists) {
+  rm -f $legacy_starship_autoload
+}
+
+if ((which oh-my-posh | is-not-empty) and ($omp_config | path exists)) {
   oh-my-posh init nu --config $omp_config
 }
 
