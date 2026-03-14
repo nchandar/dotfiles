@@ -22,10 +22,17 @@ $env.config.buffer_editor = "nvim"
 # You can remove these comments if you want or leave
 # them for future reference.
 
-# --- Base system paths (required on macOS) ---
+# --- Base system paths ---
+if ('/opt/homebrew/bin' | path exists) {
+  $env.PATH = ($env.PATH | prepend '/opt/homebrew/bin')
+}
+
+if ('/usr/local/bin' | path exists) {
+  $env.PATH = ($env.PATH | prepend '/usr/local/bin')
+}
+
 $env.PATH = (
   $env.PATH
-  | prepend '/opt/homebrew/bin'
   | prepend '/usr/bin'
   | prepend '/bin'
   | prepend '/usr/sbin'

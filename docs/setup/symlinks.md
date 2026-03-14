@@ -8,6 +8,13 @@ cd ~/dotfiles
 make link
 ```
 
+Omarchy/Linux shortcut:
+
+```sh
+cd ~/dotfiles
+bash bootstrap-omarchy.sh --link-only
+```
+
 ## Check links
 ```sh
 cd ~/dotfiles
@@ -22,3 +29,7 @@ make status
 - `~/.config/aerospace`
 - `~/.config/nvim`
 - `~/.config/oh-my-posh.omp.toml`
+
+For Omarchy/Linux, omit these by design:
+- `~/.config/hammerspoon`
+- `~/.config/aerospace`

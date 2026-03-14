@@ -1,6 +1,6 @@
 # dotfiles
 
-Portable macOS terminal + desktop setup.
+Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 
 ## What's in here
 - `config/nushell/` Nushell config (`config.nu`, `env.nu`, `carapace.nu`)
@@ -22,10 +22,23 @@ Portable macOS terminal + desktop setup.
 ```sh
 bash ~/dotfiles/bootstrap.sh
 ```
+
+Omarchy/Linux bootstrap:
+
+```sh
+bash ~/dotfiles/bootstrap-omarchy.sh
+```
+
+Link-only mode:
+
+```sh
+bash ~/dotfiles/bootstrap-omarchy.sh --link-only
+```
 Or with Make:
 ```sh
 cd ~/dotfiles
-make bootstrap
+make bootstrap           # macOS
+make bootstrap-omarchy    # Omarchy/Linux
 ```
 
 ## Setup on a new Mac (recommended)
@@ -79,15 +92,44 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 - Startup is enabled via `start-at-login = true` in `config/aerospace/aerospace.toml`.
 - Keybinding guide: `config/aerospace/README.md`.
 
+## Setup on Omarchy/Linux
+
+1) Install dependencies using your package manager flow
+   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `node`, `go`, `rust`
+
+   Example (Pacman/Omarchy style):
+
+   ```sh
+   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace nodejs go rust
+   ```
+
+2) Use the dedicated bootstrap
+```sh
+cd ~/dotfiles
+bash bootstrap-omarchy.sh
+```
+
+3) Manual equivalent flow
+```sh
+mkdir -p ~/.config
+ln -s ~/dotfiles/config/nushell ~/.config/nushell
+ln -s ~/dotfiles/config/tmux ~/.config/tmux
+ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
+ln -s ~/dotfiles/config/nvim ~/.config/nvim
+ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
+```
+
 ## Make targets
 - `make bootstrap` run full bootstrap (brew + links + tmux plugins + Neovim plugin sync)
 - `make brew` run only Homebrew bundle
 - `make link` create symlinks only
 - `make status` show current symlinks
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
+- `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow (`./bootstrap-omarchy.sh`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
 - `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty
 - `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
+- `bootstrap-omarchy.sh` runs an Omarchy/Linux path (symlink + TPM + nvim sync), keeping macOS `bootstrap.sh` unchanged
 
 ## Docs site
 - Source lives in `docs/` with config in `mkdocs.yml`.

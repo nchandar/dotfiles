@@ -1,10 +1,13 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap brew link status tmux nvim upgrade update
+.PHONY: bootstrap bootstrap-omarchy brew link status tmux nvim upgrade update
 
 bootstrap: tmux
 	./bootstrap.sh
 	$(MAKE) nvim
+
+bootstrap-omarchy:
+	./bootstrap-omarchy.sh
 
 brew:
 	brew bundle --file ./Brewfile
