@@ -1,13 +1,19 @@
 SHELL := /bin/bash
 
-.PHONY: bootstrap bootstrap-omarchy brew link status tmux nvim upgrade update
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim upgrade update
 
 bootstrap: tmux
 	./bootstrap.sh
 	$(MAKE) nvim
 
 bootstrap-omarchy:
-	./bootstrap-omarchy.sh
+	@if [ "$$(uname -s)" != "Linux" ]; then \
+		echo "bootstrap-omarchy is Linux-only; use 'make bootstrap' on macOS"; \
+		exit 1; \
+	fi
+	./bootstrap-omarchy.sh --install-deps
+
+bootstrap-omarchy.sh: bootstrap-omarchy
 
 brew:
 	brew bundle --file ./Brewfile

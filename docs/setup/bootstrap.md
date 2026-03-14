@@ -11,9 +11,11 @@ make bootstrap
 ### Omarchy / Linux
 ```sh
 cd ~/dotfiles
-bash bootstrap-omarchy.sh
+bash bootstrap-omarchy.sh --install-deps
 make bootstrap-omarchy
 ```
+
+`bootstrap-omarchy.sh` and `make bootstrap-omarchy` are Linux-only and will fail fast on macOS.
 
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
@@ -26,6 +28,7 @@ Example:
 sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace nodejs go rust yazi
 ```
 
+If your repos do not have `oh-my-posh` or `carapace`, use `oh-my-posh-bin` and/or `carapace-bin` from your AUR/helper flow.
 If your distro uses different package names, swap to the matching ones for your repository.
 
 ## What this does
@@ -38,6 +41,8 @@ For Omarchy/Linux flow, dependency install is done with the distro/Omarchy packa
 1. Creates symlinks for shell, tmux, Ghostty, and nvim configs
 2. Installs tmux TPM/plugins
 3. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
+
+With `--install-deps` (or `make bootstrap-omarchy`) on pacman-based systems, bootstrap also installs required packages first.
 
 ## Update existing machine
 ```sh

@@ -6,10 +6,105 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 TMUX_PLUGIN_DIR="$CONFIG_DIR/tmux/plugins"
 TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 LINK_ONLY=false
+INSTALL_DEPS=false
+OS_NAME="$(uname -s)"
 
-if [ "${1:-}" = "--link-only" ]; then
-  LINK_ONLY=true
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --link-only)
+      LINK_ONLY=true
+      ;;
+    --install-deps)
+      INSTALL_DEPS=true
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Usage: $0 [--link-only] [--install-deps]"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [ "$OS_NAME" != "Linux" ]; then
+  echo "bootstrap-omarchy.sh is Linux-only."
+  echo "On macOS, use: bash bootstrap.sh"
+  exit 1
 fi
+
+install_deps() {
+  if command -v pacman >/dev/null 2>&1; then
+    is_available() {
+      pacman -Si "$1" >/dev/null 2>&1
+    }
+
+    pick_first_available() {
+      for candidate in "$@"; do
+        if is_available "$candidate"; then
+          printf '%s\n' "$candidate"
+          return 0
+        fi
+      done
+      return 1
+    }
+
+    REQUIRED_PKGS=(
+      nushell
+      neovim
+      tmux
+      ghostty
+      lazygit
+      nodejs
+      go
+      rust
+      yazi
+      git
+    )
+
+    OPTIONAL_LABELS=("oh-my-posh" "carapace")
+    OPTIONAL_CANDIDATES=("oh-my-posh oh-my-posh-bin" "carapace carapace-bin")
+
+    INSTALL_PKGS=()
+    MISSING_PKGS=()
+
+    for pkg in "${REQUIRED_PKGS[@]}"; do
+      if is_available "$pkg"; then
+        INSTALL_PKGS+=("$pkg")
+      else
+        MISSING_PKGS+=("$pkg")
+      fi
+    done
+
+    idx=0
+    for label in "${OPTIONAL_LABELS[@]}"; do
+      IFS=' ' read -r -a candidates <<< "${OPTIONAL_CANDIDATES[$idx]}"
+      chosen="$(pick_first_available "${candidates[@]}" || true)"
+      if [ -n "$chosen" ]; then
+        INSTALL_PKGS+=("$chosen")
+      else
+        MISSING_PKGS+=("$label")
+      fi
+      idx=$((idx + 1))
+    done
+
+    if [ "${#INSTALL_PKGS[@]}" -gt 0 ]; then
+      echo "Installing Omarchy/Linux dependencies via pacman..."
+      if command -v sudo >/dev/null 2>&1; then
+        sudo pacman -S --needed "${INSTALL_PKGS[@]}"
+      else
+        pacman -S --needed "${INSTALL_PKGS[@]}"
+      fi
+    fi
+
+    if [ "${#MISSING_PKGS[@]}" -gt 0 ]; then
+      echo "Some packages were not found in pacman repos: ${MISSING_PKGS[*]}"
+      echo "Install missing ones via AUR/helper or manually, then rerun bootstrap if needed."
+    fi
+  else
+    echo "No supported package manager detected for --install-deps."
+    echo "Install dependencies manually, then rerun bootstrap."
+  fi
+}
 
 mkdir -p "$CONFIG_DIR"
 
@@ -34,6 +129,10 @@ link nvim
 link oh-my-posh.omp.toml
 
 if [ "$LINK_ONLY" = false ]; then
+  if [ "$INSTALL_DEPS" = true ]; then
+    install_deps
+  fi
+
   # 1) Ensure tmux shim exists
   if [ ! -e "$HOME/.tmux.conf" ] && [ ! -L "$HOME/.tmux.conf" ]; then
     cat > "$HOME/.tmux.conf" <<'EOF'

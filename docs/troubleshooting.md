@@ -44,8 +44,12 @@ command -v oh-my-posh
 Quick reinstall flow:
 ```sh
 cd ~/dotfiles
-bash bootstrap-omarchy.sh
+bash bootstrap-omarchy.sh --install-deps
 ```
+
+If `make bootstrap-omarchy` reports no supported package manager, install dependencies manually for your distro and rerun `bash bootstrap-omarchy.sh`.
+
+If `make bootstrap-omarchy` reports missing `oh-my-posh` or `carapace` packages, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper, then rerun bootstrap.
 
 ## Brewfile mismatch
 Check and reconcile:

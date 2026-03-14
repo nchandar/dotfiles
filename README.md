@@ -38,8 +38,10 @@ Or with Make:
 ```sh
 cd ~/dotfiles
 make bootstrap           # macOS
-make bootstrap-omarchy    # Omarchy/Linux
+make bootstrap-omarchy   # Omarchy/Linux (install deps + link + tmux + nvim)
 ```
+
+`make bootstrap-omarchy` is Linux-only and exits with guidance on macOS.
 
 ## Setup on a new Mac (recommended)
 ```sh
@@ -103,10 +105,12 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
    sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace nodejs go rust
    ```
 
+   If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
+
 2) Use the dedicated bootstrap
 ```sh
 cd ~/dotfiles
-bash bootstrap-omarchy.sh
+bash bootstrap-omarchy.sh --install-deps
 ```
 
 3) Manual equivalent flow
@@ -125,11 +129,11 @@ ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 - `make link` create symlinks only
 - `make status` show current symlinks
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
-- `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow (`./bootstrap-omarchy.sh`)
+- `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
 - `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty
 - `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
-- `bootstrap-omarchy.sh` runs an Omarchy/Linux path (symlink + TPM + nvim sync), keeping macOS `bootstrap.sh` unchanged
+- `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
 
 ## Docs site
 - Source lives in `docs/` with config in `mkdocs.yml`.
