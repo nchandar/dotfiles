@@ -40,9 +40,34 @@ Most-used actions for this repo’s LazyVim setup.
 - Current file history: `:DiffviewFileHistory %`
 - Close diff: `:DiffviewClose`
 
+## Debugging
+- Continue/start: `<F5>` or `<leader>dc`
+- Step over: `<F10>` or `<leader>dO`
+- Step into: `<F11>` or `<leader>di`
+- Step out: `<F12>` or `<leader>do`
+- Toggle breakpoint: `<leader>b` or `<leader>db`
+- Conditional breakpoint: `<leader>B` or `<leader>dB`
+- Run with args: `<leader>da`
+- Run to cursor: `<leader>dC`
+- Toggle DAP UI: `<leader>du`
+- Toggle REPL: `<leader>dr`
+- Evaluate expression/selection: `<leader>de`
+
+## Go debug notes
+- Open a Go buffer in a project with `go.mod` or `go.work`, then use `<F5>` / `<leader>dc`.
+- Delve is installed through Mason and used automatically by `nvim-dap-go`.
+
+## Java debug notes
+- Open a Java buffer in a Maven/Gradle project to auto-attach `nvim-jdtls`.
+- Run current Java test class: `<leader>tt`
+- Run nearest Java test: `<leader>tr`
+- Pick Java test: `<leader>tT`
+- Remote attach config name: `Debug (Attach) - Remote` on `127.0.0.1:5005`
+
 ## Useful commands
 - Open Lazy UI: `:Lazy`
 - Open Mason UI: `:Mason`
+- DAP adapter install/uninstall: `:DapInstall`, `:DapUninstall`
 - Check health: `:checkhealth`
 - Inspect active mappings: `:Telescope keymaps`
 

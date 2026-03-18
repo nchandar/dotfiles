@@ -57,7 +57,7 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `prefix` + `r` | Reload config |
 | `prefix` + `v` then `y` | Copy mode select and yank |
 
-## <u>Neovim (LazyVim + local Git shortcut)</u> ✍️
+## <u>Neovim (LazyVim + local Git/debug shortcuts)</u> ✍️
 | Shortcut | Action |
 | --- | --- |
 | `:w` | Save |
@@ -66,6 +66,13 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `<leader>,` | Telescope buffers list |
 | `<leader>e` | File explorer |
 | `<leader>gg` | Open LazyGit |
+| `<F5>` | Debug continue/start |
+| `<F10>` | Debug step over |
+| `<F11>` | Debug step into |
+| `<F12>` | Debug step out |
+| `<leader>b` | Toggle debug breakpoint |
+| `<leader>B` | Set conditional breakpoint |
+| `<leader>du` | Toggle DAP UI |
 | `<leader>qq` | Quit all |
 | `[d` / `]d` | Prev/next diagnostic |
 | `gd` | Go to definition |
@@ -73,6 +80,13 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `K` | Hover docs |
 | `<leader>cr` | Rename symbol |
 | `<leader>ca` | Code action |
+
+## <u>Neovim Java debug/test</u> ☕
+| Shortcut | Action |
+| --- | --- |
+| `<leader>tt` | Run current Java test class through the debugger |
+| `<leader>tr` | Run nearest Java test through the debugger |
+| `<leader>tT` | Pick a Java test to run |
 
 ## <u>Diffview (Neovim Git commands)</u> 🔍
 | Command | Action |

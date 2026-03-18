@@ -8,7 +8,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
-- `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows)
+- `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Java/Go DAP)
 - `config/yazi/` Yazi config (`yazi.toml`)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup
