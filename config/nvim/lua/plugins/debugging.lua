@@ -1,8 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.dap.core" },
-  { import = "lazyvim.plugins.extras.lang.go" },
-  { import = "lazyvim.plugins.extras.lang.java" },
-
   {
     "mfussenegger/nvim-dap",
     optional = true,
