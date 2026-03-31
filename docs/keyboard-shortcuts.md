@@ -104,6 +104,17 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `:LazyGitFilter` | Open LazyGit with a repository filter |
 | `:LazyGitFilterCurrentFile` | Open LazyGit filtered to the current file |
 
+## <u>Markdown authoring (Neovim)</u> 📝
+| Command | Action |
+| --- | --- |
+| `:Markview Toggle` | Toggle in-buffer Markdown rendering |
+| `:Markview splitToggle` | Toggle Markview split preview |
+| `:Markview HybridToggle` | Toggle Markview hybrid edit/preview mode |
+| `:MarkdownPreview` | Start browser Markdown preview |
+| `:MarkdownPreviewToggle` | Toggle browser Markdown preview |
+| `:MarkdownPreviewStop` | Stop browser Markdown preview |
+| `:checkhealth markview` | Check Markview parser and setup health |
+
 ## <u>Other tools in this repo</u> 🧰
 | Tool | Shortcut status |
 | --- | --- |

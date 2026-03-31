@@ -40,6 +40,15 @@ Most-used actions for this repo’s LazyVim setup.
 - Current file history: `:DiffviewFileHistory %`
 - Close diff: `:DiffviewClose`
 
+## Markdown authoring
+- In-buffer preview toggle: `:Markview Toggle`
+- Split preview toggle: `:Markview splitToggle`
+- Hybrid edit/preview toggle: `:Markview HybridToggle`
+- Browser preview start: `:MarkdownPreview`
+- Browser preview toggle: `:MarkdownPreviewToggle`
+- Browser preview stop: `:MarkdownPreviewStop`
+- Markview health check: `:checkhealth markview`
+
 ## Debugging
 - Continue/start: `<F5>` or `<leader>dc`
 - Step over: `<F10>` or `<leader>dO`

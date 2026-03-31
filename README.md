@@ -8,7 +8,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
-- `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Java/Go DAP)
+- `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Markdown previews, Java/Go DAP)
 - `config/yazi/` Yazi config (`yazi.toml`)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup
@@ -150,7 +150,7 @@ python3 -m mkdocs serve
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
 - **Yazi**: Installed via Brewfile. Use `y` from Nushell so exiting Yazi can update the current shell directory.
-- **Neovim**: See `config/nvim/README.md` for LazyVim setup, plugins, keymaps, Git workflows, and tooling details.
+- **Neovim**: See `config/nvim/README.md` for LazyVim setup, plugins, keymaps, Git workflows, Markdown preview workflows, and tooling details.
 - **AeroSpace + Hammerspoon**: Both are enabled. If shortcuts overlap, whichever app captures the shortcut first will act.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).
 

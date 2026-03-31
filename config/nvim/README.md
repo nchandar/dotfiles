@@ -16,6 +16,7 @@ This repo now uses a **LazyVim-based** setup in `config/nvim/`.
   - Go debugging via `nvim-dap-go` + `delve`
   - Java debugging/testing via `nvim-jdtls` + `java-debug-adapter` + `java-test`
 - Git workflows: `diffview.nvim` commands for diffs/history and `lazygit.nvim` for terminal Git UI.
+- Markdown workflows: `markview.nvim` for in-buffer preview rendering and `markdown-preview.nvim` for browser preview.
 - Theme setup: LazyVim default colorscheme remains default; `catppuccin` is installed as an optional alternative.
 
 ## Install
@@ -27,6 +28,10 @@ This repo now uses a **LazyVim-based** setup in `config/nvim/`.
 `lazygit` is installed through the repo `Brewfile` and is required for `:LazyGit`.
 
 `mason.nvim` installs the debug adapters used here (`delve`, `java-debug-adapter`, `java-test`) after plugin sync.
+
+`markdown-preview.nvim` needs `node`, which is already installed through the repo `Brewfile`.
+
+`nvim-treesitter` now ensures the Markdown preview parsers used here are installed: `markdown`, `markdown_inline`, `html`, and `yaml`.
 
 ## Update (headless)
 ```sh
@@ -46,6 +51,17 @@ These are also run by `make update` from repo root.
 - `:LazyGitCurrentFile`
 - `:LazyGitFilter`
 - `:LazyGitFilterCurrentFile`
+
+## Markview commands
+- `:Markview Toggle`
+- `:Markview splitToggle`
+- `:Markview HybridToggle`
+- `:checkhealth markview`
+
+## MarkdownPreview commands
+- `:MarkdownPreview`
+- `:MarkdownPreviewToggle`
+- `:MarkdownPreviewStop`
 
 ## Git keymaps
 - `<leader>gg`: open `LazyGit`
@@ -91,6 +107,7 @@ These are also run by `make update` from repo root.
 - `config/nvim/lua/plugins/diffview.lua`
 - `config/nvim/lua/plugins/debugging.lua`
 - `config/nvim/lua/plugins/lazygit.lua`
+- `config/nvim/lua/plugins/markdown.lua`
 - `config/nvim/lua/plugins/tmux-navigator.lua`
 - `config/nvim/lua/plugins/catppuccin.lua`
 
@@ -99,3 +116,4 @@ These are also run by `make update` from repo root.
 - Leader-based motions/actions follow LazyVim defaults.
 - Finder mappings like `<leader><space>`, `<leader>/`, and `<leader>,` now open Telescope pickers.
 - Debugging support is repo-local in `lua/plugins/debugging.lua`, with LazyVim extras providing the Java/Go adapters and default `<leader>d...` actions.
+- `markview.nvim` is loaded at startup per upstream guidance so its preview rendering is ready when opening Markdown buffers.
