@@ -54,10 +54,12 @@ install_deps() {
       tmux
       ghostty
       lazygit
+      code
       nodejs
       go
       rust
       yazi
+      opencode
       git
     )
 

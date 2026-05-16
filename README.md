@@ -11,7 +11,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Markdown previews, Java/Go DAP)
 - `config/yazi/` Yazi config (`yazi.toml`)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
-- `Brewfile` Homebrew packages used for this setup
+- `Brewfile` Homebrew packages used for this setup, including GUI apps like Ghostty and VS Code plus CLI tools like OpenCode
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
 ## Layout
@@ -67,6 +67,8 @@ make bootstrap
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
+This installs the repo's macOS toolchain, including `ghostty`, `visual-studio-code`, and `opencode`.
+
 3) Symlink configs into `~/.config`
 ```sh
 mkdir -p ~/.config
@@ -97,12 +99,12 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 ## Setup on Omarchy/Linux
 
 1) Install dependencies using your package manager flow
-   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `node`, `go`, `rust`
+   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace nodejs go rust
+   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
@@ -131,7 +133,7 @@ ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
 - `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
-- `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty
+- `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty and VS Code
 - `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
 - `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
 

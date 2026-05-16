@@ -17,22 +17,24 @@ make bootstrap-omarchy
 
 `bootstrap-omarchy.sh` and `make bootstrap-omarchy` are Linux-only and will fail fast on macOS.
 
+On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, including `ghostty`, `visual-studio-code`, and `opencode`.
+
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
 
-`nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `node`, `go`, `rust`, `yazi`
+`nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`
 
 Example:
 
 ```sh
-sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace nodejs go rust yazi
+sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode
 ```
 
 If your repos do not have `oh-my-posh` or `carapace`, use `oh-my-posh-bin` and/or `carapace-bin` from your AUR/helper flow.
 If your distro uses different package names, swap to the matching ones for your repository.
 
 ## What this does
-1. macOS: installs Homebrew packages from `Brewfile`
+1. macOS: installs Homebrew packages from `Brewfile` (including `ghostty`, `visual-studio-code`, and `opencode`)
 2. Creates symlinks from `config/` into `~/.config`
 3. Installs tmux TPM/plugins
 4. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
@@ -55,6 +57,8 @@ For a full refresh including tmux and Neovim plugins:
 cd ~/dotfiles
 make update
 ```
+
+`make upgrade` also refreshes the Homebrew-installed GUI and CLI apps from `Brewfile`, including Ghostty, VS Code, and OpenCode on macOS.
 
 ## Omarchy/ Linux status check (quick)
 
