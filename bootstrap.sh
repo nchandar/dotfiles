@@ -56,7 +56,31 @@ else
   echo "Linked $HOME/.gitmux.conf -> $DOTFILES_DIR/config/gitmux.conf"
 fi
 
-# 3b) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
+# 3b) Claude Code config (~/.claude/)
+CLAUDE_DIR="$HOME/.claude"
+CLAUDE_SRC="$DOTFILES_DIR/config/claude"
+mkdir -p "$CLAUDE_DIR"
+for f in CLAUDE.md settings.json statusline-command.sh; do
+  dest="$CLAUDE_DIR/$f"
+  src="$CLAUDE_SRC/$f"
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo "Skipping existing $dest"
+  else
+    ln -s "$src" "$dest"
+    echo "Linked $dest -> $src"
+  fi
+done
+
+# 3c) Workflow skills (https://github.com/nchandar/skills)
+if [ ! -d "$HOME/skills" ]; then
+  echo "Installing workflow skills..."
+  git clone https://github.com/nchandar/skills "$HOME/skills"
+  make -C "$HOME/skills" install-claude
+else
+  echo "Skipping existing ~/skills"
+fi
+
+# 3d) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
 if [ -f "$DOTFILES_DIR/config/ghostty/config" ]; then
   ghostty_xdg="$(sed -nE 's/^env = XDG_CONFIG_HOME=(.*)$/\1/p' "$DOTFILES_DIR/config/ghostty/config" | head -n1)"
   if [ -n "$ghostty_xdg" ] && [ "$ghostty_xdg" != "$HOME/.config" ]; then
