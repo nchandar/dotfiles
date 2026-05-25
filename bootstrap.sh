@@ -80,7 +80,15 @@ else
   echo "Skipping existing ~/skills"
 fi
 
-# 3d) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
+# 3d) Claude Code CLI
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Installing Claude Code CLI..."
+  npm install -g @anthropic-ai/claude-code
+else
+  echo "Skipping existing Claude Code CLI"
+fi
+
+# 3e) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)
 if [ -f "$DOTFILES_DIR/config/ghostty/config" ]; then
   ghostty_xdg="$(sed -nE 's/^env = XDG_CONFIG_HOME=(.*)$/\1/p' "$DOTFILES_DIR/config/ghostty/config" | head -n1)"
   if [ -n "$ghostty_xdg" ] && [ "$ghostty_xdg" != "$HOME/.config" ]; then

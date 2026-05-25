@@ -154,6 +154,14 @@ else
   echo "Skipping existing ~/skills"
 fi
 
+# Claude Code CLI
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Installing Claude Code CLI..."
+  npm install -g @anthropic-ai/claude-code
+else
+  echo "Skipping existing Claude Code CLI"
+fi
+
 if [ "$LINK_ONLY" = false ]; then
   if [ "$INSTALL_DEPS" = true ]; then
     install_deps

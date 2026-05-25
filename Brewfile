@@ -31,6 +31,7 @@ cask "ghostty"
 cask "hammerspoon"
 cask "visual-studio-code"
 cask "nikitabobko/tap/aerospace"
+cask "cmux"
 brew "git"
 
 # Optional: tmux plugin manager (TPM)

@@ -1,6 +1,7 @@
 SHELL := /bin/bash
+OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim upgrade update
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim upgrade update pull
 
 bootstrap: tmux
 	./bootstrap.sh
@@ -67,10 +68,36 @@ upgrade:
 		echo "brew not found; skipping Homebrew updates"; \
 	fi
 
-update: upgrade
+pull:
+	@echo "Pulling dotfiles..."
+	git pull
+	@if [ -d "$$HOME/skills" ]; then \
+		echo "Pulling skills..."; \
+		git -C "$$HOME/skills" pull; \
+		make -C "$$HOME/skills" install-claude; \
+	else \
+		echo "skills not found; skipping"; \
+	fi
+
+update: pull
+	@echo "Upgrading packages..."
+	@if [ "$(OS)" = "Darwin" ]; then \
+		$(MAKE) upgrade; \
+	elif command -v pacman >/dev/null 2>&1; then \
+		sudo pacman -Syu --noconfirm; \
+	else \
+		echo "No supported package manager found; skipping package upgrade"; \
+	fi
+	@echo "Running bootstrap..."
+	@if [ "$(OS)" = "Darwin" ]; then \
+		$(MAKE) bootstrap; \
+	else \
+		./bootstrap-omarchy.sh; \
+	fi
+	@echo "Updating tmux plugins..."
 	@if [ -x ~/.config/tmux/plugins/tpm/bin/update_plugins ]; then \
 		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/update_plugins all; \
 	else \
-		echo "TPM not found; run 'make tmux' first"; \
+		echo "TPM not found; skipping tmux plugin update"; \
 	fi
 	$(MAKE) nvim
