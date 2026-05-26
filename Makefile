@@ -17,14 +17,22 @@ bootstrap-omarchy:
 bootstrap-omarchy.sh: bootstrap-omarchy
 
 brew:
-	brew bundle --file ./Brewfile
+	@brew bundle --file ./Brewfile
+	@if ! command -v codex >/dev/null 2>&1; then \
+		brew install --cask codex; \
+	else \
+		echo "codex already installed; skipping"; \
+	fi
 
 link:
 	./bootstrap.sh --link-only
 
 status:
 	@echo "Symlinks in ~/.config:";
-	@ls -la ~/.config | egrep "(nushell|tmux|ghostty|hammerspoon|aerospace|nvim|oh-my-posh\.omp\.toml)" || true
+	@ls -la ~/.config | egrep "(nushell|tmux|ghostty|hammerspoon|aerospace|nvim|opencode|oh-my-posh\.omp\.toml)" || true
+	@echo "";
+	@echo "AI config files:";
+	@ls -la ~/.codex/config.toml ~/.claude/settings.json ~/.config/opencode/opencode.jsonc 2>/dev/null || true
 
 tmux:
 	@mkdir -p ~/.config/tmux/plugins
@@ -64,6 +72,11 @@ upgrade:
 		brew update; \
 		brew upgrade --greedy-auto-updates; \
 		brew bundle --file ./Brewfile; \
+		if ! command -v codex >/dev/null 2>&1; then \
+			brew install --cask codex; \
+		else \
+			echo "codex already installed; skipping"; \
+		fi; \
 	else \
 		echo "brew not found; skipping Homebrew updates"; \
 	fi

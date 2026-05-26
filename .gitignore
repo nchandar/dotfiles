@@ -8,6 +8,7 @@ local/
 *~
 *.bak
 *.tmp
+.nvimlog
 
 # App/runtime state (keep out of repo)
 config/**/cache/

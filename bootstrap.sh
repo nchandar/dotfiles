@@ -23,6 +23,13 @@ if [ "$LINK_ONLY" = false ]; then
     echo "Installing Brewfile..."
     brew bundle --file="$DOTFILES_DIR/Brewfile"
   fi
+
+  if ! command -v codex >/dev/null 2>&1; then
+    echo "Installing codex..."
+    brew install --cask codex
+  else
+    echo "codex already installed; skipping"
+  fi
 fi
 
 # 3) Symlink configs
@@ -39,6 +46,48 @@ link() {
   fi
 }
 
+link_file() {
+  src="$1"
+  dest="$2"
+  parent_dir="$(dirname "$dest")"
+
+  mkdir -p "$parent_dir"
+
+  if [ -L "$dest" ]; then
+    current_target="$(readlink "$dest")"
+    if [ "$current_target" = "$src" ]; then
+      echo "Skipping existing $dest"
+      return
+    fi
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  if [ -e "$dest" ]; then
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  ln -s "$src" "$dest"
+  echo "Linked $dest -> $src"
+}
+
+copy_file_if_missing() {
+  src="$1"
+  dest="$2"
+  parent_dir="$(dirname "$dest")"
+
+  mkdir -p "$parent_dir"
+
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  cp "$src" "$dest"
+  echo "Copied $dest from $src"
+}
+
 link nushell
 link tmux
 link ghostty
@@ -47,6 +96,8 @@ link aerospace
 link nvim
 link yazi
 link oh-my-posh.omp.toml
+link_file "$DOTFILES_DIR/config/opencode/opencode.jsonc" "$CONFIG_DIR/opencode/opencode.jsonc"
+copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/config.toml"
 
 # gitmux config (expects ~/.gitmux.conf)
 if [ -e "$HOME/.gitmux.conf" ] || [ -L "$HOME/.gitmux.conf" ]; then

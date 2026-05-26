@@ -10,8 +10,12 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
 - `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Markdown previews, Java/Go DAP)
 - `config/yazi/` Yazi config (`yazi.toml`)
+- `config/opencode/` global OpenCode config (`opencode.jsonc`) with Superpowers + Browser MCP
+- `config/codex/` shared Codex config template (`config.toml`) without machine-specific trust state
+- `config/claude/` global Claude Code settings (`settings.json`)
+- `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
-- `Brewfile` Homebrew packages used for this setup, including GUI apps like Ghostty and VS Code plus CLI tools like OpenCode
+- `Brewfile` Homebrew packages used for this setup, including Ghostty, VS Code, Claude Code, Codex, and OpenCode
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
 ## Layout
@@ -67,7 +71,7 @@ make bootstrap
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
-This installs the repo's macOS toolchain, including `ghostty`, `visual-studio-code`, and `opencode`.
+This installs the repo's macOS toolchain, including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
 
 3) Symlink configs into `~/.config`
 ```sh
@@ -80,7 +84,13 @@ ln -s ~/dotfiles/config/aerospace ~/.config/aerospace
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
 ln -s ~/dotfiles/config/yazi ~/.config/yazi
 ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
+ln -s ~/dotfiles/config/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+cp ~/dotfiles/config/codex/config.toml ~/.codex/config.toml
+ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 ```
+
+Claude Code also reads this repo's committed `.mcp.json` when you run `claude` from `~/dotfiles`.
+Codex uses a copied starter config instead of a symlink because it stores personal trust and marketplace state in `~/.codex/config.toml`.
 
 4) Install tmux plugins (TPM)
 ```sh
@@ -99,15 +109,16 @@ Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
 ## Setup on Omarchy/Linux
 
 1) Install dependencies using your package manager flow
-   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`
+   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode
+   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
+   Claude Code does not currently ship as an official Arch package here, so install it separately with Anthropic's installer when you need the CLI.
 
 2) Use the dedicated bootstrap
 ```sh
@@ -123,6 +134,9 @@ ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
 ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
+ln -s ~/dotfiles/config/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+cp ~/dotfiles/config/codex/config.toml ~/.codex/config.toml
+ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 ```
 
 ## Make targets
@@ -133,7 +147,7 @@ ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
 - `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
-- `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty and VS Code
+- `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty, VS Code, Claude Code, and Codex
 - `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
 - `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
 
@@ -152,6 +166,12 @@ python3 -m mkdocs serve
 - **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
 - **Yazi**: Installed via Brewfile. Use `y` from Nushell so exiting Yazi can update the current shell directory.
+- **OpenCode**: Global config is versioned at `config/opencode/opencode.jsonc`, including Superpowers and a Playwright Browser MCP server. Restart OpenCode after config changes.
+- **Codex**: Shared defaults live at `config/codex/config.toml`, but bootstrap copies them only when `~/.codex/config.toml` is missing. Codex writes personal trust and marketplace state into that local file, so it is intentionally not symlinked.
+- **Claude Code**: Global user settings are versioned at `config/claude/settings.json`, and this repo commits `.mcp.json` for Claude Code's project-scoped MCP servers.
+- **Superpowers**: OpenCode is configured declaratively in `opencode.jsonc`. Claude Code and Codex still use their plugin marketplaces for one-time install/activation.
+- **Marketplace installs (Claude Code)**: Run `/plugin install superpowers@claude-plugins-official` once after installing `claude-code`.
+- **Marketplace installs (Codex)**: Open `/plugins` and install `superpowers` from the official Codex plugin marketplace.
 - **Neovim**: See `config/nvim/README.md` for LazyVim setup, plugins, keymaps, Git workflows, Markdown preview workflows, and tooling details.
 - **AeroSpace + Hammerspoon**: Both are enabled. If shortcuts overlap, whichever app captures the shortcut first will act.
 - **Local overrides**: Put per-machine notes or overrides in `local/` (ignored).

@@ -60,6 +60,7 @@ install_deps() {
       rust
       yazi
       opencode
+      openai-codex
       git
     )
 
@@ -123,12 +124,56 @@ link() {
   echo "Linked $dest -> $src"
 }
 
+link_file() {
+  src="$1"
+  dest="$2"
+  parent_dir="$(dirname "$dest")"
+
+  mkdir -p "$parent_dir"
+
+  if [ -L "$dest" ]; then
+    current_target="$(readlink "$dest")"
+    if [ "$current_target" = "$src" ]; then
+      echo "Skipping existing $dest"
+      return
+    fi
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  if [ -e "$dest" ]; then
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  ln -s "$src" "$dest"
+  echo "Linked $dest -> $src"
+}
+
+copy_file_if_missing() {
+  src="$1"
+  dest="$2"
+  parent_dir="$(dirname "$dest")"
+
+  mkdir -p "$parent_dir"
+
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo "Skipping existing $dest"
+    return
+  fi
+
+  cp "$src" "$dest"
+  echo "Copied $dest from $src"
+}
+
 echo "Linking config directories..."
 link nushell
 link tmux
 link ghostty
 link nvim
 link oh-my-posh.omp.toml
+link_file "$DOTFILES_DIR/config/opencode/opencode.jsonc" "$CONFIG_DIR/opencode/opencode.jsonc"
+copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/config.toml"
 
 # Claude Code config (~/.claude/)
 CLAUDE_DIR="$HOME/.claude"
