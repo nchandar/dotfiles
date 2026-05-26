@@ -7,7 +7,7 @@ This repo now uses a **LazyVim-based** setup in `config/nvim/`.
 - Plugin manager: `lazy.nvim`.
 - Keymaps: LazyVim defaults plus repo-local Git/DAP bindings, including `<leader>gg` for `:LazyGit` and direct DAP function-key controls.
 - Default finder: Telescope via LazyVim extra `lazyvim.plugins.extras.editor.telescope`.
-- LSP servers enabled via `nvim-lspconfig` / language extras: `lua_ls`, `html`, `cssls`, `jsonls`, `ts_ls`, `gopls`, `jdtls`.
+- LSP servers enabled via `nvim-lspconfig` / language extras: `lua_ls`, `html`, `cssls`, `jsonls`, `ts_ls`, `gopls`; Java attaches through `nvim-jdtls`.
 - Formatting/linting via LazyVim-native stack:
   - `conform.nvim`: `stylua`, `prettier`, `shfmt`, `black`, `goimports` + `gofmt`, `rustfmt`
   - `nvim-lint`: `eslint_d`, `shellcheck`, `ruff`
@@ -27,7 +27,7 @@ This repo now uses a **LazyVim-based** setup in `config/nvim/`.
 
 `lazygit` is installed through the repo `Brewfile` and is required for `:LazyGit`.
 
-`mason.nvim` installs the debug adapters used here (`delve`, `java-debug-adapter`, `java-test`) after plugin sync.
+`mason.nvim` installs the debug adapters used here (`delve`, `java-debug-adapter`, `java-test`) after plugin sync. It does not manage `jdtls` in this setup.
 
 `markdown-preview.nvim` needs `node`, which is already installed through the repo `Brewfile`.
 
@@ -90,6 +90,8 @@ These are also run by `make update` from repo root.
 
 ## Java debugging
 - Open a Java project (`pom.xml`, `build.gradle`, etc.) and `nvim-jdtls` will attach automatically.
+- This config prefers Homebrew's `jdtls` wrapper (`/opt/homebrew/bin/jdtls`) when available, because Mason's wrapper requires a working `java` binary on `PATH`.
+- `:Lazy sync` no longer tries to install Mason's `java-language-server`, which avoids the repeated install errors on machines without a configured Java runtime.
 - `<F5>` starts or resumes the selected Java debug configuration.
 - `<leader>tt`: run the current Java test class through the debugger
 - `<leader>tr`: run the nearest Java test through the debugger

@@ -10,6 +10,8 @@
 - DAP core enabled via `lazyvim.plugins.extras.dap.core`
 - Go development/debugging enabled via `lazyvim.plugins.extras.lang.go`
 - Java development/debugging enabled via `lazyvim.plugins.extras.lang.java`
+- Java startup prefers Homebrew `jdtls` over Mason's wrapper so Java buffers still attach when OpenJDK is not exported on `PATH`
+- Mason keeps managing `java-debug-adapter` and `java-test`, but `jdtls` is intentionally left outside Mason to avoid `java-language-server` install failures during `:Lazy sync`
 - Diffview plugin retained for Git diff/file-history commands
 - LazyGit plugin added for terminal Git UI commands inside Neovim
 - Markview added for inline Markdown rendering inside Neovim
@@ -62,6 +64,7 @@
 ## Java and Go debugging
 - Go uses Delve through `nvim-dap-go`; open a Go buffer in a module and run `<F5>` or `<leader>dc`.
 - Java uses `nvim-jdtls` with Mason-managed `java-debug-adapter` and `java-test`; open a Java project and run `<F5>`.
+- Java attach prefers `/opt/homebrew/bin/jdtls` when present because Mason's wrapper depends on `java` resolving cleanly from `PATH`.
 - Java test/debug shortcuts in Java buffers: `<leader>tt`, `<leader>tr`, `<leader>tT`.
 
 ## Markdown notes

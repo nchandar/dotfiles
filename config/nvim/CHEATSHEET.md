@@ -68,6 +68,8 @@ Most-used actions for this repo’s LazyVim setup.
 
 ## Java debug notes
 - Open a Java buffer in a Maven/Gradle project to auto-attach `nvim-jdtls`.
+- This setup prefers Homebrew `jdtls` when it is installed, which avoids Mason's `java`-on-`PATH` requirement on this machine.
+- Mason still installs `java-debug-adapter` and `java-test`, but not `java-language-server`.
 - Run current Java test class: `<leader>tt`
 - Run nearest Java test: `<leader>tr`
 - Pick Java test: `<leader>tT`
