@@ -25,10 +25,6 @@
     <strong>Neovim</strong>
     <span>Editor setup and keybinding references.</span>
   </a>
-  <a class="link-card" href="tools/nushell/">
-    <strong>Nushell</strong>
-    <span>Shell config location and behavior notes.</span>
-  </a>
   <a class="link-card" href="tools/yazi/">
     <strong>Yazi</strong>
     <span>Terminal file manager install path, config location, and launch workflow.</span>
@@ -39,7 +35,7 @@
   </a>
   <a class="link-card" href="tools/oh-my-posh/">
     <strong>Oh My Posh</strong>
-    <span>Prompt configuration path, theme, and Nushell usage.</span>
+    <span>Prompt configuration path and theme (zsh, Catppuccin Mocha).</span>
   </a>
   <a class="link-card" href="troubleshooting/">
     <strong>Troubleshooting</strong>

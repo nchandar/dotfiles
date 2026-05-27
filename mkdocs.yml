@@ -62,7 +62,6 @@ nav:
   - Tools:
     - Overview: tools/index.md
     - Neovim: tools/nvim.md
-    - Nushell: tools/nushell.md
     - Yazi: tools/yazi.md
     - Ghostty: tools/ghostty.md
     - Oh My Posh: tools/oh-my-posh.md

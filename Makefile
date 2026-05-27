@@ -29,7 +29,8 @@ link:
 
 status:
 	@echo "Symlinks in ~/.config:";
-	@ls -la ~/.config | egrep "(nushell|tmux|ghostty|hammerspoon|aerospace|nvim|opencode|oh-my-posh\.omp\.toml)" || true
+	@ls -la ~/.config | egrep "(tmux|ghostty|hammerspoon|aerospace|nvim|opencode|oh-my-posh\.omp\.toml)" || true
+	@ls -la ~/.zshrc 2>/dev/null || true
 	@echo "";
 	@echo "AI config files:";
 	@ls -la ~/.codex/config.toml ~/.claude/settings.json ~/.config/opencode/opencode.jsonc 2>/dev/null || true

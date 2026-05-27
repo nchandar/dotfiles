@@ -16,10 +16,6 @@ config/**/sessions/
 config/**/logs/
 config/tmux/plugins/
 
-# Nushell runtime history
-config/nushell/history
-config/nushell/history.txt
-
 # Docs build/runtime
 .venv-docs/
 site/

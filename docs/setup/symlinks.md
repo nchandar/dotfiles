@@ -22,7 +22,7 @@ make status
 ```
 
 ## Managed paths
-- `~/.config/nushell`
+- `~/.zshrc`
 - `~/.config/tmux`
 - `~/.config/ghostty`
 - `~/.config/hammerspoon`

@@ -1,6 +1,5 @@
 tap "nikitabobko/tap"
 
-brew "nushell"
 brew "neovim"
 brew "lua-language-server"
 brew "node"

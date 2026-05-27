@@ -3,7 +3,7 @@
 Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 
 ## What's in here
-- `config/nushell/` Nushell config (`config.nu`, `env.nu`, `carapace.nu`)
+- `config/zsh/.zshrc` zsh config (OMP prompt, carapace completions, yazi `y` helper)
 - `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
@@ -76,7 +76,7 @@ This installs the repo's macOS toolchain, including `ghostty`, `visual-studio-co
 3) Symlink configs into `~/.config`
 ```sh
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/nushell ~/.config/nushell
+ln -s ~/dotfiles/config/zsh/.zshrc ~/.zshrc
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
@@ -98,23 +98,19 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins
 ```
 
-5) Ghostty XDG_CONFIG_HOME (portable)
-Ghostty does not expand `$HOME` in `env = ...`, so we set it in a wrapper script.
-Edit `config/ghostty/nu.sh` if you want to change the shell or env setup.
-
-6) AeroSpace startup and keybindings
+5) AeroSpace startup and keybindings
 - Startup is enabled via `start-at-login = true` in `config/aerospace/aerospace.toml`.
 - Keybinding guide: `config/aerospace/README.md`.
 
 ## Setup on Omarchy/Linux
 
 1) Install dependencies using your package manager flow
-   - Required: `nushell`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
+   - Required: `zsh`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S nushell neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
+   sudo pacman -S zsh neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
@@ -129,7 +125,7 @@ bash bootstrap-omarchy.sh --install-deps
 3) Manual equivalent flow
 ```sh
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/nushell ~/.config/nushell
+ln -s ~/dotfiles/config/zsh/.zshrc ~/.zshrc
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
@@ -163,9 +159,8 @@ python3 -m mkdocs serve
 ## Options and settings
 - **Symlinks vs copy**: This setup uses symlinks so the repo is the single source of truth. If you prefer copies, do so manually but keep them in sync.
 - **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
-- **Nushell history**: `config/nushell/history*` is ignored by git and will be regenerated.
-- **Carapace completions**: `carapace` is installed via Brewfile and used for external completions.
-- **Yazi**: Installed via Brewfile. Use `y` from Nushell so exiting Yazi can update the current shell directory.
+- **Carapace completions**: `carapace` is installed via Brewfile and used for external completions in zsh.
+- **Yazi**: Installed via Brewfile. Use `y` from zsh so exiting Yazi can update the current shell directory.
 - **OpenCode**: Global config is versioned at `config/opencode/opencode.jsonc`, including Superpowers and a Playwright Browser MCP server. Restart OpenCode after config changes.
 - **Codex**: Shared defaults live at `config/codex/config.toml`, but bootstrap copies them only when `~/.codex/config.toml` is missing. Codex writes personal trust and marketplace state into that local file, so it is intentionally not symlinked.
 - **Claude Code**: Global user settings are versioned at `config/claude/settings.json`, and this repo commits `.mcp.json` for Claude Code's project-scoped MCP servers.
@@ -179,4 +174,3 @@ python3 -m mkdocs serve
 ## Git ignored items
 - `local/`
 - tmux plugins and other generated/runtime files
-- Nushell history

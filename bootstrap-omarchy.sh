@@ -49,7 +49,7 @@ install_deps() {
     }
 
     REQUIRED_PKGS=(
-      nushell
+      zsh
       neovim
       tmux
       ghostty
@@ -167,7 +167,7 @@ copy_file_if_missing() {
 }
 
 echo "Linking config directories..."
-link nushell
+link_file "$DOTFILES_DIR/config/zsh/.zshrc" "$HOME/.zshrc"
 link tmux
 link ghostty
 link nvim
