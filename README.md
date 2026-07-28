@@ -3,7 +3,7 @@
 Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 
 ## What's in here
-- `config/zsh/.zshrc` zsh config (OMP prompt, carapace completions, yazi `y` helper)
+- `config/zsh/.zshrc` zsh config, **macOS only** (OMP prompt, carapace completions, yazi `y` helper)
 - `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
@@ -21,6 +21,14 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 ## Layout
 - `config/` versioned configs that are symlinked into `~/.config`
 - `local/` machine-specific overrides or notes (ignored by git)
+
+## Shells
+Shell config is per-platform and only one side is managed here:
+
+- **macOS: zsh.** `config/zsh/.zshrc` is symlinked to `~/.zshrc` by `bootstrap.sh`. This is the file to edit for prompt, completions, and shell helpers.
+- **Omarchy/Linux: bash, unmanaged.** Omarchy ships bash as the default shell and owns its own config: `~/.bashrc` sources `~/.local/share/omarchy/default/bash/rc`, which pulls in Omarchy's aliases, envs, functions, completions, and inputrc. These dotfiles deliberately do not link a shell config on Linux — leave bash alone and let Omarchy manage it. Machine-local additions (PATH entries, cargo env, etc.) go directly in `~/.bashrc`.
+
+Nothing needs to be kept in sync between the two. `config/zsh/.zshrc` is not used on Omarchy.
 
 ## Bootstrap
 ```sh
@@ -104,13 +112,15 @@ TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/i
 
 ## Setup on Omarchy/Linux
 
+Omarchy keeps its own bash setup; these dotfiles do not touch the shell here. See [Shells](#shells).
+
 1) Install dependencies using your package manager flow
-   - Required: `zsh`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
+   - Required: `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S zsh neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
+   sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
@@ -125,7 +135,7 @@ bash bootstrap-omarchy.sh --install-deps
 3) Manual equivalent flow
 ```sh
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/zsh/.zshrc ~/.zshrc
+# no shell config here: Omarchy owns ~/.bashrc
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/config/nvim ~/.config/nvim

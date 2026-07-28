@@ -22,13 +22,15 @@ On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, 
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
 
-`zsh`, `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
+`neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
 
 Example:
 
 ```sh
-sudo pacman -S zsh neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
+sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
 ```
+
+No shell package is listed: Omarchy already provides bash as the default shell and manages its own `~/.bashrc`. The `config/zsh/.zshrc` in this repo is macOS-only.
 
 If your repos do not have `oh-my-posh` or `carapace`, use `oh-my-posh-bin` and/or `carapace-bin` from your AUR/helper flow.
 If your distro uses different package names, swap to the matching ones for your repository.

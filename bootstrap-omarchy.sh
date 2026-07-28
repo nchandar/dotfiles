@@ -49,7 +49,6 @@ install_deps() {
     }
 
     REQUIRED_PKGS=(
-      zsh
       neovim
       tmux
       ghostty
@@ -167,7 +166,9 @@ copy_file_if_missing() {
 }
 
 echo "Linking config directories..."
-link_file "$DOTFILES_DIR/config/zsh/.zshrc" "$HOME/.zshrc"
+# No shell config is linked on Omarchy: bash is the default shell and Omarchy owns
+# ~/.bashrc (it sources ~/.local/share/omarchy/default/bash/rc). config/zsh/.zshrc
+# is macOS-only. Put machine-local shell tweaks directly in ~/.bashrc.
 link tmux
 link ghostty
 link nvim

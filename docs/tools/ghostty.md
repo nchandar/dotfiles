@@ -6,4 +6,4 @@
 - Default font: `JetBrainsMono Nerd Font` at size `14`
 - Update command: `make upgrade` (or `brew upgrade --cask --greedy-auto-updates ghostty`)
 
-Note: Ghostty uses the system default shell (zsh). `XDG_CONFIG_HOME` is set in `~/.zprofile`.
+Note: Ghostty uses the system default shell — zsh on macOS, bash on Omarchy. On macOS, `XDG_CONFIG_HOME` is set in `~/.zprofile`.

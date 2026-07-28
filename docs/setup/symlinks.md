@@ -22,7 +22,7 @@ make status
 ```
 
 ## Managed paths
-- `~/.zshrc`
+- `~/.zshrc` (macOS only)
 - `~/.config/tmux`
 - `~/.config/ghostty`
 - `~/.config/hammerspoon`
@@ -31,5 +31,6 @@ make status
 - `~/.config/oh-my-posh.omp.toml`
 
 For Omarchy/Linux, omit these by design:
+- `~/.zshrc` — Omarchy uses bash and owns `~/.bashrc`; no shell config is linked there
 - `~/.config/hammerspoon`
 - `~/.config/aerospace`
