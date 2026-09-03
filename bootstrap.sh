@@ -23,13 +23,6 @@ if [ "$LINK_ONLY" = false ]; then
     echo "Installing Brewfile..."
     brew bundle --file="$DOTFILES_DIR/Brewfile"
   fi
-
-  if ! command -v codex >/dev/null 2>&1; then
-    echo "Installing codex..."
-    brew install --cask codex
-  else
-    echo "codex already installed; skipping"
-  fi
 fi
 
 # 3) Symlink configs
@@ -99,6 +92,11 @@ link oh-my-posh.omp.toml
 link_file "$DOTFILES_DIR/config/opencode/opencode.jsonc" "$CONFIG_DIR/opencode/opencode.jsonc"
 copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/config.toml"
 
+if [ "$(uname -s)" = "Darwin" ]; then
+  link_file "$DOTFILES_DIR/config/voxtype/config.toml" \
+    "$HOME/Library/Application Support/voxtype/config.toml"
+fi
+
 # gitmux config (expects ~/.gitmux.conf)
 if [ -e "$HOME/.gitmux.conf" ] || [ -L "$HOME/.gitmux.conf" ]; then
   echo "Skipping existing $HOME/.gitmux.conf"
@@ -137,6 +135,12 @@ if ! command -v claude >/dev/null 2>&1; then
   npm install -g @anthropic-ai/claude-code
 else
   echo "Skipping existing Claude Code CLI"
+fi
+
+# 3d-2) Voxtype (macOS) — installed from the GitHub release DMG, not Homebrew.
+if [ "$LINK_ONLY" = false ] && [ "$(uname -s)" = "Darwin" ]; then
+  echo "Installing/upgrading Voxtype..."
+  "$DOTFILES_DIR/scripts/install-voxtype.sh" || echo "voxtype install failed; run 'make voxtype' later"
 fi
 
 # 3e) Ghostty config sanity check (needs absolute XDG_CONFIG_HOME)

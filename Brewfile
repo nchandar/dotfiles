@@ -36,5 +36,9 @@ brew "herdr"
 cask "handy"
 brew "git"
 
+# voxtype: installed from the GitHub release DMG, not Homebrew — the
+# peteonrails/voxtype cask is stuck on the old bare-binary layout.
+# See scripts/install-voxtype.sh (run via `make voxtype`).
+
 # Optional: tmux plugin manager (TPM)
 # brew "tmuxinator"

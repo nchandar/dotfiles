@@ -13,7 +13,9 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/opencode/` global OpenCode config (`opencode.jsonc`) with Superpowers + Browser MCP
 - `config/codex/` shared Codex config template (`config.toml`) without machine-specific trust state
 - `config/claude/` global Claude Code settings (`settings.json`)
+- `config/voxtype/` Voxtype push-to-talk voice-to-text config (`config.toml`), macOS only
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
+- `scripts/install-voxtype.sh` release-DMG installer for Voxtype (the Homebrew cask is stuck on the old layout)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup, including Ghostty, VS Code, Claude Code, Codex, and OpenCode
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
@@ -95,18 +97,25 @@ ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 ln -s ~/dotfiles/config/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
 cp ~/dotfiles/config/codex/config.toml ~/.codex/config.toml
 ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
+ln -s "~/dotfiles/config/voxtype/config.toml" "~/Library/Application Support/voxtype/config.toml"
 ```
 
 Claude Code also reads this repo's committed `.mcp.json` when you run `claude` from `~/dotfiles`.
 Codex uses a copied starter config instead of a symlink because it stores personal trust and marketplace state in `~/.codex/config.toml`.
 
-4) Install tmux plugins (TPM)
+4) Install Voxtype (macOS, not Homebrew)
+```sh
+make voxtype   # or ./scripts/install-voxtype.sh
+```
+The `peteonrails/voxtype` cask is stuck on the old bare-binary layout, so Voxtype is installed from its GitHub release DMG. Grant Accessibility, Input Monitoring, and Microphone to Voxtype in System Settings afterwards — the `setup-voxtype` skill walks through it. See [docs/tools/voxtype.md](docs/tools/voxtype.md).
+
+5) Install tmux plugins (TPM)
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins
 ```
 
-5) AeroSpace startup and keybindings
+6) AeroSpace startup and keybindings
 - Startup is enabled via `start-at-login = true` in `config/aerospace/aerospace.toml`.
 - Keybinding guide: `config/aerospace/README.md`.
 
@@ -153,6 +162,7 @@ ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
 - `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
+- `make voxtype` install/upgrade Voxtype from its GitHub release DMG (macOS only; idempotent, also run by `bootstrap.sh`)
 - `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty, VS Code, Claude Code, and Codex
 - `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
 - `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
@@ -174,6 +184,7 @@ python3 -m mkdocs serve
 - **OpenCode**: Global config is versioned at `config/opencode/opencode.jsonc`, including Superpowers and a Playwright Browser MCP server. Restart OpenCode after config changes.
 - **Codex**: Shared defaults live at `config/codex/config.toml`, but bootstrap copies them only when `~/.codex/config.toml` is missing. Codex writes personal trust and marketplace state into that local file, so it is intentionally not symlinked.
 - **Claude Code**: Global user settings are versioned at `config/claude/settings.json`, and this repo commits `.mcp.json` for Claude Code's project-scoped MCP servers.
+- **Voxtype**: macOS only. Installed from the GitHub release DMG by `scripts/install-voxtype.sh` (run via `make voxtype`, also called by `bootstrap.sh`) because the `peteonrails/voxtype` Homebrew cask is stuck on the old bare-binary layout. Config is symlinked from `config/voxtype/config.toml`. The Accessibility / Input Monitoring / Microphone permissions must be granted by hand in System Settings; the `setup-voxtype` skill automates the reset-and-grant flow. See [docs/tools/voxtype.md](docs/tools/voxtype.md).
 - **Superpowers**: OpenCode is configured declaratively in `opencode.jsonc`. Claude Code and Codex still use their plugin marketplaces for one-time install/activation.
 - **Marketplace installs (Claude Code)**: Run `/plugin install superpowers@claude-plugins-official` once after installing `claude-code`.
 - **Marketplace installs (Codex)**: Open `/plugins` and install `superpowers` from the official Codex plugin marketplace.

@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim upgrade update pull
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim voxtype upgrade update pull
 
 bootstrap: tmux
 	./bootstrap.sh
@@ -18,11 +18,6 @@ bootstrap-omarchy.sh: bootstrap-omarchy
 
 brew:
 	@brew bundle --file ./Brewfile
-	@if ! command -v codex >/dev/null 2>&1; then \
-		brew install --cask codex; \
-	else \
-		echo "codex already installed; skipping"; \
-	fi
 
 link:
 	./bootstrap.sh --link-only
@@ -68,16 +63,18 @@ nvim:
 	"$$NVIM_BIN" --headless "+Lazy sync" +qa; \
 	"$$NVIM_BIN" --headless "+TSUpdate" +qa
 
+voxtype:
+	@if [ "$(OS)" = "Darwin" ]; then \
+		./scripts/install-voxtype.sh; \
+	else \
+		echo "voxtype: macOS-only target; on Omarchy use the distro package"; \
+	fi
+
 upgrade:
 	@if command -v brew >/dev/null 2>&1; then \
 		brew update; \
 		brew upgrade --greedy-auto-updates; \
 		brew bundle --file ./Brewfile; \
-		if ! command -v codex >/dev/null 2>&1; then \
-			brew install --cask codex; \
-		else \
-			echo "codex already installed; skipping"; \
-		fi; \
 	else \
 		echo "brew not found; skipping Homebrew updates"; \
 	fi
