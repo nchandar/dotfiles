@@ -17,17 +17,17 @@ make bootstrap-omarchy
 
 `bootstrap-omarchy.sh` and `make bootstrap-omarchy` are Linux-only and will fail fast on macOS.
 
-On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
+On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, including `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
 
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
 
-`neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
+`neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
 
 Example:
 
 ```sh
-sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
+sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
 ```
 
 No shell package is listed: Omarchy already provides bash as the default shell and manages its own `~/.bashrc`. The `config/zsh/.zshrc` in this repo is macOS-only.
@@ -41,10 +41,12 @@ Claude Code currently needs its own installer outside this pacman flow.
 2. Creates symlinks from `config/` into `~/.config`
 3. Installs tmux TPM/plugins
 4. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
+5. Installs or updates Auto Title and the full Annotate Herdr plugin
 
 Bootstrap also links shared AI config files into their native homes:
 
 - `config/opencode/opencode.jsonc` -> `~/.config/opencode/opencode.jsonc`
+- `config/herdr/config.toml` -> `~/.config/herdr/config.toml`
 - `config/codex/config.toml` -> copied into `~/.codex/config.toml` if missing
 - `config/claude/settings.json` -> `~/.claude/settings.json`
 
@@ -55,11 +57,13 @@ This repo also commits Claude Code project files directly:
 Manual plugin activation still applies where the harness requires it:
 
 - OpenCode: no marketplace step; restart after `opencode.jsonc` changes.
+- Herdr: install the OpenCode integration with `herdr integration install opencode`.
+- Herdr plugins: `make herdr` installs the managed plugins directly. Both bootstraps and `make update` run it automatically. Restart the server with `herdr server stop` to activate Auto Title after a plugin change.
 - Claude Code: install Superpowers once with `/plugin install superpowers@claude-plugins-official`.
 - Codex: install Superpowers once from the `/plugins` UI.
 
 For Omarchy/Linux flow, dependency install is done with the distro/Omarchy package tools, then:
-1. Creates symlinks for shell, tmux, Ghostty, and nvim configs
+1. Creates symlinks for tmux, Ghostty, Herdr, and nvim configs
 2. Installs tmux TPM/plugins
 3. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
 
@@ -77,7 +81,7 @@ cd ~/dotfiles
 make update
 ```
 
-`make upgrade` also refreshes the Homebrew-installed GUI and CLI apps from `Brewfile`, including Ghostty, VS Code, Claude Code, Codex, and OpenCode on macOS.
+`make upgrade` also refreshes the Homebrew-installed GUI and CLI apps from `Brewfile`, including Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode on macOS.
 
 ## Omarchy/ Linux status check (quick)
 

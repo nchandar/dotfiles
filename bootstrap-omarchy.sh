@@ -55,9 +55,11 @@ install_deps() {
       lazygit
       code
       nodejs
+      bun
       go
       rust
       yazi
+      herdr
       opencode
       openai-codex
       git
@@ -173,6 +175,7 @@ link tmux
 link ghostty
 link nvim
 link oh-my-posh.omp.toml
+link_file "$DOTFILES_DIR/config/herdr/config.toml" "$CONFIG_DIR/herdr/config.toml"
 link_file "$DOTFILES_DIR/config/opencode/opencode.jsonc" "$CONFIG_DIR/opencode/opencode.jsonc"
 copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/config.toml"
 
@@ -255,6 +258,13 @@ EOF
     echo "Neovim sync and TSUpdate completed."
   else
     echo "nvim not found; skipping Neovim sync."
+  fi
+fi
+
+# 4) Install Herdr plugins after dependencies and config linking are complete.
+if [ "$LINK_ONLY" = false ] && [ -x "$DOTFILES_DIR/scripts/install-herdr-plugins.sh" ]; then
+  if ! "$DOTFILES_DIR/scripts/install-herdr-plugins.sh"; then
+    echo "Herdr plugin install failed; run 'make herdr' after resolving the prerequisite."
   fi
 fi
 

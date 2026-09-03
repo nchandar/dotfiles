@@ -6,6 +6,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/zsh/.zshrc` zsh config, **macOS only** (OMP prompt, carapace completions, yazi `y` helper)
 - `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
+- `config/herdr/` Herdr terminal workspace-manager config
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
 - `config/aerospace/` AeroSpace config (`aerospace.toml`, `README.md`)
 - `config/nvim/` Neovim config (LazyVim base + local overrides, Diffview + LazyGit git workflows, Markdown previews, Java/Go DAP)
@@ -17,7 +18,8 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `scripts/install-voxtype.sh` release-DMG installer for Voxtype (the Homebrew cask is stuck on the old layout)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
-- `Brewfile` Homebrew packages used for this setup, including Ghostty, VS Code, Claude Code, Codex, and OpenCode
+- `Brewfile` Homebrew packages used for this setup, including Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
+- `scripts/install-herdr-plugins.sh` portable installer for the versioned Herdr plugin set
 - `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
 ## Layout
@@ -81,7 +83,7 @@ make bootstrap
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
-This installs the repo's macOS toolchain, including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
+This installs the repo's macOS toolchain, including `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
 
 3) Symlink configs into `~/.config`
 ```sh
@@ -89,6 +91,8 @@ mkdir -p ~/.config
 ln -s ~/dotfiles/config/zsh/.zshrc ~/.zshrc
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
+mkdir -p ~/.config/herdr
+ln -s ~/dotfiles/config/herdr/config.toml ~/.config/herdr/config.toml
 ln -s ~/dotfiles/config/hammerspoon ~/.config/hammerspoon
 ln -s ~/dotfiles/config/aerospace ~/.config/aerospace
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
@@ -124,12 +128,12 @@ TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/i
 Omarchy keeps its own bash setup; these dotfiles do not touch the shell here. See [Shells](#shells).
 
 1) Install dependencies using your package manager flow
-   - Required: `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`
+   - Required: `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs go rust yazi opencode openai-codex
+   sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
@@ -147,6 +151,8 @@ mkdir -p ~/.config
 # no shell config here: Omarchy owns ~/.bashrc
 ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
+mkdir -p ~/.config/herdr
+ln -s ~/dotfiles/config/herdr/config.toml ~/.config/herdr/config.toml
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
 ln -s ~/dotfiles/config/oh-my-posh.omp.toml ~/.config/oh-my-posh.omp.toml
 ln -s ~/dotfiles/config/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
@@ -157,6 +163,7 @@ ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 ## Make targets
 - `make bootstrap` run full bootstrap (brew + links + tmux plugins + Neovim plugin sync)
 - `make brew` run only Homebrew bundle
+- `make herdr` install or update the managed Herdr plugins
 - `make link` create symlinks only
 - `make status` show current symlinks
 - `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
@@ -164,7 +171,7 @@ ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
 - `make voxtype` install/upgrade Voxtype from its GitHub release DMG (macOS only; idempotent, also run by `bootstrap.sh`)
 - `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty, VS Code, Claude Code, and Codex
-- `make update` run `make upgrade`, then update tmux plugins and Neovim plugins/tooling
+- `make update` refresh packages, rerun bootstrap (including Herdr plugins), then update tmux and Neovim plugins/tooling
 - `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
 
 ## Docs site
@@ -182,6 +189,7 @@ python3 -m mkdocs serve
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions in zsh.
 - **Yazi**: Installed via Brewfile. Use `y` from zsh so exiting Yazi can update the current shell directory.
 - **OpenCode**: Global config is versioned at `config/opencode/opencode.jsonc`, including Superpowers and a Playwright Browser MCP server. Restart OpenCode after config changes.
+- **Herdr**: Configuration is versioned at `config/herdr/config.toml` and symlinked to `~/.config/herdr/config.toml`; runtime state remains local in `~/.config/herdr`. Bootstrap and `make update` install or refresh Auto Title and the full Annotate plugin from their upstream default branches; run `make herdr` to do this directly. Auto Title requires a server restart after installation (`herdr server stop`). Install the OpenCode integration after Herdr is available with `herdr integration install opencode`.
 - **Codex**: Shared defaults live at `config/codex/config.toml`, but bootstrap copies them only when `~/.codex/config.toml` is missing. Codex writes personal trust and marketplace state into that local file, so it is intentionally not symlinked.
 - **Claude Code**: Global user settings are versioned at `config/claude/settings.json`, and this repo commits `.mcp.json` for Claude Code's project-scoped MCP servers.
 - **Voxtype**: macOS only. Installed from the GitHub release DMG by `scripts/install-voxtype.sh` (run via `make voxtype`, also called by `bootstrap.sh`) because the `peteonrails/voxtype` Homebrew cask is stuck on the old bare-binary layout. Config is symlinked from `config/voxtype/config.toml`. The Accessibility / Input Monitoring / Microphone permissions must be granted by hand in System Settings; the `setup-voxtype` skill automates the reset-and-grant flow. See [docs/tools/voxtype.md](docs/tools/voxtype.md).

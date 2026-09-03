@@ -8,7 +8,6 @@
     "symlinks": "Symlinks",
     "tools": "Tools",
     "nvim": "Neovim",
-    "nushell": "Nushell",
     "ghostty": "Ghostty",
     "oh-my-posh": "Oh My Posh",
     "aerospace": "AeroSpace",

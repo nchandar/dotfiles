@@ -6,5 +6,6 @@ Use these pages to jump to tool-specific configuration and workflows in this dot
 - [Neovim](nvim.md)
 - [Yazi](yazi.md)
 - [Ghostty](ghostty.md)
+- [Herdr](herdr.md)
 - [Oh My Posh](oh-my-posh.md)
 - [Voxtype](voxtype.md)

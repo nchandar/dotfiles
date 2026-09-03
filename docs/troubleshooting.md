@@ -31,10 +31,9 @@ make bootstrap-omarchy
 ```
 
 ## Omarchy bootstrap: missing executable paths
-If bootstrap errors mention `command not found` for `nu`, `tmux`, or `nvim`, install the dependency package, then rerun bootstrap.
+If bootstrap errors mention `command not found` for `tmux` or `nvim`, install the dependency package, then rerun bootstrap.
 
 ```sh
-command -v nu
 command -v tmux
 command -v nvim
 command -v ghostty

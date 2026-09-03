@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew link status tmux nvim voxtype upgrade update pull
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status tmux nvim voxtype upgrade update pull
 
 bootstrap: tmux
 	./bootstrap.sh
@@ -19,12 +19,15 @@ bootstrap-omarchy.sh: bootstrap-omarchy
 brew:
 	@brew bundle --file ./Brewfile
 
+herdr:
+	@./scripts/install-herdr-plugins.sh
+
 link:
 	./bootstrap.sh --link-only
 
 status:
 	@echo "Symlinks in ~/.config:";
-	@ls -la ~/.config | egrep "(tmux|ghostty|hammerspoon|aerospace|nvim|opencode|oh-my-posh\.omp\.toml)" || true
+	@ls -la ~/.config | egrep "(tmux|ghostty|hammerspoon|aerospace|herdr|nvim|opencode|oh-my-posh\.omp\.toml)" || true
 	@ls -la ~/.zshrc 2>/dev/null || true
 	@echo "";
 	@echo "AI config files:";

@@ -25,6 +25,7 @@ make status
 - `~/.zshrc` (macOS only)
 - `~/.config/tmux`
 - `~/.config/ghostty`
+- `~/.config/herdr/config.toml`
 - `~/.config/hammerspoon`
 - `~/.config/aerospace`
 - `~/.config/nvim`

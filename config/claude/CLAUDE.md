@@ -2,7 +2,7 @@
 
 ## Environment
 
-- Shell: Nushell, with Oh My Posh (Catppuccin Mocha theme) as the prompt framework
+- Shell: zsh, with Oh My Posh (Catppuccin Mocha theme) as the prompt framework
 - macOS primary machine; also runs on Linux via Omarchy
 - Editor: Neovim
 

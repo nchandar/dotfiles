@@ -44,5 +44,6 @@
       "Bash(git symbolic-ref *)",
       "Bash(git blame *)"
     ]
-  }
+  },
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/Users/niranjanchandarraj/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }

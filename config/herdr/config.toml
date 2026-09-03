@@ -1,0 +1,70 @@
+# Herdr reads this file through ~/.config/herdr -> ~/dotfiles/config/herdr.
+onboarding = false
+
+[theme]
+name = "terminal"
+
+auto_switch = false
+
+[theme.custom]
+sidebar_bg = "#181825"
+active_row_bg = "#313244"
+selection_bg = "#45475a"
+
+[terminal]
+new_cwd = "follow"
+
+# Herdr Annotate: terminal annotations and document/agent-reply review.
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "annotate.capture"
+description = "annotate text"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "annotate.copy-context"
+description = "copy annotations as context"
+
+[[keys.command]]
+key = "prefix+m"
+type = "plugin_action"
+command = "annotate.manage"
+description = "manage annotations"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "annotate.open"
+description = "review documents in this folder"
+
+[[keys.command]]
+key = "prefix+shift+o"
+type = "plugin_action"
+command = "annotate.last"
+description = "review the agent's last reply"
+
+[update]
+channel = "stable"
+
+[ui]
+status_indicators = "symbols"
+
+sidebar_width = 34
+sidebar_min_width = 28
+sidebar_max_width = 42
+
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "priority"
+
+[ui.sidebar.agents]
+row_gap = 1
+rows = [
+  ["state_icon", { token = "agent", bold = true }, "state_text"],
+  [{ token = "workspace", bold = true }, "tab"],
+  ["terminal_title_stripped"],
+]
+
+[ui.toast]
+delivery = "off"
