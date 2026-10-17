@@ -1,4 +1,5 @@
 tap "nikitabobko/tap"
+tap "anomalyco/tap"
 
 brew "neovim"
 brew "lua-language-server"
@@ -25,13 +26,14 @@ brew "oh-my-posh"
 brew "carapace"
 brew "lazygit"
 brew "yazi"
-brew "opencode"
+brew "anomalyco/tap/opencode-v2"
 cask "ghostty"
 cask "hammerspoon"
 cask "claude-code"
 cask "visual-studio-code"
 cask "nikitabobko/tap/aerospace"
-cask "cmux"
+brew "herdr"
+cask "handy"
 brew "git"
 
 # Optional: tmux plugin manager (TPM)
