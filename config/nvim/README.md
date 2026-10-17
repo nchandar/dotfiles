@@ -110,7 +110,6 @@ These are also run by `make update` from repo root.
 - `config/nvim/lua/plugins/debugging.lua`
 - `config/nvim/lua/plugins/lazygit.lua`
 - `config/nvim/lua/plugins/markdown.lua`
-- `config/nvim/lua/plugins/tmux-navigator.lua`
 - `config/nvim/lua/plugins/catppuccin.lua`
 
 ## Notes

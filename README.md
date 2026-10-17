@@ -4,7 +4,6 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 
 ## What's in here
 - `config/zsh/.zshrc` zsh config, **macOS only** (OMP prompt, carapace completions, yazi `y` helper)
-- `config/tmux/` tmux config (`tmux.conf`, `tmux.reset.conf`, `README.md`)
 - `config/ghostty/` Ghostty config (including themes)
 - `config/herdr/` Herdr terminal workspace-manager config
 - `config/hammerspoon/` Hammerspoon config (`init.lua`)
@@ -18,9 +17,8 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `scripts/install-voxtype.sh` release-DMG installer for Voxtype (the Homebrew cask is stuck on the old layout)
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
-- `Brewfile` Homebrew packages used for this setup, including Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
+- `Brewfile` Homebrew packages used for this setup, including Git, GitHub CLI, Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
 - `scripts/install-herdr-plugins.sh` portable installer for the versioned Herdr plugin set
-- `TMUX.md` tmux features + key mappings (see `TMUX.md#key-mappings-daily`)
 
 ## Layout
 - `config/` versioned configs that are symlinked into `~/.config`
@@ -54,7 +52,7 @@ Or with Make:
 ```sh
 cd ~/dotfiles
 make bootstrap           # macOS
-make bootstrap-omarchy   # Omarchy/Linux (install deps + link + tmux + nvim)
+make bootstrap-omarchy   # Omarchy/Linux (install deps + link + nvim)
 ```
 
 `make bootstrap-omarchy` is Linux-only and exits with guidance on macOS.
@@ -83,13 +81,12 @@ make bootstrap
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
-This installs the repo's macOS toolchain, including `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
+This installs the repo's macOS toolchain, including `git`, `gh`, `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
 
 3) Symlink configs into `~/.config`
 ```sh
 mkdir -p ~/.config
 ln -s ~/dotfiles/config/zsh/.zshrc ~/.zshrc
-ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 mkdir -p ~/.config/herdr
 ln -s ~/dotfiles/config/herdr/config.toml ~/.config/herdr/config.toml
@@ -113,13 +110,7 @@ make voxtype   # or ./scripts/install-voxtype.sh
 ```
 The `peteonrails/voxtype` cask is stuck on the old bare-binary layout, so Voxtype is installed from its GitHub release DMG. Grant Accessibility, Input Monitoring, and Microphone to Voxtype in System Settings afterwards — the `setup-voxtype` skill walks through it. See [docs/tools/voxtype.md](docs/tools/voxtype.md).
 
-5) Install tmux plugins (TPM)
-```sh
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins
-```
-
-6) AeroSpace startup and keybindings
+5) AeroSpace startup and keybindings
 - Startup is enabled via `start-at-login = true` in `config/aerospace/aerospace.toml`.
 - Keybinding guide: `config/aerospace/README.md`.
 
@@ -128,12 +119,12 @@ TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/i
 Omarchy keeps its own bash setup; these dotfiles do not touch the shell here. See [Shells](#shells).
 
 1) Install dependencies using your package manager flow
-   - Required: `neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
+   - Required: `neovim`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
 
    Example (Pacman/Omarchy style):
 
    ```sh
-   sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
+   sudo pacman -S neovim ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
    ```
 
    If `oh-my-posh` or `carapace` are unavailable in your pacman repos, install `oh-my-posh-bin` and/or `carapace-bin` via your AUR/helper.
@@ -149,7 +140,6 @@ bash bootstrap-omarchy.sh --install-deps
 ```sh
 mkdir -p ~/.config
 # no shell config here: Omarchy owns ~/.bashrc
-ln -s ~/dotfiles/config/tmux ~/.config/tmux
 ln -s ~/dotfiles/config/ghostty ~/.config/ghostty
 mkdir -p ~/.config/herdr
 ln -s ~/dotfiles/config/herdr/config.toml ~/.config/herdr/config.toml
@@ -161,17 +151,16 @@ ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 ```
 
 ## Make targets
-- `make bootstrap` run full bootstrap (brew + links + tmux plugins + Neovim plugin sync)
+- `make bootstrap` run full bootstrap (brew + links + Neovim plugin sync)
 - `make brew` run only Homebrew bundle
 - `make herdr` install or update the managed Herdr plugins
 - `make link` create symlinks only
 - `make status` show current symlinks
-- `make tmux` install TPM + plugins and create `~/.tmux.conf` shim if missing
 - `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)
 - `make nvim` run headless `Lazy sync` and `TSUpdate`
 - `make voxtype` install/upgrade Voxtype from its GitHub release DMG (macOS only; idempotent, also run by `bootstrap.sh`)
 - `make upgrade` update Homebrew packages/casks, including auto-updating casks like Ghostty, VS Code, Claude Code, and Codex
-- `make update` refresh packages, rerun bootstrap (including Herdr plugins), then update tmux and Neovim plugins/tooling
+- `make update` refresh packages, rerun bootstrap (including Herdr plugins), then update Neovim plugins/tooling
 - `bootstrap-omarchy.sh` supports Omarchy/Linux flags: `--install-deps` and `--link-only`, keeping macOS `bootstrap.sh` unchanged
 
 ## Docs site
@@ -185,7 +174,6 @@ python3 -m mkdocs serve
 
 ## Options and settings
 - **Symlinks vs copy**: This setup uses symlinks so the repo is the single source of truth. If you prefer copies, do so manually but keep them in sync.
-- **tmux plugins**: Managed by TPM. `config/tmux/plugins/` is ignored by git and will be populated on first tmux run or during bootstrap. Bootstrap also creates a `~/.tmux.conf` shim if missing.
 - **Carapace completions**: `carapace` is installed via Brewfile and used for external completions in zsh.
 - **Yazi**: Installed via Brewfile. Use `y` from zsh so exiting Yazi can update the current shell directory.
 - **OpenCode**: Global config is versioned at `config/opencode/opencode.jsonc`, including Superpowers and a Playwright Browser MCP server. Restart OpenCode after config changes.
@@ -202,4 +190,4 @@ python3 -m mkdocs serve
 
 ## Git ignored items
 - `local/`
-- tmux plugins and other generated/runtime files
+- generated/runtime files

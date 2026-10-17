@@ -14,27 +14,10 @@ For Omarchy/Linux-only flows, use:
 bash bootstrap-omarchy.sh --link-only
 ```
 
-## tmux plugin issues
-Reinstall plugins:
-```sh
-make tmux
-```
-
-On Omarchy, if plugins still do not load, verify `tmux` is installed and TPM cloned:
-```sh
-command -v tmux
-ls -la ~/.config/tmux/plugins/tpm
-```
-Then rerun:
-```sh
-make bootstrap-omarchy
-```
-
 ## Omarchy bootstrap: missing executable paths
-If bootstrap errors mention `command not found` for `tmux` or `nvim`, install the dependency package, then rerun bootstrap.
+If bootstrap errors mention `command not found` for `nvim`, install the dependency package, then rerun bootstrap.
 
 ```sh
-command -v tmux
 command -v nvim
 command -v ghostty
 command -v oh-my-posh

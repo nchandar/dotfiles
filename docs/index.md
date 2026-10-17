@@ -17,10 +17,6 @@
     <strong>Hammerspoon</strong>
     <span>Window layout and automation hotkeys.</span>
   </a>
-  <a class="link-card" href="keybindings/tmux/">
-    <strong>tmux</strong>
-    <span>Prefix, splits, resize, and pane workflow keys.</span>
-  </a>
   <a class="link-card" href="tools/nvim/">
     <strong>Neovim</strong>
     <span>Editor setup and keybinding references.</span>
@@ -55,7 +51,7 @@
   </a>
   <a class="link-card" href="keyboard-shortcuts/">
     <strong>3) Learn Daily Shortcuts</strong>
-    <span>Quick keyboard workflow across tmux, nvim, and AeroSpace.</span>
+    <span>Quick keyboard workflow across nvim and AeroSpace.</span>
   </a>
   <a class="link-card" href="setup/bootstrap/">
     <strong>4) Update Existing Machine</strong>

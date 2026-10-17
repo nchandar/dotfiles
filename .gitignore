@@ -14,7 +14,6 @@ local/
 config/**/cache/
 config/**/sessions/
 config/**/logs/
-config/tmux/plugins/
 
 # Docs build/runtime
 .venv-docs/

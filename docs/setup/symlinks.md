@@ -23,7 +23,6 @@ make status
 
 ## Managed paths
 - `~/.zshrc` (macOS only)
-- `~/.config/tmux`
 - `~/.config/ghostty`
 - `~/.config/herdr/config.toml`
 - `~/.config/hammerspoon`

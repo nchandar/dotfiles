@@ -21,11 +21,10 @@ brew "ruff"
 brew "go"
 brew "goimports"
 brew "rust"
-brew "tmux"
-brew "gitmux"
 brew "oh-my-posh"
 brew "carapace"
 brew "lazygit"
+brew "gh"
 brew "yazi"
 brew "anomalyco/tap/opencode-v2"
 cask "ghostty"
@@ -35,11 +34,9 @@ cask "visual-studio-code"
 cask "nikitabobko/tap/aerospace"
 brew "herdr"
 cask "handy"
+cask "codex", args: { adopt: true }
 brew "git"
 
 # voxtype: installed from the GitHub release DMG, not Homebrew — the
 # peteonrails/voxtype cask is stuck on the old bare-binary layout.
 # See scripts/install-voxtype.sh (run via `make voxtype`).
-
-# Optional: tmux plugin manager (TPM)
-# brew "tmuxinator"

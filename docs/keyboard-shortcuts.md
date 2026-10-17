@@ -45,18 +45,6 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | `ctrl+option+cmd+z` | Open webview demo |
 | `ctrl+option+cmd+c` | Toggle AutoClick |
 
-## <u>tmux</u> 🧱
-| Shortcut | Action |
-| --- | --- |
-| `Ctrl-g` | Prefix key |
-| `Ctrl-]` | Alternate prefix |
-| `prefix` + `=` or `]` | Horizontal split |
-| `prefix` + `-` or `\` | Vertical split |
-| `prefix` + `h/j/k/l` | Resize pane |
-| `prefix` + `m` | Toggle zoom |
-| `prefix` + `r` | Reload config |
-| `prefix` + `v` then `y` | Copy mode select and yank |
-
 ## <u>Neovim (LazyVim + local Git/debug shortcuts)</u> ✍️
 | Shortcut | Action |
 | --- | --- |
@@ -121,13 +109,11 @@ This is the single quick-reference page across all tools in this dotfiles repo.
 | Ghostty | No custom keyboard shortcuts defined in `config/ghostty/config` |
 | Yazi | Start with `y` from zsh to preserve the shell's current directory; no key overrides from defaults |
 | Oh My Posh | Prompt config only, no keyboard shortcuts |
-| gitmux | tmux status integration, no standalone keyboard shortcuts |
 
 ## <u>Full detail pages</u> 📚
 | Page | Link |
 | --- | --- |
 | AeroSpace details | [AeroSpace details](keybindings/aerospace.md) |
 | Hammerspoon details | [Hammerspoon details](keybindings/hammerspoon.md) |
-| tmux details | [tmux details](keybindings/tmux.md) |
 | Neovim details | [Neovim details](tools/nvim.md) |
 | Keybindings overview | [Overview](keybindings/index.md) |

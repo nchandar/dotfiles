@@ -58,7 +58,6 @@ nav:
     - Overview: keybindings/index.md
     - AeroSpace: keybindings/aerospace.md
     - Hammerspoon: keybindings/hammerspoon.md
-    - tmux: keybindings/tmux.md
   - Tools:
     - Overview: tools/index.md
     - Neovim: tools/nvim.md

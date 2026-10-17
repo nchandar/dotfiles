@@ -12,7 +12,6 @@
     "oh-my-posh": "Oh My Posh",
     "aerospace": "AeroSpace",
     "hammerspoon": "Hammerspoon",
-    "tmux": "tmux",
     "troubleshooting": "Troubleshooting",
     "index": "Home"
   };

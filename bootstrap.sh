@@ -3,8 +3,6 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 CONFIG_DIR="$HOME/.config"
-TMUX_PLUGIN_DIR="$HOME/.config/tmux/plugins"
-TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 LINK_ONLY=false
 
 if [ "${1:-}" = "--link-only" ]; then
@@ -82,7 +80,6 @@ copy_file_if_missing() {
 }
 
 link_file "$DOTFILES_DIR/config/zsh/.zshrc" "$HOME/.zshrc"
-link tmux
 link ghostty
 link hammerspoon
 link aerospace
@@ -96,14 +93,6 @@ copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/conf
 if [ "$(uname -s)" = "Darwin" ]; then
   link_file "$DOTFILES_DIR/config/voxtype/config.toml" \
     "$HOME/Library/Application Support/voxtype/config.toml"
-fi
-
-# gitmux config (expects ~/.gitmux.conf)
-if [ -e "$HOME/.gitmux.conf" ] || [ -L "$HOME/.gitmux.conf" ]; then
-  echo "Skipping existing $HOME/.gitmux.conf"
-else
-  ln -s "$DOTFILES_DIR/config/gitmux.conf" "$HOME/.gitmux.conf"
-  echo "Linked $HOME/.gitmux.conf -> $DOTFILES_DIR/config/gitmux.conf"
 fi
 
 # 3b) Claude Code config (~/.claude/)
@@ -153,34 +142,7 @@ if [ -f "$DOTFILES_DIR/config/ghostty/config" ]; then
   fi
 fi
 
-# 4) Install tmux plugins (TPM)
-if command -v git >/dev/null 2>&1; then
-  mkdir -p "$TMUX_PLUGIN_DIR"
-  if [ ! -d "$TPM_DIR" ]; then
-    echo "Installing TPM..."
-    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-  fi
-
-  if [ ! -e "$HOME/.tmux.conf" ]; then
-    cat > "$HOME/.tmux.conf" <<'EOF'
-source-file ~/.config/tmux/tmux.conf
-EOF
-    echo "Created ~/.tmux.conf -> ~/.config/tmux/tmux.conf"
-  fi
-  if [ -f "$CONFIG_DIR/tmux/tmux.conf" ] && \
-     grep -q "run '~/.tmux/plugins/tpm/tpm'" "$CONFIG_DIR/tmux/tmux.conf"; then
-    echo "Warning: tmux.conf still points TPM at ~/.tmux/plugins; update to ~/.config/tmux/plugins."
-  fi
-
-  if [ -x "$TPM_DIR/bin/install_plugins" ]; then
-    if command -v tmux >/dev/null 2>&1; then
-      tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$TMUX_PLUGIN_DIR" >/dev/null 2>&1 || true
-    fi
-    TMUX_PLUGIN_MANAGER_PATH="$TMUX_PLUGIN_DIR" "$TPM_DIR/bin/install_plugins"
-  fi
-fi
-
-# 5) Install Herdr plugins after Homebrew and config linking are complete.
+# 4) Install Herdr plugins after Homebrew and config linking are complete.
 if [ "$LINK_ONLY" = false ] && [ -x "$DOTFILES_DIR/scripts/install-herdr-plugins.sh" ]; then
   if ! "$DOTFILES_DIR/scripts/install-herdr-plugins.sh"; then
     echo "Herdr plugin install failed; run 'make herdr' after resolving the prerequisite."

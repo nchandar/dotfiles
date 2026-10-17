@@ -3,8 +3,6 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-TMUX_PLUGIN_DIR="$CONFIG_DIR/tmux/plugins"
-TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
 LINK_ONLY=false
 INSTALL_DEPS=false
 OS_NAME="$(uname -s)"
@@ -50,7 +48,6 @@ install_deps() {
 
     REQUIRED_PKGS=(
       neovim
-      tmux
       ghostty
       lazygit
       code
@@ -171,7 +168,6 @@ echo "Linking config directories..."
 # No shell config is linked on Omarchy: bash is the default shell and Omarchy owns
 # ~/.bashrc (it sources ~/.local/share/omarchy/default/bash/rc). config/zsh/.zshrc
 # is macOS-only. Put machine-local shell tweaks directly in ~/.bashrc.
-link tmux
 link ghostty
 link nvim
 link oh-my-posh.omp.toml
@@ -216,31 +212,7 @@ if [ "$LINK_ONLY" = false ]; then
     install_deps
   fi
 
-  # 1) Ensure tmux shim exists
-  if [ ! -e "$HOME/.tmux.conf" ] && [ ! -L "$HOME/.tmux.conf" ]; then
-    cat > "$HOME/.tmux.conf" <<'EOF'
-source-file ~/.config/tmux/tmux.conf
-EOF
-    echo "Created ~/.tmux.conf -> ~/.config/tmux/tmux.conf"
-  fi
-
-  # 2) Install TPM and plugins
-  if command -v git >/dev/null 2>&1; then
-    mkdir -p "$TMUX_PLUGIN_DIR"
-
-    if [ ! -d "$TPM_DIR" ]; then
-      echo "Installing TPM..."
-      git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-    fi
-
-    if [ -x "$TPM_DIR/bin/install_plugins" ] && [ -d "$TMUX_PLUGIN_DIR" ]; then
-      TMUX_PLUGIN_MANAGER_PATH="$TMUX_PLUGIN_DIR" "$TPM_DIR/bin/install_plugins"
-    fi
-  else
-    echo "git not found; skipping TPM install"
-  fi
-
-  # 3) Sync Neovim plugins/tooling
+  # 1) Sync Neovim plugins/tooling
   NVIM_BIN=""
   if command -v nvim >/dev/null 2>&1; then
     NVIM_BIN="$(command -v nvim)"
@@ -261,7 +233,7 @@ EOF
   fi
 fi
 
-# 4) Install Herdr plugins after dependencies and config linking are complete.
+# 2) Install Herdr plugins after dependencies and config linking are complete.
 if [ "$LINK_ONLY" = false ] && [ -x "$DOTFILES_DIR/scripts/install-herdr-plugins.sh" ]; then
   if ! "$DOTFILES_DIR/scripts/install-herdr-plugins.sh"; then
     echo "Herdr plugin install failed; run 'make herdr' after resolving the prerequisite."

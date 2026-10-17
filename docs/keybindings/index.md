@@ -9,7 +9,6 @@ macOS key names used in docs:
 ## Sections
 - [AeroSpace](aerospace.md)
 - [Hammerspoon](hammerspoon.md)
-- [tmux](tmux.md)
 - [Neovim + Diffview quick reference](../keyboard-shortcuts.md)
 - [Diffview commands](../keyboard-shortcuts.md)
 

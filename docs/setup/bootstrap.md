@@ -22,12 +22,12 @@ On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, 
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
 
-`neovim`, `tmux`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
+`neovim`, `ghostty`, `oh-my-posh`, `lazygit`, `carapace`, `code`, `node`, `bun`, `go`, `rust`, `yazi`, `opencode`, `openai-codex`, `herdr`
 
 Example:
 
 ```sh
-sudo pacman -S neovim tmux ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
+sudo pacman -S neovim ghostty oh-my-posh lazygit carapace code nodejs bun go rust yazi opencode openai-codex herdr
 ```
 
 No shell package is listed: Omarchy already provides bash as the default shell and manages its own `~/.bashrc`. The `config/zsh/.zshrc` in this repo is macOS-only.
@@ -39,9 +39,8 @@ Claude Code currently needs its own installer outside this pacman flow.
 ## What this does
 1. macOS: installs Homebrew packages from `Brewfile` (including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`)
 2. Creates symlinks from `config/` into `~/.config`
-3. Installs tmux TPM/plugins
-4. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
-5. Installs or updates Auto Title and the full Annotate Herdr plugin
+3. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
+4. Installs or updates Auto Title and the full Annotate Herdr plugin
 
 Bootstrap also links shared AI config files into their native homes:
 
@@ -63,9 +62,8 @@ Manual plugin activation still applies where the harness requires it:
 - Codex: install Superpowers once from the `/plugins` UI.
 
 For Omarchy/Linux flow, dependency install is done with the distro/Omarchy package tools, then:
-1. Creates symlinks for tmux, Ghostty, Herdr, and nvim configs
-2. Installs tmux TPM/plugins
-3. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
+1. Creates symlinks for Ghostty, Herdr, and nvim configs
+2. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
 
 With `--install-deps` (or `make bootstrap-omarchy`) on pacman-based systems, bootstrap also installs required packages first.
 
@@ -75,7 +73,7 @@ cd ~/dotfiles
 make upgrade
 ```
 
-For a full refresh including tmux and Neovim plugins:
+For a full refresh including Neovim plugins:
 ```sh
 cd ~/dotfiles
 make update

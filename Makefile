@@ -1,9 +1,9 @@
 SHELL := /bin/bash
 OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status tmux nvim voxtype upgrade update pull
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status nvim voxtype upgrade update pull
 
-bootstrap: tmux
+bootstrap:
 	./bootstrap.sh
 	$(MAKE) nvim
 
@@ -27,28 +27,11 @@ link:
 
 status:
 	@echo "Symlinks in ~/.config:";
-	@ls -la ~/.config | egrep "(tmux|ghostty|hammerspoon|aerospace|herdr|nvim|opencode|oh-my-posh\.omp\.toml)" || true
+	@ls -la ~/.config | egrep "(ghostty|hammerspoon|aerospace|herdr|nvim|opencode|oh-my-posh\.omp\.toml)" || true
 	@ls -la ~/.zshrc 2>/dev/null || true
 	@echo "";
 	@echo "AI config files:";
 	@ls -la ~/.codex/config.toml ~/.claude/settings.json ~/.config/opencode/opencode.jsonc 2>/dev/null || true
-
-tmux:
-	@mkdir -p ~/.config/tmux/plugins
-	@if [ ! -d ~/.config/tmux/plugins/tpm ]; then \
-		echo "Installing TPM..."; \
-		git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm; \
-	fi
-	@if [ ! -e ~/.tmux.conf ]; then \
-		echo "source-file ~/.config/tmux/tmux.conf" > ~/.tmux.conf; \
-		echo "Created ~/.tmux.conf -> ~/.config/tmux/tmux.conf"; \
-	fi
-	@if command -v tmux >/dev/null 2>&1; then \
-		tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$$HOME/.config/tmux/plugins" >/dev/null 2>&1 || true; \
-	fi
-	@if [ -x ~/.config/tmux/plugins/tpm/bin/install_plugins ]; then \
-		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/install_plugins; \
-	fi
 
 nvim:
 	@NVIM_BIN=""; \
@@ -107,11 +90,5 @@ update: pull
 		$(MAKE) bootstrap; \
 	else \
 		./bootstrap-omarchy.sh; \
-	fi
-	@echo "Updating tmux plugins..."
-	@if [ -x ~/.config/tmux/plugins/tpm/bin/update_plugins ]; then \
-		TMUX_PLUGIN_MANAGER_PATH=~/.config/tmux/plugins ~/.config/tmux/plugins/tpm/bin/update_plugins all; \
-	else \
-		echo "TPM not found; skipping tmux plugin update"; \
 	fi
 	$(MAKE) nvim
