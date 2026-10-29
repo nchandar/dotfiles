@@ -13,6 +13,8 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/opencode/` global OpenCode config (`opencode.jsonc`) with Superpowers + Browser MCP
 - `config/codex/` shared Codex config template (`config.toml`) without machine-specific trust state
 - `config/claude/` global Claude Code settings (`settings.json`)
+- `config/agents/` one global `AGENTS.md` for every agent, linked into Claude (`CLAUDE.md`), Codex, OpenCode and `~/.agents`
+- `agents/harness/` skills, library and `bin/` tools for cross-agent work (see `docs/tools/agent-harness.md`)
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup, including Git, GitHub CLI, Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
@@ -145,6 +147,7 @@ ln -s ~/dotfiles/config/claude/settings.json ~/.claude/settings.json
 - `make bootstrap` run full bootstrap (brew + links + Neovim plugin sync)
 - `make brew` run only Homebrew bundle
 - `make herdr` install or update the managed Herdr plugins
+- `make harness` link the agent harness skills and tools for Claude, Codex and OpenCode
 - `make link` create symlinks only
 - `make status` show current symlinks
 - `make bootstrap-omarchy` run Omarchy/Linux bootstrap flow with dependency install (`./bootstrap-omarchy.sh --install-deps`)

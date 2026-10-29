@@ -8,3 +8,4 @@ Use these pages to jump to tool-specific configuration and workflows in this dot
 - [Ghostty](ghostty.md)
 - [Herdr](herdr.md)
 - [Oh My Posh](oh-my-posh.md)
+- [Agent harness](agent-harness.md)

@@ -65,4 +65,5 @@ nav:
     - Ghostty: tools/ghostty.md
     - Herdr: tools/herdr.md
     - Oh My Posh: tools/oh-my-posh.md
+    - Agent harness: tools/agent-harness.md
   - Troubleshooting: troubleshooting.md

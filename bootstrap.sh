@@ -90,6 +90,11 @@ link_file "$DOTFILES_DIR/config/herdr/config.toml" "$CONFIG_DIR/herdr/config.tom
 link_file "$DOTFILES_DIR/config/opencode/opencode.jsonc" "$CONFIG_DIR/opencode/opencode.jsonc"
 copy_file_if_missing "$DOTFILES_DIR/config/codex/config.toml" "$HOME/.codex/config.toml"
 
+# 3a) One global instruction file for every agent. Claude's CLAUDE.md in config/claude is a repo symlink to it.
+link_file "$DOTFILES_DIR/config/agents/AGENTS.md" "$HOME/.agents/AGENTS.md"
+link_file "$DOTFILES_DIR/config/agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
+link_file "$DOTFILES_DIR/config/agents/AGENTS.md" "$CONFIG_DIR/opencode/AGENTS.md"
+
 # 3b) Claude Code config (~/.claude/)
 CLAUDE_DIR="$HOME/.claude"
 CLAUDE_SRC="$DOTFILES_DIR/config/claude"
@@ -113,6 +118,9 @@ if [ ! -d "$HOME/skills" ]; then
 else
   echo "Skipping existing ~/skills"
 fi
+
+# 3c-2) Agent harness: dev-* skills for Claude, Codex and OpenCode, plus bin/ tools
+"$DOTFILES_DIR/agents/harness/install.sh"
 
 # 3d) Claude Code CLI
 if ! command -v claude >/dev/null 2>&1; then

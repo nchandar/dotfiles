@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status nvim upgrade update pull
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr harness link status nvim upgrade update pull
 
 bootstrap:
 	./bootstrap.sh
@@ -21,6 +21,9 @@ brew:
 
 herdr:
 	@./scripts/install-herdr-plugins.sh
+
+harness:
+	./agents/harness/install.sh
 
 link:
 	./bootstrap.sh --link-only
