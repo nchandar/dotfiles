@@ -36,7 +36,3 @@ brew "herdr"
 cask "handy"
 cask "codex", args: { adopt: true }
 brew "git"
-
-# voxtype: installed from the GitHub release DMG, not Homebrew — the
-# peteonrails/voxtype cask is stuck on the old bare-binary layout.
-# See scripts/install-voxtype.sh (run via `make voxtype`).

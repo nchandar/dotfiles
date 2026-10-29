@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 OS := $(shell uname -s)
 
-.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status nvim voxtype upgrade update pull
+.PHONY: bootstrap bootstrap-omarchy bootstrap-omarchy.sh brew herdr link status nvim upgrade update pull
 
 bootstrap:
 	./bootstrap.sh
@@ -48,13 +48,6 @@ nvim:
 	fi; \
 	"$$NVIM_BIN" --headless "+Lazy sync" +qa; \
 	"$$NVIM_BIN" --headless "+TSUpdate" +qa
-
-voxtype:
-	@if [ "$(OS)" = "Darwin" ]; then \
-		./scripts/install-voxtype.sh; \
-	else \
-		echo "voxtype: macOS-only target; on Omarchy use the distro package"; \
-	fi
 
 upgrade:
 	@if command -v brew >/dev/null 2>&1; then \

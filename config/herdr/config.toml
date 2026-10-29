@@ -2,7 +2,7 @@
 onboarding = false
 
 [theme]
-name = "terminal"
+name = "dracula"
 
 auto_switch = false
 
@@ -67,4 +67,4 @@ rows = [
 ]
 
 [ui.toast]
-delivery = "off"
+delivery = "system"
