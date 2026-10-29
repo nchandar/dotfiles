@@ -16,13 +16,17 @@ Skills and small bash tools that work the same under Claude Code, Codex and Open
 ## Skills
 | Skill | Use it for | Route |
 |---|---|---|
-| `dev-feature` | new behavior or a refactor | grill, spec, slices, test-first, review, verify, ship |
+| `dev-feature` | new behavior or a refactor | picks up a research report if there is one (else straight to the grill), spec, slices, test-first, review, verify, ship |
 | `dev-debug` | a bug or failing test | repro, root cause, doubt, regression test, fix |
-| `dev-research` | a question or spike | sources, evidence, report (.md or .html), no code changes |
+| `dev-research` | a question, a spike, or "how does X work" | grill you, research, checkpoint (agree or grill again), then `report.md` with a build handoff and, for systems, an animated HTML explainer; no code changes |
 | `dev-review` | a diff | Standards and Spec scouts in parallel, blast radius |
 | `dev-spawn` | handing work to another agent | brief, scout or ship, worktrees, cap 2, depth 1 |
 
-Each skill opens with a checklist the agent copies into its task list. Steps read small files from `library/` on demand (tdd, debug-method, verify, doubt and 12 more), so the always-loaded cost stays near 3 KB.
+Each skill opens with a checklist the agent copies into its task list. Steps read small files from `library/` on demand (tdd, debug-method, verify, doubt, explain-html and 12 more), so the always-loaded cost stays near 3 KB.
+
+## Reports and explainers
+- `dev-research` writes `.harness/tasks/<id>/report.md` (question, answer, evidence, options, recommendation, open questions, `## Build handoff`). `dev-feature` reads it and grills only on what it leaves open.
+- For a system or data flow it also writes `report.html`: an animated diagram with play, pause and step controls, a one-line why per step, and small tables for components and decisions. Self-contained and offline. The recipe is `library/explain-html.md`.
 
 ## Tools
 | Tool | What it does |
@@ -65,4 +69,4 @@ New terminal: `bin/reconcile`, then resume a task (its `next` row) or `bin/ledge
 ## Limits
 - OpenCode cannot start its service from a sandboxed shell; start it once from a normal terminal.
 - `--resume` for workers is not built; start a new worker with the earlier handoff as context.
-- The older `dev-*` skills in `~/skills` stay installed until you remove their links; they still count toward the always-listed descriptions.
+- The old `dev-*` catalog was retired from `~/skills`; if you restore it, `make update` will relink it next to the new skills.

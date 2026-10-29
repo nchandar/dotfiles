@@ -49,6 +49,7 @@
 
 ## Explaining
 - How something works, an architecture or a data flow: build one self-contained animated HTML page (inline SVG, CSS, JS, no build step) and open it (`open` on macOS, `xdg-open` on Linux).
+- In the page, give every step a one-line why, and add small tables (components, decisions) next to the diagram. Recipe: `~/.agents/harness/library/explain-html.md`.
 
 ## Tooling
 - Prefer `rg` for search; use the repo's own formatter and linter.
