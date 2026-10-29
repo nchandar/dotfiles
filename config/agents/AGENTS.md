@@ -36,6 +36,7 @@
 
 ## Git
 - Small atomic commits; conventional commit messages.
+- Never list an AI (Claude, OpenAI, Codex, OpenCode, any LLM) as author, co-author or contributor. No `Co-Authored-By`, "Generated with" or similar lines in commits, PRs or files. I am the only contributor.
 - Before any push, ask. If there are several commits, ask whether to squash them into one first, and recommend one.
 - Never push to main. After the user approves a push, open a PR with summary, risks and test plan.
 
