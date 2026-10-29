@@ -1,0 +1,8 @@
+time	phase	decision	reason	evidence	result
+2026-10-29T08:25:58Z	start	herdr-view: spawn --view: herdr tabs, agent panel, auto-close	new task		open
+2026-10-29T08:25:58Z	grill	started late: tests drafted before clarifying	user asked to follow grill, plan, build	tests/spawn.test.sh has 11 red view tests; treated as a draft baseline	noted
+2026-10-29T08:25:58Z	next	grill: close policy first, then workspace grouping and notification scope; then spec + plan; then make draft tests green	resume point		
+2026-10-29T08:26:23Z	grill	close policy: one tab per worker, close on success, keep failures	user chose the recommended option	AskUserQuestion answer	resolved
+2026-10-29T08:28:02Z	spec	spec + 2-slice plan written	grill answers: close on success keep failures; current workspace; notify failures only (assumed)	/Users/niranjanchandarraj/dotfiles/.harness/tasks/herdr-view-261029-012558-6750/spec.md	approved-by-answers
+2026-10-29T08:30:19Z	verify	herdr view: 53 spawn tests, live success+timeout+close-views in real herdr	acceptance from spec.md	tabs mid-run, agent working, auto-close; timeout kept blocked, close-views cleared	pass
+2026-10-29T08:33:31Z	fix	close-the-ledger moved into the last checklist item of every skill	e2e claude run skipped the closing row; Verification bullets get skipped, checklist items are tracked	lint OK; rerunning e2e	pending

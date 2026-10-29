@@ -1,0 +1,4 @@
+[
+{"id":"s1","goal":"tab lifecycle: create, tail, report working/idle/blocked, close on success, fallbacks, off switch","check":"tests/spawn.test.sh view tests 1-5 and fallbacks","depends":[]},
+{"id":"s2","goal":"panel metadata, failure notification, tab memory, --close-views","check":"tests/spawn.test.sh remaining view tests","depends":["s1"]}
+]

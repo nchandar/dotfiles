@@ -39,6 +39,12 @@ Each skill opens with a checklist the agent copies into its task list. Steps rea
 - `HARNESS_SAFE=1` restores restricted modes. `HARNESS_MODEL` or `--model` picks a cheaper model. `HARNESS_TIMEOUT` (900 s) kills a hung worker.
 - Cap of 2 live workers per repo, shared by all sessions.
 
+## Herdr view
+- On by default when the herdr server is reachable: each worker gets a tab labelled `<id> · <cli> · <shape>` in the current workspace. The tab tails the worker log, and the worker shows in the Agents panel (`working`, then `idle` or `blocked`) with a title and display name.
+- Success closes the tab. Failure, timeout or a scout that changed files keeps it open as `blocked` and raises a notification. `bin/spawn --close-views` closes the kept tabs.
+- Workers still run headless with the same guards; the tab only watches. Without herdr, spawn runs exactly as before.
+- Switches: `HARNESS_VIEW=off` disables it, `HARNESS_VIEW_KEEP=1` keeps tabs after success, `HARNESS_VIEW_NOTIFY=all` also notifies on success, `HARNESS_VIEW_CLOSE_DELAY` (2 s) sets how long a finished tab stays.
+
 ## State on disk
 ```
 <repo>/.harness/               gitignored
@@ -54,7 +60,7 @@ New terminal: `bin/reconcile`, then resume a task (its `next` row) or `bin/ledge
 
 ## Measured
 - Always loaded: about 3 KB (global `AGENTS.md` 3.2 KB, five skill descriptions 0.6 KB). A route adds one skill (2 to 3 KB) plus the library files it names.
-- Cross-agent run, main plus two parallel workers: Claude main with codex and opencode workers, 46 s, about 0.8 GB; Codex main with claude and opencode workers, 81 s, about 0.75 GB. Both 7/7 on `evals/e2e.sh`.
+- Cross-agent run, main plus two parallel workers, with herdr tabs on: Claude main with codex and opencode workers, 117 s, about 0.7 GB; Codex main with claude and opencode workers, 96 s, about 0.7 GB. Both 7/7 on `evals/e2e.sh`.
 
 ## Limits
 - OpenCode cannot start its service from a sandboxed shell; start it once from a normal terminal.
