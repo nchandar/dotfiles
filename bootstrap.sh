@@ -119,8 +119,17 @@ else
   echo "Skipping existing ~/skills"
 fi
 
-# 3c-2) Agent harness: dev-* skills for Claude, Codex and OpenCode, plus bin/ tools
-"$DOTFILES_DIR/agents/harness/install.sh"
+# 3c-2) Agent harness (https://github.com/nchandar/agent-harness): dev-* skills for Claude, Codex and OpenCode, plus bin/ tools
+if [ ! -d "$HOME/agent-harness" ]; then
+  echo "Installing agent harness..."
+  git clone https://github.com/nchandar/agent-harness "$HOME/agent-harness" \
+    || echo "Warning: could not clone agent-harness; skipping."
+else
+  echo "Skipping existing ~/agent-harness"
+fi
+if [ -x "$HOME/agent-harness/install.sh" ]; then
+  "$HOME/agent-harness/install.sh"
+fi
 
 # 3d) Claude Code CLI
 if ! command -v claude >/dev/null 2>&1; then

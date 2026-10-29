@@ -23,7 +23,14 @@ herdr:
 	@./scripts/install-herdr-plugins.sh
 
 harness:
-	./agents/harness/install.sh
+	@if [ ! -d "$$HOME/agent-harness" ]; then \
+		echo "Cloning agent-harness..."; \
+		git clone https://github.com/nchandar/agent-harness "$$HOME/agent-harness"; \
+	else \
+		echo "Pulling agent-harness..."; \
+		git -C "$$HOME/agent-harness" pull; \
+	fi
+	@"$$HOME/agent-harness/install.sh"
 
 link:
 	./bootstrap.sh --link-only

@@ -1,12 +1,10 @@
 # Agent harness
 
-Skills and small bash tools that work the same under Claude Code, Codex and OpenCode. Source: `agents/harness/`. Global rules: `config/agents/AGENTS.md`.
+Skills and small bash tools that work the same under Claude Code, Codex and OpenCode. It lives in its own repo, `~/agent-harness` (https://github.com/nchandar/agent-harness). Global rules: `config/agents/AGENTS.md`.
 
 ## Install
-- `make harness` (also run by `bootstrap.sh`). Safe to rerun; it replaces only symlinks.
-- Links `agents/harness` to `~/.agents/harness`, and the `dev-*` skills into `~/.claude/skills`, `~/.codex/skills` and `~/.agents/skills`.
-- Check the CLIs: `~/.agents/harness/bin/spawn --doctor`.
-- OpenCode v2 needs its background service once: `opencode service start`.
+- `make harness` clones the repo if missing, pulls if present, then runs its installer. `bootstrap.sh` clones and installs it too.
+- Safe to rerun; it replaces only symlinks.
 
 ## Global rules
 - One file, `config/agents/AGENTS.md`, linked to `~/.agents/`, `~/.codex/`, `~/.config/opencode/`.
@@ -14,59 +12,12 @@ Skills and small bash tools that work the same under Claude Code, Codex and Open
 - Project `AGENTS.md` files add to it; they do not replace it.
 
 ## Skills
-| Skill | Use it for | Route |
-|---|---|---|
-| `dev-feature` | new behavior or a refactor | picks up a research report if there is one (else straight to the grill), spec, slices, test-first, review, verify, ship |
-| `dev-debug` | a bug or failing test | repro, root cause, doubt, regression test, fix |
-| `dev-research` | a question, a spike, or "how does X work" | grill you, research, checkpoint (agree or grill again), then `report.md` with a build handoff and, for systems, an animated HTML explainer; no code changes |
-| `dev-review` | a diff | Standards and Spec scouts in parallel, blast radius |
-| `dev-spawn` | handing work to another agent | brief, scout or ship, worktrees, cap 2, depth 1 |
-
-Each skill opens with a checklist the agent copies into its task list. Steps read small files from `library/` on demand (tdd, debug-method, verify, doubt, explain-html and 12 more), so the always-loaded cost stays near 3 KB.
-
-## Reports and explainers
-- `dev-research` writes `.harness/tasks/<id>/report.md` (question, answer, evidence, options, recommendation, open questions, `## Build handoff`). `dev-feature` reads it and grills only on what it leaves open.
-- For a system or data flow it also writes `report.html`: an animated diagram with play, pause and step controls, a one-line why per step, and small tables for components and decisions. Self-contained and offline. The recipe is `library/explain-html.md`.
-
-## Tools
-| Tool | What it does |
+| Skill | Use it for |
 |---|---|
-| `bin/ledger` | per-task, append-only TSV log (`start`, `done`, rows, `path`, `base`) |
-| `bin/reconcile` | open tasks, resume point and worker states, rebuilt from disk and git |
-| `bin/spawn` | run a headless worker on claude, codex or opencode; brief in, handoff out |
-| `bin/run` | run a command; full output to a log, short summary back |
-| `bin/lint-budget` | enforce size caps, `dev-` names, resolvable references |
+| `dev-feature` | new behavior or a refactor |
+| `dev-debug` | a bug or failing test |
+| `dev-research` | a question or a spike, no code changes |
+| `dev-review` | a diff |
+| `dev-spawn` | handing work to another agent |
 
-## Cross-agent use
-- Any CLI can be the main agent and any CLI the worker: "open a codex instance and run X" becomes `bin/spawn --prompt "X" <id> codex`.
-- Workers are headless one-shots with permissions skipped, so they never stall. They can commit locally and can never push (a dead push URL is set on every remote).
-- `HARNESS_SAFE=1` restores restricted modes. `HARNESS_MODEL` or `--model` picks a cheaper model. `HARNESS_TIMEOUT` (900 s) kills a hung worker.
-- Cap of 2 live workers per repo, shared by all sessions.
-
-## Herdr view
-- On by default when the herdr server is reachable: each worker gets a tab labelled `<id> · <cli> · <shape>` in the current workspace. The tab tails the worker log, and the worker shows in the Agents panel (`working`, then `idle` or `blocked`) with a title and display name.
-- Success closes the tab. Failure, timeout or a scout that changed files keeps it open as `blocked` and raises a notification. `bin/spawn --close-views` closes the kept tabs.
-- Workers still run headless with the same guards; the tab only watches. Without herdr, spawn runs exactly as before.
-- Switches: `HARNESS_VIEW=off` disables it, `HARNESS_VIEW_KEEP=1` keeps tabs after success, `HARNESS_VIEW_NOTIFY=all` also notifies on success, `HARNESS_VIEW_CLOSE_DELAY` (2 s) sets how long a finished tab stays.
-
-## State on disk
-```
-<repo>/.harness/               gitignored
-  run/slot.N                   worker slots (repo-wide cap)
-  tasks/<slug>-<date>-<rand>/  one per session or job, so parallel sessions never collide
-    ledger.tsv  briefs/  handoffs/  run/  runs/  wt/
-```
-New terminal: `bin/reconcile`, then resume a task (its `next` row) or `bin/ledger start <slug>`.
-
-## Tests and evals
-- `agents/harness/tests/run-all.sh` runs every script suite with a fake CLI and no tokens.
-- `agents/harness/evals/e2e.sh <claude|codex>` runs the real cross-agent scenario with that CLI as the main agent.
-
-## Measured
-- Always loaded: about 3 KB (global `AGENTS.md` 3.2 KB, five skill descriptions 0.6 KB). A route adds one skill (2 to 3 KB) plus the library files it names.
-- Cross-agent run, main plus two parallel workers, with herdr tabs on: Claude main with codex and opencode workers, 117 s, about 0.7 GB; Codex main with claude and opencode workers, 96 s, about 0.7 GB. Both 7/7 on `evals/e2e.sh`.
-
-## Limits
-- OpenCode cannot start its service from a sandboxed shell; start it once from a normal terminal.
-- `--resume` for workers is not built; start a new worker with the earlier handoff as context.
-- The old `dev-*` catalog was retired from `~/skills`; if you restore it, `make update` will relink it next to the new skills.
+Full details are in the agent-harness repo README (`~/agent-harness`).

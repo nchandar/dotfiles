@@ -14,7 +14,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - `config/codex/` shared Codex config template (`config.toml`) without machine-specific trust state
 - `config/claude/` global Claude Code settings (`settings.json`)
 - `config/agents/` one global `AGENTS.md` for every agent, linked into Claude (`CLAUDE.md`), Codex, OpenCode and `~/.agents`
-- `agents/harness/` skills, library and `bin/` tools for cross-agent work (see `docs/tools/agent-harness.md`)
+- The agent harness (skills, library, `bin/` tools) lives in its own repo, cloned to `~/agent-harness` by bootstrap (see `docs/tools/agent-harness.md`)
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
 - `Brewfile` Homebrew packages used for this setup, including Git, GitHub CLI, Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
