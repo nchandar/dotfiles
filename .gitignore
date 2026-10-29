@@ -20,4 +20,5 @@ config/**/logs/
 site/
 
 # Agent harness runtime state
+.devkit/
 .harness/

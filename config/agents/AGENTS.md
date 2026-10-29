@@ -50,7 +50,7 @@
 
 ## Explaining
 - How something works, an architecture or a data flow: build one self-contained animated HTML page (inline SVG, CSS, JS, no build step) and open it (`open` on macOS, `xdg-open` on Linux).
-- In the page, give every step a one-line why, and add small tables (components, decisions) next to the diagram. Recipe: `~/.agents/harness/library/explain-html.md`.
+- In the page, give every step a one-line why, and add small tables (components, decisions) next to the diagram. Recipe: `~/.agents/dev-kit/library/explain-html.md`.
 
 ## Tooling
 - Prefer `rg` for search; use the repo's own formatter and linter.
@@ -58,4 +58,4 @@
 
 ## References
 - Project AGENTS.md has build/test commands and architecture.
-- Preferences live in this file (tracked in dotfiles), not in tool memory. Harness skills, library and tools live in ~/.agents/harness (the dev-kit repo, cloned to ~/dev-kit); other skills in ~/skills.
+- Preferences live in this file (tracked in dotfiles), not in tool memory. dev-kit skills, library and tools live in ~/.agents/dev-kit (the dev-kit repo, cloned to ~/dev-kit); other skills in ~/skills.
