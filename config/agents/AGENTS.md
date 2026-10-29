@@ -58,4 +58,4 @@
 
 ## References
 - Project AGENTS.md has build/test commands and architecture.
-- Preferences live in this file (tracked in dotfiles), not in tool memory. Harness skills, library and tools live in ~/.agents/harness (the agent-harness repo, cloned to ~/agent-harness); other skills in ~/skills.
+- Preferences live in this file (tracked in dotfiles), not in tool memory. Harness skills, library and tools live in ~/.agents/harness (the dev-kit repo, cloned to ~/dev-kit); other skills in ~/skills.

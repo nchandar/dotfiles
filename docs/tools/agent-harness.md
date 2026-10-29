@@ -1,6 +1,6 @@
 # Agent harness
 
-Skills and small bash tools that work the same under Claude Code, Codex and OpenCode. It lives in its own repo, `~/agent-harness` (https://github.com/nchandar/agent-harness). Global rules: `config/agents/AGENTS.md`.
+Skills and small bash tools that work the same under Claude Code, Codex and OpenCode. It lives in its own repo, `~/dev-kit` (https://github.com/nchandar/dev-kit). Global rules: `config/agents/AGENTS.md`.
 
 ## Install
 - `make harness` clones the repo if missing, pulls if present, then runs its installer. `bootstrap.sh` clones and installs it too.
@@ -27,4 +27,4 @@ Skills and small bash tools that work the same under Claude Code, Codex and Open
 - At closeout, general lessons and reusable procedures are queued in a local inbox (`~/.agents/learnings/`). `dev-learn` drafts library changes on a branch and merges only after you approve.
 - The library has three tiers: a short principles digest, on-demand deep files, and reusable recipes.
 
-Full details are in the agent-harness repo README (`~/agent-harness`).
+Full details are in the dev-kit repo README (`~/dev-kit`).

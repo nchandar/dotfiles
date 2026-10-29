@@ -23,14 +23,14 @@ herdr:
 	@./scripts/install-herdr-plugins.sh
 
 harness:
-	@if [ ! -d "$$HOME/agent-harness" ]; then \
-		echo "Cloning agent-harness..."; \
-		git clone https://github.com/nchandar/agent-harness "$$HOME/agent-harness"; \
+	@if [ ! -d "$$HOME/dev-kit" ]; then \
+		echo "Cloning dev-kit..."; \
+		git clone https://github.com/nchandar/dev-kit "$$HOME/dev-kit"; \
 	else \
-		echo "Pulling agent-harness..."; \
-		git -C "$$HOME/agent-harness" pull; \
+		echo "Pulling dev-kit..."; \
+		git -C "$$HOME/dev-kit" pull; \
 	fi
-	@"$$HOME/agent-harness/install.sh"
+	@"$$HOME/dev-kit/install.sh"
 
 link:
 	./bootstrap.sh --link-only
