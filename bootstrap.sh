@@ -119,9 +119,9 @@ else
   echo "Skipping existing ~/skills"
 fi
 
-# 3c-2) Agent harness (https://github.com/nchandar/dev-kit): dev-* skills for Claude, Codex and OpenCode, plus bin/ tools
+# 3c-2) dev-kit (https://github.com/nchandar/dev-kit): dev-* skills for Claude, Codex and OpenCode, plus bin/ tools
 if [ ! -d "$HOME/dev-kit" ]; then
-  echo "Installing agent harness..."
+  echo "Installing dev-kit..."
   git clone https://github.com/nchandar/dev-kit "$HOME/dev-kit" \
     || echo "Warning: could not clone dev-kit; skipping."
 else

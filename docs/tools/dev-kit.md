@@ -1,4 +1,4 @@
-# Agent harness
+# dev-kit
 
 Skills and small bash tools that work the same under Claude Code, Codex and OpenCode. It lives in its own repo, `~/dev-kit` (https://github.com/nchandar/dev-kit). Global rules: `config/agents/AGENTS.md`.
 
