@@ -8,7 +8,7 @@
 - Skipping a workflow stage: say so and why.
 
 ## Workflow
-- Use the matching skill, do not improvise: feature or refactor -> dev-feature; bug or failing test -> dev-debug; question or spike -> dev-research; review -> dev-review; hand work to another agent or CLI -> dev-spawn.
+- Use the matching skill, do not improvise: feature or refactor -> dev-feature; bug or failing test -> dev-debug; question or spike -> dev-research; review -> dev-review; hand work to another agent or CLI -> dev-spawn; queued learnings from finished work -> dev-learn.
 - Default order: grill me (one question at a time), plan (short, thin slices), build test-first, review, verify.
 - Always give your own recommendation with every question and every option. Never just ask.
 - Skip the grill only when the goal and the acceptance check are already stated; say so.
