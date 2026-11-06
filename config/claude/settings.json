@@ -78,6 +78,18 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/niranjanchandarraj/.agents/dev-kit/bin/stop-gate",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
