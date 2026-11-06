@@ -34,5 +34,6 @@ cask "visual-studio-code"
 cask "nikitabobko/tap/aerospace"
 brew "herdr"
 cask "handy"
+cask "openusage"
 cask "codex", args: { adopt: true }
 brew "git"

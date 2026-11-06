@@ -17,7 +17,7 @@ Portable terminal + tooling setup (macOS + Omarchy Linux workflows).
 - dev-kit (skills, library, `bin/` tools) lives in its own repo, cloned to `~/dev-kit` by bootstrap (see `docs/tools/dev-kit.md`)
 - `.mcp.json` project-shared Claude Code MCP servers for this repo
 - `config/oh-my-posh.omp.toml` Oh My Posh prompt config (single-line rounded Catppuccin pills; path/prompt on the left, git/status/time/battery on the right)
-- `Brewfile` Homebrew packages used for this setup, including Git, GitHub CLI, Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode
+- `Brewfile` Homebrew packages used for this setup, including Git, GitHub CLI, Bun, Ghostty, VS Code, Claude Code, Codex, OpenCode, and OpenUsage
 - `scripts/install-herdr-plugins.sh` portable installer for the versioned Herdr plugin set
 
 ## Layout
@@ -81,7 +81,7 @@ make bootstrap
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
-This installs the repo's macOS toolchain, including `git`, `gh`, `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
+This installs the repo's macOS toolchain, including `git`, `gh`, `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, `opencode`, and `openusage`.
 
 3) Symlink configs into `~/.config`
 ```sh

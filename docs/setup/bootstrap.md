@@ -17,7 +17,7 @@ make bootstrap-omarchy
 
 `bootstrap-omarchy.sh` and `make bootstrap-omarchy` are Linux-only and will fail fast on macOS.
 
-On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, including `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`.
+On macOS, `make bootstrap` installs the repo's Homebrew bundle from `Brewfile`, including `bun`, `ghostty`, `visual-studio-code`, `claude-code`, `codex`, `opencode`, and `openusage`.
 
 ## Omarchy dependency install (quick)
 Install these packages with your normal package manager before running bootstrap:
@@ -37,7 +37,7 @@ If your distro uses different package names, swap to the matching ones for your 
 Claude Code currently needs its own installer outside this pacman flow.
 
 ## What this does
-1. macOS: installs Homebrew packages from `Brewfile` (including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, and `opencode`)
+1. macOS: installs Homebrew packages from `Brewfile` (including `ghostty`, `visual-studio-code`, `claude-code`, `codex`, `opencode`, and `openusage`)
 2. Creates symlinks from `config/` into `~/.config`
 3. Runs headless Neovim plugin sync (`Lazy sync` + `TSUpdate`)
 4. Installs or updates Auto Title and the full Annotate Herdr plugin
@@ -79,7 +79,7 @@ cd ~/dotfiles
 make update
 ```
 
-`make upgrade` also refreshes the Homebrew-installed GUI and CLI apps from `Brewfile`, including Bun, Ghostty, VS Code, Claude Code, Codex, and OpenCode on macOS.
+`make upgrade` also refreshes the Homebrew-installed GUI and CLI apps from `Brewfile`, including Bun, Ghostty, VS Code, Claude Code, Codex, OpenCode, and OpenUsage on macOS.
 
 ## Omarchy/ Linux status check (quick)
 
