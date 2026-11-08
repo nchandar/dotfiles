@@ -24,6 +24,7 @@
 ## Verification
 - Run tests, lint and typecheck before reporting done; show the output.
 - Test first for behavior changes. Never weaken a test or check to get green.
+- Bugs: reproduce first, then fix, then re-run the repro to prove it is fixed, then run the whole test suite. A sub-agent's partial run does not count; the main agent runs the full suite on the merged result.
 - Report failures honestly; never claim success without evidence.
 
 ## Engineering principles
@@ -39,6 +40,7 @@
 - Never list an AI (Claude, OpenAI, Codex, OpenCode, any LLM) as author, co-author or contributor. No `Co-Authored-By`, "Generated with" or similar lines in commits, PRs or files. I am the only contributor.
 - Before any push, ask. If there are several commits, ask whether to squash them into one first, and recommend one.
 - Never push to main. After the user approves a push, open a PR with summary, risks and test plan.
+- Never merge a PR unless every CI check has passed. Verify with `gh pr checks`: a failing or pending check, or no checks reported, means do not merge; fix it, wait, or ask me.
 
 ## Style
 - Short and tight everywhere: replies, comments, commits, docs. Say it once.
